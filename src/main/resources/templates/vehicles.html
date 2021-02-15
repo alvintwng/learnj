@@ -1,0 +1,32 @@
+<!-- ref: 210113B-BankApp/ -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Rent</title>
+</head>
+<body>
+	<h1>Vehicle List</h1>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Vehicle ID</th>
+				<th>Model</th>
+				<th>Brand</th>
+				<th>Licence No</th>
+
+
+		</thead>
+		<tbody>
+			<tr th:each="veh : ${listVehicles}">
+				<td th:text="${veh.VehId}" />
+				<td th:text="${veh.vehModel}" />
+				<td th:text="${veh.vehBrand}" />
+				<td th:text="${veh.vehLicPlate}"/>
+
+
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
