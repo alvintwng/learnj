@@ -1,0 +1,36 @@
+<!-- 210113B-BankApp/index.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Rent</title>
+</head>
+<body>
+	<h1>Employee List</h1>
+ 	<table border="1">
+		<thead>
+			<tr>
+			 	<th>Employee ID</th>
+				<th>Name</th>
+				<th>Full Name</th>
+				<th>Password</th>
+				<th>Phone No</th>
+				<th>Email</th>
+				<th>is Active ?</th>
+				
+		</thead>
+		<tbody>
+			<tr th:each="emp : ${listEmps}">
+ 				<td th:text="${emp.empId}" />
+				<td th:text="${emp.empName}" />
+				<td th:text="${emp.empFullName}" />
+ 				<td th:text="${emp.password}" />
+				<td th:text="${emp.phoneNo}"/>
+				<td th:text="${emp.email}"/>
+				<td th:text="${emp.isActive}"/>
+				
+			</tr>
+		</tbody>
+	</table> 
+</body>
+</html>
