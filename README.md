@@ -64,6 +64,11 @@ antw@Mac-mini SumProj % git status
 On branch main
 Your branch is up to date with 'origin/main'.
 
-
+antw@Mac-mini SumProj % git checkout -b branch2
+Switched to a new branch 'branch2'
+antw@Mac-mini SumProj % git status
+On branch branch2
+nothing to commit, working tree clean
+antw@Mac-mini SumProj % vim readme.md
 
 ```
