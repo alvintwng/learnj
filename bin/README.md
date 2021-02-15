@@ -71,7 +71,4 @@ On branch branch2
 nothing to commit, working tree clean
 antw@Mac-mini SumProj % vim readme.md
 
-antw@Mac-mini sumproj % git branch -v
-
-
 ```
