@@ -75,14 +75,9 @@ antw@Mac-mini sumproj % git branch -v
 
 antw@Mac-mini sumproj % git add .  
 antw@Mac-mini sumproj % git commit -m "employees pojo crud"  
-[branch2 9be3085] employees pojo crud
- 7 files changed, 244 insertions(+), 2 deletions(-)
- create mode 100644 src/main/java/carDate/emp/Employee.java
- create mode 100644 src/main/java/carDate/emp/EmployeeController.java
- create mode 100644 src/main/java/carDate/emp/EmployeeDao.java
- create mode 100644 src/main/java/carDate/emp/EmployeeDaoImpl.java
- create mode 100644 src/main/java/carDate/emp/EmployeeRepo.java
- create mode 100644 src/main/resources/templates/employees.html
 antw@Mac-mini sumproj % git push -u origin branch2
 
+antw@Mac-mini sumproj % git add .
+antw@Mac-mini sumproj % git commit -m "vehicle pojo crud"
+antw@Mac-mini sumproj % git push -u origin branch2  
 ```
