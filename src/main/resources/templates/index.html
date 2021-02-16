@@ -2,31 +2,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Car Rent</title>
+	<meta charset="UTF-8">
+	<title>Car Rent</title>
+	
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+
 </head>
 <body>
-	<h1>Customer List</h1>
-	<table border="1">
-		<thead>
-			<tr>
-				<th>Customer ID</th>
-				<th>Name</th>
-				<th>Date of Birth</th>
-				<th>Email</th>
-				<th>is Active ?</th>
-				<th>Phone No</th>
-		</thead>
-		<tbody>
-			<tr th:each="customer : ${listCustomers}">
-				<td th:text="${customer.custId}" />
-				<td th:text="${customer.custName}" />
-				<td th:text="${customer.dob}" />
-				<td th:text="${customer.email}"/>
-				<td th:text="${customer.isActive}"/>
-				<td th:text="${customer.phoneNo}"/>
-			</tr>
-		</tbody>
-	</table>
+
+	<div th:replace="common :: navbar"></div>
+	<div class="mx-auto" style="width: 400px;">
+	<h3>Summative Project</h1>
+<!-- 	<a th:href="@{/cust}"> Customers </a>
+	<a th:href="@{/emp}"> Employees </a>
+	<a th:href="@{/veh}"> Vehicles </a>
+	<a th:href="@{/hire}"> Hires </a> -->
+
+	To build an application system:
+
+	based on Oracle to store all business data, <br>
+
+	using Spring Framework, <br>
+
+	accessible with internet browsers, <br>
+
+	utilizing Javascript, JQuery, Thymeleaf, and Bootstrap for client side presentation, styling, and interaction,
+	</div>
+
+	<div th:replace="common :: footer"></div>
 </body>
 </html>

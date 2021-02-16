@@ -13,11 +13,11 @@ public class CustomerController {
 	@Autowired
 	private CustomerDao customerDao;
 	
-	@GetMapping("/")
+	@GetMapping("/cust")
 	public String viewHomePage(Model model) {
 		
 		model.addAttribute("listCustomers", customerDao.getAllCustomers());
-		return "index";
+		return "cust";
 	}
 
 }

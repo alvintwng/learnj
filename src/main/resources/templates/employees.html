@@ -4,8 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Car Rent</title>
+
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+	
 </head>
 <body>
+
+	<div th:replace="common :: navbar"></div>
+	
 	<h1>Employee List</h1>
  	<table border="1">
 		<thead>
@@ -32,5 +39,8 @@
 			</tr>
 		</tbody>
 	</table> 
+	
+	<div th:replace="common :: footer"></div>
+	
 </body>
 </html>

@@ -3,8 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Bank App</title>
+
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+	
 </head>
 <body>
+	
+	<div th:replace="common :: navbar"></div>
+	
 	<h1>Hire List</h1>
 	<table border="1">
 		<thead>
@@ -27,5 +34,8 @@
 			</tr>
 		</tbody>
 	</table>
+	
+	<div th:replace="common :: footer"></div>
+	
 </body>
 </html>

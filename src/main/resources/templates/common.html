@@ -1,0 +1,76 @@
+<!-- ref: 210209E-SpringManyToMany/templates/common.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+		<div  th:fragment="navbar">
+		<div class="container-fluid ">
+		
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="/">
+   <img class="img-responsive" width="130px" height="" 
+src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_81960000000000001/attachments/78818/lhub2020-logo.png">
+  </a>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      
+		<li class="nav-item dropdown">
+			<a class="nav-link active dropdown-toggle" href="/" data-toggle="dropdown"> Customers</a>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="/cust"> View Customer </a></li>
+				<li><a class="dropdown-item" href="/cust"> Add Customer </a></li>
+			</ul>
+		</li>
+		
+      <li class="nav-item">
+        <a class="nav-link active" href="/hire">Hires</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/veh">Vehicles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/emp">Employees</a>
+      </li>
+      
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+					<hr>
+		</div>
+		</div>
+
+		<div  th:fragment="footer">
+				<div class="text-center m-3 fixed-bottom"> 
+				<h5> Copyright &copy; NTUC Ltd. </h5>
+		</div>
+			<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			        type="text/javascript"></script>
+			<script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript"></script>
+			<script  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+			<script src="../static/main.js" type="text/javascript" th:src="@{/main.js}"></script>
+			<script src="../static/nav.js" type="text/javascript" th:src="@{/nav.js}"></script>
+		</div>
+
+		<div  th:fragment="header">
+				<meta charset="ISO-8859-1">
+
+				    <!-- Required meta tags -->
+				    <meta charset="utf-8" > 
+				    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"> 
+				    <!-- Bootstrap CSS -->
+				    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> </link>
+				    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> </link>
+		</div>
+
+</body>
+</html>
