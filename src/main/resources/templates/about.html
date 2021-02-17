@@ -17,10 +17,15 @@
 
 	<h1 style="text-align:center">
 	
-	<span>  Welcome to SpringBoot Security </span>
+	<span>  Welcome to Team 1 Project </span>
 	<br>
-	
+<!-- 	
    <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+  -->
+		<div sec:authorize="isAuthenticated()">
+			<b><span sec:authentication="name">Username</span></b> &nbsp;
+			<i><span sec:authentication="principal.authorities">Roles</span></i>
+		</div> 
    
    </h1>
   

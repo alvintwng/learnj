@@ -1,4 +1,4 @@
-/*  ref: /210121L-BankApp/ */
+/*  ref: /210121L-BankApp, 210203Q-BankApp */
 package carDate;
 
 import java.util.ArrayList;
@@ -57,13 +57,14 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 		
 	}
 	
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	
 		http
 			.csrf().disable()
-			.authorizeRequests().antMatchers("/login").permitAll()
+			.authorizeRequests()
+			.antMatchers("/login").permitAll()
+			.antMatchers("/").hasAnyAuthority("USER", "MANAGER", "ADMIN")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -73,7 +74,6 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 			.clearAuthentication(true)
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 			.logoutSuccessUrl("/logout-success").permitAll();
-
 	}	
 	
 }

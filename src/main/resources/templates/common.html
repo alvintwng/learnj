@@ -49,7 +49,9 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
     
 		<span class="nav-item dropdown">
 			<a class="nav-link active dropdown-toggle" href="/" data-toggle="dropdown">
-			 	<span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+				<span sec:authentication="principal.authorities">Roles</span> &nbsp;
+			 	<b><span th:text="${#authentication.getPrincipal().getUsername()}"></span></b>
+			 	
 			</a>
 			<ul class="dropdown-menu">
 				<li><a class="dropdown-item" href="/login">re-Login</a></li>
