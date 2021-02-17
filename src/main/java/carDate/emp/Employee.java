@@ -1,17 +1,23 @@
 package carDate.emp;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Employee {
@@ -66,6 +72,15 @@ public class Employee {
 		this.empName = empName;
 		this.password = password;
 	}
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "EMPLOYEES_ROLES",
+			joinColumns = @JoinColumn(name = "EMPLOYEEID"),
+			inverseJoinColumns = @JoinColumn(name = "ROLEID")
+			)
+	
+	private Set<Role> roles = new HashSet<>(); 
 	
 	
 	public long getEmpId() {
@@ -131,6 +146,21 @@ public class Employee {
 	}
 	public void setPswdExpiry(LocalDate pswdExpiry) {
 		this.pswdExpiry = pswdExpiry;
+	}
+
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 

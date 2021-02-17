@@ -1,7 +1,12 @@
+/* 210203Q-BankApp/auth/UserDetailImpl.java */
+
 package carDate.emp;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,23 +21,25 @@ public class UserDetailImpl implements UserDetails {
 		this.employee = employee;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Collections.singleton(new SimpleGrantedAuthority("USER"));
-	}
-	
 //	@Override
 //	public Collection<? extends GrantedAuthority> getAuthorities() {
-//		Set<Role> roles = employee.getRoles();
-//		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//		
-//		for (Role role : roles) {
-//			authorities.add(new SimpleGrantedAuthority(role.getName()));
-//
-//		}
-//		
-//		return authorities;
+//		return Collections.singleton(new SimpleGrantedAuthority("USER"));
 //	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		
+		Set<Role> roles = employee.getRoles();
+		System.out.println("=====> UsersDetailImpl roles.size() :: " + roles.size() );
+		
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		
+		for (Role role : roles) {
+			authorities.add(new SimpleGrantedAuthority(role.getName()));
+		}
+		
+		return authorities;
+	}
 	
 	@Override
 	public String getPassword() {
