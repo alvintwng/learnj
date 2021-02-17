@@ -12,7 +12,16 @@
 <body>
 
 	<div th:replace="common :: navbar"></div>
-	<div class="mx-auto" style="width: 400px;">
+	
+	<h1 style="text-align:center">
+	
+		<span>  Welcome to Team 1 Project </span>
+		<br>
+		<span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+
+   </h1>
+   <hr>
+	<div class="mx-auto" style="width: 560px;">
 	<h3>Summative Project</h1>
 <!-- 	<a th:href="@{/cust}"> Customers </a>
 	<a th:href="@{/emp}"> Employees </a>
