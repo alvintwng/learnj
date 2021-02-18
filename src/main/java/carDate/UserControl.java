@@ -12,7 +12,6 @@ public class UserControl {
 	
 	@RequestMapping("/about")
 	public String Welcome() {
-		System.out.println(" ====>  UserControl");
 		return "about";
 	}
 
@@ -23,17 +22,20 @@ public class UserControl {
 
 	@RequestMapping("/login")
 	public String login() {
+			System.out.println("=====> UserController /login ");
 			return "login";
 	}
 
 	@RequestMapping("/logout-success")
 	public String logout() {
+			System.out.println("=====> UserController /logout ");
 			return "logout";
 	}
 	
 	@RequestMapping("/403")
 	public String errorPage() {
-		return "403";
+			System.out.println("=====> UserController /403 ");
+			return "403";
 	}
 	
 }

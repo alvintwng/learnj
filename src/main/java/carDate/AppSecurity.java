@@ -1,4 +1,5 @@
-/*  ref: /210121L-BankApp, 210203Q-BankApp */
+/*  ref: /210121L-BankApp, 210203Q-BankApp 
+ * 		mHCapStoneProj6/210127-SpringAUth */
 package carDate;
 
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 			.antMatchers("/cust")	.hasAnyAuthority("USER", "MANAGER")
 			.antMatchers("/hire")	.hasAnyAuthority("USER", "MANAGER")
 			.antMatchers("/veh")	.hasAnyAuthority("USER", "MANAGER")
-			.antMatchers("/emp/**")	.hasAuthority("ADMIN")
+			.antMatchers("/emp*/**")	.hasAuthority("ADMIN")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()

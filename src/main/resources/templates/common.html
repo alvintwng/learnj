@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
+<!-- ***** common navbar start  -->
 		<div  th:fragment="navbar">
 		<div class="container-fluid ">
 		
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" 
+  	aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="/">
@@ -64,7 +66,9 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 		<hr>
 		</div>
 		</div>
+<!-- ***** common navbar end  -->
 
+<!-- ***** common footer  -->
 		<div  th:fragment="footer">
 				<div class="text-center m-3 fixed-bottom"> 
 				<footer> Copyright &copy; NTUC Ltd. </footer>
@@ -77,6 +81,7 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 			<script src="../static/nav.js" type="text/javascript" th:src="@{/nav.js}"></script>
 		</div>
 
+<!-- ***** common header  -->
 		<div  th:fragment="header">
 			<!-- Required meta tags -->
     <meta charset="utf-8">
@@ -84,6 +89,15 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		
+	<style>
+		.parent {
+			/* border: 5px solid #E18728; */
+			padding: 20px;
+			margin: 20px;
+			float: left;
+		}
+	</style>
 		</div>
 
 </body>
