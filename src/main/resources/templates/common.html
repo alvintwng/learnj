@@ -20,24 +20,24 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 		<li class="nav-item active">
 		  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 		</li>
-		<li class="nav-item dropdown">
-			<a class="nav-link active dropdown-toggle" href="/" data-toggle="dropdown"> Customers</a>
+		<li class="nav-item dropdown" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
+			<a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown"> Customers</a>
 			<ul class="dropdown-menu">
 				<li><a class="dropdown-item" href="/cust"> View Customer </a></li>
 				<li><a class="dropdown-item" href="/cust"> Add Customer </a></li>
 			</ul>
 		</li>
-		<li class="nav-item">
-		  <a class="nav-link active" href="/hire">Hires</a>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
+		  <a class="nav-link" href="/hire">Hires</a>
 		</li>
-		<li class="nav-item">
-		  <a class="nav-link active" href="/veh">Vehicles</a>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
+		  <a class="nav-link" href="/veh">Vehicles</a>
 		</li>
-		<li class="nav-item">
-		  <a class="nav-link active" href="/emp">Employees</a>
+		<li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+		  <a class="nav-link" href="/emp">Employees</a>
 		</li>
 		 <li class="nav-item">
-		  <a class="nav-link active" href="/about">About</a>
+		  <a class="nav-link" href="/about">About</a>
 		</li>
 		
     </ul>
@@ -78,14 +78,12 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 		</div>
 
 		<div  th:fragment="header">
-			<meta charset="ISO-8859-1">
-			
-		    <!-- Required meta tags -->
-			<meta charset="utf-8" > 
-			<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"> 
-			<!-- Bootstrap CSS -->
-			<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> </link>
-			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> </link>
+			<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		</div>
 
 </body>

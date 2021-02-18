@@ -15,7 +15,7 @@
   	<div th:replace="common :: navbar"></div>
 
 
-	<h1 style="text-align:center">
+	<h3 style="text-align:center">
 	
 	<span>  Welcome to Team 1 Project </span>
 	<br>
@@ -27,8 +27,22 @@
 			<i><span sec:authentication="principal.authorities">Roles</span></i>
 		</div> 
    
-   </h1>
-  
+   </h3>
+	<hr>
+	
+	<h2>Testing: ....</h2>
+	<ul>
+		<li>Show: <a sec:authorize="hasAuthority('ADMIN')">1 ADMIN</a>, <a
+			sec:authorize="hasAuthority('MANAGER')">2 MANAGER</a>, <a
+			sec:authorize="hasAnyAuthority('USER', 'MANAGER')">3 USER</a>.
+
+		</li>
+		<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+		<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a>
+		</li>
+	</ul>
+
+
 	<div th:replace="common :: footer"></div>
   </body>
 

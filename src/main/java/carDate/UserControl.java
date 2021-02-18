@@ -4,6 +4,7 @@ package carDate;
 import java.security.Principal;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -28,7 +29,11 @@ public class UserControl {
 	@RequestMapping("/logout-success")
 	public String logout() {
 			return "logout";
-
+	}
+	
+	@RequestMapping("/403")
+	public String errorPage() {
+		return "403";
 	}
 	
 }

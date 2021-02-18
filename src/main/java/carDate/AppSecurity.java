@@ -65,6 +65,10 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 			.authorizeRequests()
 			.antMatchers("/login").permitAll()
 			.antMatchers("/").hasAnyAuthority("USER", "MANAGER", "ADMIN")
+			.antMatchers("/cust")	.hasAnyAuthority("USER", "MANAGER")
+			.antMatchers("/hire")	.hasAnyAuthority("USER", "MANAGER")
+			.antMatchers("/veh")	.hasAnyAuthority("USER", "MANAGER")
+			.antMatchers("/emp/**")	.hasAuthority("ADMIN")
 			.anyRequest().authenticated()
 			.and()
 			.formLogin()
@@ -73,7 +77,10 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 			.logout().invalidateHttpSession(true)
 			.clearAuthentication(true)
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/logout-success").permitAll();
+			.logoutSuccessUrl("/logout-success").permitAll()
+			.and()
+			.exceptionHandling().accessDeniedPage("/403")
+			;
 	}	
 	
 }
