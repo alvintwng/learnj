@@ -1,4 +1,5 @@
-<!-- 210113B-BankApp/index.html -->
+<!-- 210113B-BankApp/index.html 
+ 	210127N-BankApp/ -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -7,38 +8,53 @@
 
 	<!-- ==> common.html -->
 	<div th:replace="common :: header"></div>
-	
+
 </head>
 <body>
 
 	<div th:replace="common :: navbar"></div>
 	
-	<h1>Employee List</h1>
- 	<table border="1">
+	<div class="parent">
+	<h2>Employee List</h2>
+	
+	<div>
+		<a href="empNew">Create New Employee</a>
+	</div>
+	
+ 	<table class="table table-striped">
 		<thead>
 			<tr>
 			 	<th>Employee ID</th>
-				<th>Name</th>
+				<th>User Name</th>
 				<th>Full Name</th>
-				<th>Password</th>
 				<th>Phone No</th>
 				<th>Email</th>
+				<th>Job Title</th>
 				<th>is Active ?</th>
-				
+				<th>User Expiry</th>
+				<th>Password Expiry</th>
+				<th>Actions</th>	
 		</thead>
+		
 		<tbody>
 			<tr th:each="emp : ${listEmps}">
  				<td th:text="${emp.empId}" />
 				<td th:text="${emp.empName}" />
 				<td th:text="${emp.empFullName}" />
- 				<td th:text="${emp.password}" />
 				<td th:text="${emp.phoneNo}"/>
 				<td th:text="${emp.email}"/>
+				<td th:text="${emp.jobTitle}"/>
 				<td th:text="${emp.isActive}"/>
-				
+				<td th:text="${emp.userExpiry}" />
+				<td th:text="${emp.pswdExpiry}" />
+				<td >
+					<a th:href="@{'/empEdit/' + ${emp.empId}}">Edit  </a>
+					<a th:href="@{'/empDelete/' + ${emp.empId}}">Delete</a>
+				</td>
 			</tr>
 		</tbody>
 	</table> 
+	</div>
 	
 	<div th:replace="common :: footer"></div>
 	

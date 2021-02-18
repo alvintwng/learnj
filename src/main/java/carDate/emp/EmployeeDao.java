@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 public interface EmployeeDao {
 	
 	public List<Employee> getAllEmployees();
-//	public Employee getEmployeeById(long empId);
+	public Employee getEmployeeById(long empId);
+	void save(Employee employee);
+	void delete(Long id);
 
 }

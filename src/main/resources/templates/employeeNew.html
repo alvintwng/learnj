@@ -1,0 +1,73 @@
+<!-- ref: 210127-SpringAUth/new_product.html -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Rent - create new emp</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	<div class="parent">
+
+<div align="center">
+	<h1>Create New Employees</h1>
+	<br/>
+	<form action="#" th:action="@{/empSave}" th:object="${employee}" method="POST">
+	<table>
+	
+	<tr>
+		<td>User Name: </td>
+		<td><input type="text" th:field="*{empName}" /></td>
+	</tr>
+	<tr>
+		<td>User Password: </td>
+		<td><input type="text" th:field="*{password}" /></td>
+	</tr>
+	<tr>
+		<td>Full Name: </td>
+		<td><input type="text" th:field="*{empFullName}" /></td>
+	</tr>
+	<tr>
+		<td>Phone No: </td>
+		<td><input type="text" th:field="*{phoneNo}" /></td>
+	</tr>
+	<tr>
+		<td>Email: </td>
+		<td><input type="text" th:field="*{email}" /></td>
+	</tr>
+	<tr>
+		<td>Job Title: </td>
+		<td><input type="text" th:field="*{jobTitle}" /></td>
+	</tr>
+	<tr>
+		<td>is Active ?: </td>
+		<td><input type="text" th:field="*{isActive}" /></td>
+	</tr>
+	<tr>
+		<td>User Expiry: </td>
+		<td><input type="text" th:field="*{userExpiry}" /></td>
+	</tr>
+	<tr>
+		<td>Password Expiry: </td>
+		<td><input type="text" th:field="*{pswdExpiry}" /></td>
+	</tr>
+	<tr>
+		<td colspan="2"><button type="submit">Save</button></td>
+	</tr>
+ </table>
+ </form>
+</div>
+
+Issues:: <br>
+What is ModelAndView? <br>
+Password to be BCrypth <br>
+key Valid email and date <br>
+
+
+	</div>
+	<div th:replace="common :: footer"></div>
+</body>
+</html>
