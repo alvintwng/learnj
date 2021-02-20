@@ -18,7 +18,7 @@
 	<h2>Employee List</h2>
 	
 	<div>
-		<a href="empNew">Create New Employee</a>
+		<a href="emp/new">Create New Employee</a>
 	</div>
 	
  	<table class="table table-striped">
@@ -26,6 +26,9 @@
 			<tr>
 			 	<th>Employee ID</th>
 				<th>User Name</th>
+				
+				<th>Role Type</th>
+				
 				<th>Full Name</th>
 				<th>Phone No</th>
 				<th>Email</th>
@@ -38,18 +41,19 @@
 		
 		<tbody>
 			<tr th:each="emp : ${listEmps}">
- 				<td th:text="${emp.empId}" />
-				<td th:text="${emp.empName}" />
-				<td th:text="${emp.empFullName}" />
-				<td th:text="${emp.phoneNo}"/>
-				<td th:text="${emp.email}"/>
-				<td th:text="${emp.jobTitle}"/>
-				<td th:text="${emp.isActive}"/>
-				<td th:text="${emp.userExpiry}" />
-				<td th:text="${emp.pswdExpiry}" />
+ 				<td>[[ ${emp.empId} ]]</td>
+				<td>[[ ${emp.empName} ]]</td>
+				<td>[[ ${emp.roles} ]]</td>
+				<td>[[ ${emp.empFullName} ]]</td>
+				<td>[[ ${emp.phoneNo} ]]</td>
+				<td>[[ ${emp.email} ]]</td>
+				<td>[[ ${emp.jobTitle} ]]</td>
+				<td>[[ ${emp.isActive} ]]</td>
+				<td>[[ ${emp.userExpiry} ]]</td>
+				<td>[[ ${emp.pswdExpiry} ]]</td> 
 				<td >
-					<a th:href="@{'/empEdit/' + ${emp.empId}}">Edit  </a>
-					<a th:href="@{'/empDelete/' + ${emp.empId}}">Delete</a>
+					<a th:href="@{'/emp/edit/' + ${emp.empId}}">Edit  </a>
+					<a th:href="@{'/emp/delete/' + ${emp.empId}}">Delete</a>
 				</td>
 			</tr>
 		</tbody>
