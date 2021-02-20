@@ -20,6 +20,7 @@ public class MyUserDetailService implements UserDetailsService {
 		if(employee==null)
 			throw new UsernameNotFoundException(empName);
 		
+		System.out.println("=====> MyUserDetailService, getEmpName: " + employee.getEmpName());
 		return new UserDetailImpl(employee);
 		}
 

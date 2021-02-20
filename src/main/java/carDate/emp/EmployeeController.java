@@ -1,6 +1,5 @@
-/* 210113B-BankApp/CustomerController.java 
- * 210203Q-BankApp/auth/UserControl.java 
- * 210127N-BankApp/.../CustomerController.java*/
+/* 210113B-BankApp/CustomerController.java  * 210203Q-BankApp/auth/UserControl.java 
+ * 210127N-BankApp/.../CustomerController.java * 210208B-SpringManyToMany */
 package carDate.emp;
 
 import java.util.List;
@@ -11,70 +10,68 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class EmployeeController {
-	
+
 	@Autowired
-	private EmployeeDao employeeDao;
+	private EmployeeRepo empRepo;
 
 	@Autowired
 	private RoleRepo rolerepo;
-	
+
 	@GetMapping("/emp")
-	public String viewHomePage(Model model) {
-		List<Role> roles = rolerepo.findAll();
-		model.addAttribute("roles", roles);
-		model.addAttribute("listEmps", employeeDao.getAllEmployees());
+	public String viewEmpPage(Model model) {
+		List<Employee> listEmps = empRepo.findAll();
+		model.addAttribute("listEmps", listEmps);
 		return "employees";
 	}
-
-	@RequestMapping("/empNew")
+	
+	@GetMapping("/emp/new")
 	public String showNewEmpForm(Model model) {
 		Employee emp = new Employee();
 		model.addAttribute("employee", emp);
-		
+		List<Role> roles = rolerepo.findAll();
+		model.addAttribute("roles", roles);
 		return "employeeNew";
 	}
 	
-//	@GetMapping("/empEdit/{empId}")
-//	public String showFormForUpdate(@PathVariable(value = "empId") long empId, Model model) {
-//		// Get Employee from the Service 
-//		Employee employee = employeeDao.getEmployeeById(empId);
-//		
-//		// set employee as a model attribute to pre-populate the form 
-//		model.addAttribute("employee", employee);
-//		return "empEdit";
-//	}
-	
-	@RequestMapping("/empEdit/{empId}")
+	@GetMapping("/emp/edit/{empId}")
 	public ModelAndView editEmployee(@PathVariable(value = "empId") long empId) {
-
-		ModelAndView mav = new ModelAndView("empEdit");
-		
-		Employee emp = employeeDao.getEmployeeById(empId);
-		mav.addObject("employee", emp);
-
+		ModelAndView mav = new ModelAndView("employeeEdit");	
+		Employee emp = empRepo.findById(empId).get();
+		mav.addObject("employee", emp);		
+		List<Role> roles = rolerepo.findAll();
+		mav.addObject("roles", roles);
 		return mav;
 	}
 	
-	@RequestMapping(value = "/empSave", method = RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("employee") Employee emp) {
+//	@GetMapping("/emp/edit/{empId}")
+//	public String editEmployee(@PathVariable("empId") Long empId, Model model) {
+//		Employee emp = employeeDao.getEmployeeById(empId);
+//		model.addAttribute("employee", emp);
+//		List<Role> roles = rolerepo.findAll();
+//		model.addAttribute("roles", roles);
+//		return "empEdit";
+//	}
+	
+//	@RequestMapping(value = "/emp/save", method = RequestMethod.POST) // was
+	@PostMapping(value = "/emp/save")
+	public String saveEmp(@ModelAttribute("employee") Employee emp) {
 		System.out.println(" ====> EmpController /save ");
-		employeeDao.save(emp);
-		
-		return "redirect:/";
+		empRepo.save(emp);
+		return "redirect:/emp";
 	}
 
-	@RequestMapping("/empDelete/{empId}")
+	@GetMapping("/emp/delete/{empId}")
 	public String deleteEmplopyee(@PathVariable(name = "empId") Long empId) {
 		System.out.println("=====> EmpController /delete ");
-		employeeDao.delete(empId);
-		
-		return "redirect:/";
+		empRepo.deleteById(empId);
+		return "redirect:/emp";
 	}
 	
 }

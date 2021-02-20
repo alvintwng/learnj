@@ -15,12 +15,19 @@
 <div align="center">
 	<h1>Create New Employees</h1>
 	<br/>
-	<form action="#" th:action="@{/empSave}" th:object="${employee}" method="POST">
+	<form action="#" th:action="@{/emp/save}" th:object="${employee}" method="POST">
 	<table>
 	
 	<tr>
 		<td>User Name: </td>
 		<td><input type="text" th:field="*{empName}" /></td>
+	</tr>
+	<tr>
+		<td>Roles</td>
+		<td th:block th:each="roles : ${roles}">
+			<input type="checkbox" th:field="*{roles}" th:text="${roles.name}"
+				th:value="${roles.roleId}" />
+		</td>
 	</tr>
 	<tr>
 		<td>User Password: </td>
