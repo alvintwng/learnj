@@ -16,6 +16,9 @@ public class Role {
 	
 	@Column(length = 15, nullable = false, unique = true)
 	private String name;
+	
+//	// nedd ?
+//	public Role() {	}
 
 	public Integer getRoleId() {
 		return roleId;
@@ -32,6 +35,11 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
+	/* This is must to show data on the html page*/
+	@Override
+	public String toString() {
+		return name;
+	}
+
 }

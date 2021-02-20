@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -73,6 +75,7 @@ public class Employee {
 		this.password = password;
 	}
 
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "EMPLOYEES_ROLES",
@@ -81,18 +84,26 @@ public class Employee {
 			)
 	
 	private Set<Role> roles = new HashSet<>(); 
-	
-	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+	public void addRole(Role role) {
+		this.roles.add(role);
+	}
+	public void removeRole(Role role) {
+		this.roles.remove(role);
+	}
+
+
 	public long getEmpId() {
 		return empId;
 	}
-
-
 	public void setEmpId(long empId) {
 		this.empId = empId;
 	}
-
-
 	public String getEmpName() {
 		return empName;
 	}
@@ -103,7 +114,8 @@ public class Employee {
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		this.password = passwordEncoder.encode(password);
 	}
 	public String getEmpFullName() {
 		return empFullName;
@@ -147,21 +159,8 @@ public class Employee {
 	public void setPswdExpiry(LocalDate pswdExpiry) {
 		this.pswdExpiry = pswdExpiry;
 	}
-
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-
 
 }

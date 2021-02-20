@@ -30,7 +30,6 @@ public class UserDetailImpl implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
 		Set<Role> roles = employee.getRoles();
-		System.out.println("=====> UsersDetailImpl roles.size() :: " + roles.size() );
 		
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 		
@@ -38,6 +37,7 @@ public class UserDetailImpl implements UserDetails {
 			authorities.add(new SimpleGrantedAuthority(role.getName()));
 		}
 		
+		System.out.println("=====> UsersDetailImpl authorities :: " + authorities.toString() );
 		return authorities;
 	}
 	
