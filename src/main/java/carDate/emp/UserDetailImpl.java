@@ -37,7 +37,7 @@ public class UserDetailImpl implements UserDetails {
 			authorities.add(new SimpleGrantedAuthority(role.getName()));
 		}
 		
-		System.out.println("=====> UsersDetailImpl authorities :: " + authorities.toString() );
+//		System.out.println("=====> UsersDetailImpl authorities :: " + authorities.toString() );
 		return authorities;
 	}
 	

@@ -11,7 +11,7 @@ public interface EmployeeDao {
 	
 	public List<Employee> getAllEmployees();
 	public Employee getEmployeeById(long empId);
-	void save(Employee employee);
-	void delete(Long id);
+	public void save(Employee employee);
+	public void delete(Long id);
 
 }

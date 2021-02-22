@@ -22,13 +22,11 @@ public class UserControl {
 
 	@RequestMapping("/login")
 	public String login() {
-			System.out.println("=====> UserController /login ");
 			return "login";
 	}
 
 	@RequestMapping("/logout-success")
 	public String logout() {
-			System.out.println("=====> UserController /logout ");
 			return "logout";
 	}
 	

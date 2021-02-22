@@ -45,7 +45,7 @@ public class Employee {
 	private String phoneNo;
 
 	@Column(unique=true)
-	@Email
+	@Email(message = " Should be a valid Email Address")
 	@Size (min = 8, max = 30)
 	@NotNull
 	private String email;

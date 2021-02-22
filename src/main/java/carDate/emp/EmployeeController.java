@@ -1,5 +1,6 @@
 /* 210113B-BankApp/CustomerController.java  * 210203Q-BankApp/auth/UserControl.java 
- * 210127N-BankApp/.../CustomerController.java * 210208B-SpringManyToMany */
+ * 210127N-BankApp/.../CustomerController.java * 210208B-SpringManyToMany 
+ * 20210221*/
 package carDate.emp;
 
 import java.util.List;
@@ -14,20 +15,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.validation.BindingResult;
+import javax.validation.Valid;
 
 @Controller
 public class EmployeeController {
 
 	@Autowired
-	private EmployeeRepo empRepo;
+	private EmployeeDao employeeDao;
 
 	@Autowired
 	private RoleRepo rolerepo;
 
 	@GetMapping("/emp")
 	public String viewEmpPage(Model model) {
-		List<Employee> listEmps = empRepo.findAll();
-		model.addAttribute("listEmps", listEmps);
+		List<Role> roles = rolerepo.findAll();
+		model.addAttribute("roles", roles);
+		model.addAttribute("listEmps", employeeDao.getAllEmployees());
 		return "employees";
 	}
 	
@@ -43,10 +47,11 @@ public class EmployeeController {
 	@GetMapping("/emp/edit/{empId}")
 	public ModelAndView editEmployee(@PathVariable(value = "empId") long empId) {
 		ModelAndView mav = new ModelAndView("employeeEdit");	
-		Employee emp = empRepo.findById(empId).get();
+		Employee emp = employeeDao.getEmployeeById(empId);
 		mav.addObject("employee", emp);		
 		List<Role> roles = rolerepo.findAll();
 		mav.addObject("roles", roles);
+//		System.out.println("====> /emp/edit/{empId}: " + emp.getEmpId());
 		return mav;
 	}
 	
@@ -59,18 +64,20 @@ public class EmployeeController {
 //		return "empEdit";
 //	}
 	
-//	@RequestMapping(value = "/emp/save", method = RequestMethod.POST) // was
 	@PostMapping(value = "/emp/save")
-	public String saveEmp(@ModelAttribute("employee") Employee emp) {
-		System.out.println(" ====> EmpController /save ");
-		empRepo.save(emp);
+	public String saveEmp(@Valid @ModelAttribute("employee") Employee emp, BindingResult bindingResult) {
+		
+		if(bindingResult.hasErrors())
+			return "employeeNew";
+
+		employeeDao.save(emp);
+//		System.out.println("====> /emp/save: " + emp.getEmpName());
 		return "redirect:/emp";
 	}
 
 	@GetMapping("/emp/delete/{empId}")
 	public String deleteEmplopyee(@PathVariable(name = "empId") Long empId) {
-		System.out.println("=====> EmpController /delete ");
-		empRepo.deleteById(empId);
+		employeeDao.delete(empId);
 		return "redirect:/emp";
 	}
 	
