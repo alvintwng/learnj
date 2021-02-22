@@ -10,71 +10,85 @@
 </head>
 <body>
 	<div th:replace="common :: navbar"></div>
+	
 	<div class="parent">
+	<h2>Create New Employees</h2>
+	
+	<div>
+		<a href="/emp">Back to Employee page</a>
+	</div>
 
-<div align="center">
-	<h1>Create New Employees</h1>
 	<br/>
 	<form action="#" th:action="@{/emp/save}" th:object="${employee}" method="POST">
-	<table>
+	<div class="form-row">
+<!-- for employeeEdit 	 
+	<div class="form-group col-md-6">
+		<label>Employee ID: </label>
+		<input type="text" th:field="*{empId}" readonly="readonly" />
+	</div>
+	 -->
+	<div class="form-group col-md-6">
+		<label>User Name: </label>
+		<input class="form-control" type="text" th:field="*{empName}" required/>
+	 	<small class="form-text text-muted">size must be between 4 and 8</small>
+	</div>
 	
-	<tr>
-		<td>User Name: </td>
-		<td><input type="text" th:field="*{empName}" /></td>
-	</tr>
-	<tr>
-		<td>Roles</td>
-		<td th:block th:each="roles : ${roles}">
+	<div class="form-group col-md-6">
+		<label>Roles</label>
+		<div class="form-check form-check-inline" th:block th:each="roles : ${roles}">
 			<input type="checkbox" th:field="*{roles}" th:text="${roles.name}"
 				th:value="${roles.roleId}" />
-		</td>
-	</tr>
-	<tr>
-		<td>User Password: </td>
-		<td><input type="text" th:field="*{password}" /></td>
-	</tr>
-	<tr>
-		<td>Full Name: </td>
-		<td><input type="text" th:field="*{empFullName}" /></td>
-	</tr>
-	<tr>
-		<td>Phone No: </td>
-		<td><input type="text" th:field="*{phoneNo}" /></td>
-	</tr>
-	<tr>
-		<td>Email: </td>
-		<td><input type="text" th:field="*{email}" /></td>
-	</tr>
-	<tr>
-		<td>Job Title: </td>
-		<td><input type="text" th:field="*{jobTitle}" /></td>
-	</tr>
-	<tr>
-		<td>is Active ?: </td>
-		<td><input type="text" th:field="*{isActive}" /></td>
-	</tr>
-	<tr>
-		<td>User Expiry: </td>
-		<td><input type="text" th:field="*{userExpiry}" /></td>
-	</tr>
-	<tr>
-		<td>Password Expiry: </td>
-		<td><input type="text" th:field="*{pswdExpiry}" /></td>
-	</tr>
-	<tr>
-		<td colspan="2"><button type="submit">Save</button></td>
-	</tr>
- </table>
+		</div>
+	</div>
+	
+	<div class="form-group col-md-6">
+		<label>User Password: </label> 
+		<input class="form-control" type="password" th:field="*{password}" required />
+	</div>
+	
+	<div class="form-group col-md-6">
+		<label>Full Name: </label> 
+		<input class="form-control" type="text" th:field="*{empFullName}" required/>
+		<small class="form-text text-muted">size must be between 4 and 45</small>
+	</div>
+	
+	<div class="form-group col-md-6">
+		<label>Phone No: </label>
+		<input class="form-control" type="text" th:field="*{phoneNo}" required/>
+		<small class="form-text text-muted">size must be between 8 and 15</small>
+	</div>
+	
+	<div class="form-group col-md-6">
+		<label>Email: </label>
+		<input class="form-control" type="email" th:field="*{email}" required/>
+		<small class="form-text text-muted">Must be unique Email, size between 8 and 30</small>
+	</div>
+	
+	<div class="form-group col-md-6">
+		<label>Job Title: </label>
+		<input class="form-control" type="text" th:field="*{jobTitle}" required/>
+		<small class="form-text text-muted">size must be between 5 and 30</small>
+	</div>
+	
+	<div class="form-group col-md-6">
+		<label>is Active ?: </label>
+		<input type="checkbox" th:field="*{isActive}" />
+	</div>
+	
+	<div class="form-group col-md-6">
+		<label>User Expiry: </label>
+		<input class="form-control" type="date" th:field="*{userExpiry}" required/>
+	</div>
+	<div class="form-group col-md-6">
+		<label>Password Expiry: </label>
+		<input class="form-control" type="date" th:field="*{pswdExpiry}" required/>
+	</div>
+ </div>
+ 
+ <button class="btn btn-primary"  type="submit">Save</button>
  </form>
 </div>
 
-Issues:: <br>
-What is ModelAndView? <br>
-Password to be BCrypth <br>
-key Valid email and date <br>
-
-
-	</div>
 	<div th:replace="common :: footer"></div>
 </body>
 </html>
