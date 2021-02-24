@@ -5,37 +5,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Car Rent</title>
-
 	<!-- ==> common.html -->
 	<div th:replace="common :: header"></div>
-
 </head>
 <body>
-
 	<div th:replace="common :: navbar"></div>
-	
+
+
 	<div class="parent">
 	<h2>Employee List</h2>
 	
-	<div>
-		<a href="emp/new">Create New Employee</a>
-	</div>
-	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/emp/new">Create New Employee</a>
+	</nav>
+
  	<table class="table table-striped">
 		<thead>
 			<tr>
 			 	<th>Emp ID</th>
 				<th>User Name</th>
-				
 				<th>Role Type</th>
-				
-				<th>Full Name</th>
-				<th>Phone No</th>
+				<!-- <th>Full Name</th>	 -->	
+				<!-- <th>Phone No</th> -->
 				<th>Email</th>
 				<th>Job Title</th>
 				<th>is Active ?</th>
 				<th>User Expiry</th>
-				<th>Password Expiry</th>
+				<!-- <th>Password Expiry</th> -->
 				<th>Actions</th>	
 		</thead>
 		
@@ -44,22 +40,26 @@
  				<td>[[ ${emp.empId} ]]</td>
 				<td>[[ ${emp.empName} ]]</td>
 				<td>[[ ${emp.roles} ]]</td>
-				<td>[[ ${emp.empFullName} ]]</td>
-				<td>[[ ${emp.phoneNo} ]]</td>
+				<!-- <td>[[ ${emp.empFullName} ]]</td> -->
+				<!-- <td>[[ ${emp.phoneNo} ]]</td> -->
 				<td>[[ ${emp.email} ]]</td>
 				<td>[[ ${emp.jobTitle} ]]</td>
 				<td>[[ ${emp.isActive} ]]</td>
 				<td>[[ ${emp.userExpiry} ]]</td>
-				<td>[[ ${emp.pswdExpiry} ]]</td> 
+				<!-- <td>[[ ${emp.pswdExpiry} ]]</td>  -->
 				<td >
+					<a th:href="@{'/emp/prf/' + ${emp.empId}}">Profile </a>
+<!-- 					
 					<a th:href="@{'/emp/edit/' + ${emp.empId}}">Edit  </a>
 					<a th:href="@{'/emp/delete/' + ${emp.empId}}">Delete</a>
+					 -->
 				</td>
 			</tr>
 		</tbody>
 	</table> 
 	</div>
-	
+
+
 	<div th:replace="common :: footer"></div>
 	
 </body>
