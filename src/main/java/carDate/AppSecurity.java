@@ -23,18 +23,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class AppSecurity extends WebSecurityConfigurerAdapter{
-	
+
 //	@Bean
 //	@Override
 //	protected UserDetailsService userDetailsService() {
 //		
 //		List<UserDetails> users= new ArrayList<>();
-//		users.add(User.withDefaultPasswordEncoder().
-//				username("simon").
-//				password("simon").
-//				roles("USER").
-//				build());
-//		
+//
 //		users.add(User.withDefaultPasswordEncoder().
 //				username("ntuc").
 //				password("ntuc").
@@ -44,6 +39,9 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 //		return new InMemoryUserDetailsManager(users);
 //	}
 
+	/* for non-Sql login. UN-comment the above, and commented ALL below 
+	 * AND commented off MyUserDetailService/MyUserDetailService
+	 * */
 	@Autowired
 	private UserDetailsService userDetailService;
 	

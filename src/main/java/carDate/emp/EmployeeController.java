@@ -34,6 +34,17 @@ public class EmployeeController {
 		model.addAttribute("listEmps", employeeDao.getAllEmployees());
 		return "employees";
 	}
+
+	@GetMapping("/emp/prf/{empId}")
+	public ModelAndView profileEmployee(@PathVariable(value = "empId") long empId) {
+		ModelAndView mav = new ModelAndView("employeeProfile");	
+		Employee emp = employeeDao.getEmployeeById(empId);
+		mav.addObject("employee", emp);		
+		List<Role> roles = rolerepo.findAll();
+		mav.addObject("roles", roles);
+		System.out.println("====> /emp/employeeProfile/{empId}: " + emp.getEmpId());
+		return mav;
+	}
 	
 	@GetMapping("/emp/new")
 	public String showNewEmpForm(Model model) {
