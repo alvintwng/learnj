@@ -34,15 +34,14 @@
 	<a th:href="@{/hire}"> Hires </a> 
 	<hr>
 	
-	<h2>Testing: ....</h2>
+	<h2>ToDoList: ....</h2>
+	
 	<ul>
 		<li>Show: <a sec:authorize="hasAuthority('ADMIN')">1 ADMIN</a>, <a
 			sec:authorize="hasAuthority('MANAGER')">2 MANAGER</a>, <a
 			sec:authorize="hasAnyAuthority('USER', 'MANAGER')">3 USER</a>.
 		</li>
-		<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-		<li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
-		
+
 		<li>Issue: white pages error for different url of localhost. </li>
 
 		<li>Login</li>
@@ -52,7 +51,7 @@
 
 		<li>Employee</li>
 		<ol>
-		<li>Issue: Need to double confirm for delete</li>
+		<li><s>Issue: Need to double confirm for delete</s> done</li>
 		<li><s>Add in Role type</s> done</li>
 		<li><s>move Create New Employee to right</s> done</li>
 		<li>Pagination for user Name</li>
