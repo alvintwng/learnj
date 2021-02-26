@@ -2,6 +2,8 @@
 
 package carDate.emp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MyUserDetailService implements UserDetailsService {
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private EmployeeRepo repo;
@@ -20,7 +23,7 @@ public class MyUserDetailService implements UserDetailsService {
 		if(employee==null)
 			throw new UsernameNotFoundException(empName);
 		
-		System.out.println("=====> MyUserDetailService, getEmpName: " + employee.getEmpName());
+		log.info("=====> loadUserByUsername, getEmpName: " + employee.getEmpName());
 		return new UserDetailImpl(employee);
 		}
 
