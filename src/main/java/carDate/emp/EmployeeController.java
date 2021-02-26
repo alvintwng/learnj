@@ -5,6 +5,8 @@ package carDate.emp;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ import javax.validation.Valid;
 
 @Controller
 public class EmployeeController {
+	
+	private final Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private EmployeeDao employeeDao;
@@ -42,7 +46,7 @@ public class EmployeeController {
 		mav.addObject("employee", emp);		
 		List<Role> roles = rolerepo.findAll();
 		mav.addObject("roles", roles);
-		System.out.println("====> /emp/employeeProfile/{empId}: " + emp.getEmpId());
+		log.info("=====> employeeProfile/{empId}: " + emp.getEmpId());
 		return mav;
 	}
 	
@@ -52,6 +56,7 @@ public class EmployeeController {
 		model.addAttribute("employee", emp);
 		List<Role> roles = rolerepo.findAll();
 		model.addAttribute("roles", roles);
+		log.info("=====> new ");
 		return "employeeNew";
 	}
 	
@@ -62,7 +67,7 @@ public class EmployeeController {
 		mav.addObject("employee", emp);		
 		List<Role> roles = rolerepo.findAll();
 		mav.addObject("roles", roles);
-//		System.out.println("====> /emp/edit/{empId}: " + emp.getEmpId());
+		log.info("=====> edit/{empId}: " + emp.getEmpId());
 		return mav;
 	}
 	
@@ -82,13 +87,14 @@ public class EmployeeController {
 			return "employeeNew";
 
 		employeeDao.save(emp);
-//		System.out.println("====> /emp/save: " + emp.getEmpName());
+		log.info("=====> save: " + emp.getEmpName());
 		return "redirect:/emp";
 	}
 
 	@GetMapping("/emp/delete/{empId}")
 	public String deleteEmplopyee(@PathVariable(name = "empId") Long empId) {
 		employeeDao.delete(empId);
+		log.warn("=====> delete(empId): " + empId);
 		return "redirect:/emp";
 	}
 	
