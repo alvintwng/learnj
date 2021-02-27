@@ -75,7 +75,6 @@ public class Employee {
 		this.password = password;
 	}
 
-	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "EMPLOYEES_ROLES",
@@ -84,6 +83,7 @@ public class Employee {
 			)
 	
 	private Set<Role> roles = new HashSet<>(); 
+	
 	public Set<Role> getRoles() {
 		return roles;
 	}

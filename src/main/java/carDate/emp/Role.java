@@ -17,9 +17,12 @@ public class Role {
 	@Column(length = 15, nullable = false, unique = true)
 	private String name;
 	
-//	// nedd ?
-//	public Role() {	}
-
+	public Role() {	}
+	
+	public Role(String name) {
+		this.name = name;
+	}
+	
 	public Integer getRoleId() {
 		return roleId;
 	}
