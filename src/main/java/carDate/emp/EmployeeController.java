@@ -88,6 +88,7 @@ public class EmployeeController {
 
 		employeeDao.save(emp);
 		log.info("=====> save: " + emp.getEmpName());
+		// System.out.println("===== /emp/new > " + emp);
 		return "redirect:/emp";
 	}
 

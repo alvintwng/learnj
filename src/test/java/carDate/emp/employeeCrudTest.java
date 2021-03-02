@@ -5,11 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -24,16 +28,12 @@ import org.springframework.test.annotation.Rollback;
 @Rollback(false)
 public class employeeCrudTest {
 
-//	@Autowired
-//	private EmployeeDao empDao; 
+	@Autowired
+	private EmployeeRepo empRepo; 
 	
-//	@Autowired
-//	private TestEntityManager entityManager;
-//
-//	@Test
-//	public void test() {
-//	}	
-//	
+	@Autowired
+	private TestEntityManager entityManager;
+
 //	@Test
 //	public void TestCreationOfRoles() {
 //		Role roleAdmin = new Role(); roleAdmin.setName("ADMIN");
@@ -45,14 +45,41 @@ public class employeeCrudTest {
 ////		entityManager.persist(roleUser);
 //
 //	}
+	
+	@Test
+	public void empDaouserPassIsValid() {
+		EmployeeDao empDao;
+		// KIV
+	}
 
+	@Test
+	public void userNTUCisIn() {
+		Employee emp = empRepo.findByEmpName("ntuc");
+		assertEquals(emp.getPassword().length(), 60); 
+	}
+
+	@Test
+	public void dateisExpiredTest() {
+		Employee emp = empRepo.findByEmpName("ntuc");
+		assertTrue(emp.loginIsValid());
+
+	}
+	
+	@Test
+	public void emailIsValidTest() {
+		Employee emp = empRepo.findByEmpName("ntuc");
+		assertTrue(emp.emailIsValid("ntuc@ntuc.com"));
+		assertFalse(emp.emailIsValid("false@com.com"));
+	} 
+
+	
 	@Test
 	public void employeeIsValid() {
 		
 		String TestPassword = "testPassword";
 		Employee employee = new Employee("testEmployee", TestPassword);
 		employee.setPassword(TestPassword); // always generate new password of 60chars
-		// System.out.println("=====> employee.setPassword(TestPassword): " + employee.getPassword());
+
 		Role role = new Role("newRole");
 		employee.addRole(role);
 
@@ -61,29 +88,27 @@ public class employeeCrudTest {
 
 		assertEquals(role.getName(),  "newRole");
 		assertEquals(employee.getRoles().size(), 1);
-		// System.out.println("=====>getRoles().toArray()[0]: " + employee.getRoles().toArray()[0] );
-
-//		assertFalse(employee.isValid());
-	}
-
-	@Test
-	public void sqlDataisUsernameIsValid() {
-//		EmployeeController empCtrl;
-//		
-//		
-//		empCtrl.showNewEmpForm(null)
+		assertEquals(employee.getRoles().toArray()[0].toString(),  "newRole");
 		
 	}
+	
+	/* Testing the save and delete into Oracle Developer */
+//	@Test
+	public void testEmployeeRepo() {
+		LocalDate d = LocalDate.now();
+		Employee emp = new Employee();
+		emp.setEmpName("TEST");
+		emp.setPassword("TEST");
+		emp.setEmpFullName("TESTTEST");
+		emp.setPhoneNo("01010101");
+		emp.setEmail("testtest@testtest.com");
+		emp.setJobTitle("TESTER");
+		emp.setUserExpiry(d);
+		emp.setPswdExpiry(d.plusDays(365));
 
-	
-/*
- 	@Test
-	public void accountIsValid() {
-		// setup account with a valid set of beneficiaries to prepare for testing
-		account.addBeneficiary("Annabelle", Percentage.valueOf("50%"));
-		account.addBeneficiary("Corgan", Percentage.valueOf("50%"));
-		assertTrue(account.isValid());
+		empRepo.save(emp);
+		empRepo.findByEmpName("TESTTE"); // dont work
+		empRepo.deleteById(emp.getEmpId());
 	}
- * */	
-	
+
 }
