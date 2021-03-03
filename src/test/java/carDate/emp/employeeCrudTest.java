@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDate;
 import java.util.Set;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
@@ -93,7 +94,8 @@ public class employeeCrudTest {
 	}
 	
 	/* Testing the save and delete into Oracle Developer */
-//	@Test
+	@Disabled
+	@Test
 	public void testEmployeeRepo() {
 		LocalDate d = LocalDate.now();
 		Employee emp = new Employee();

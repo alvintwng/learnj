@@ -8,6 +8,8 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
+
 /**
  * A system test that verifies the components of the RewardNetwork application
  * work together to reward for dining successfully. Uses Spring to bootstrap the
@@ -26,6 +28,7 @@ public class DevCarDateTests {
 	
 	private Integer TestValue = 11;
 
+	@Disabled
 	@Test
 	@DisplayName("test if works")
 	public void testToday() {
