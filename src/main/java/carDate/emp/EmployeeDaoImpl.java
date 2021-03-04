@@ -45,4 +45,9 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	public void delete(Long id) {
 		employeeRepo.deleteById(id);
 	}
+	
+	@Override
+	public Employee findByEmail(String email) {
+		return employeeRepo.findByEmail(email);
+	}
 }

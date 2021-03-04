@@ -180,7 +180,7 @@ public class Employee {
 		if (this.email.contentEquals(useremail)	) {
 			return true;
 		} else {
-			System.out.println("Check on email is not duplicated");
+			System.out.println("email is NOT the same.");
 			return false;
 		}
 	}
