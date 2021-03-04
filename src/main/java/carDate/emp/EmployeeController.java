@@ -5,11 +5,14 @@ package carDate.emp;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.validation.BindingResult;
-import javax.validation.Valid;
 
 @Controller
 public class EmployeeController {
@@ -79,7 +80,7 @@ public class EmployeeController {
 //		model.addAttribute("roles", roles);
 //		return "empEdit";
 //	}
-	
+
 	@PostMapping(value = "/emp/save")
 	public String saveEmp(@Valid @ModelAttribute("employee") Employee emp, BindingResult bindingResult) {
 		
@@ -87,15 +88,27 @@ public class EmployeeController {
 			return "employeeNew";
 
 		employeeDao.save(emp);
-		log.info("=====> save: " + emp.getEmpName());
 		return "redirect:/emp";
 	}
 
+// 	@RequestMapping(value = "/empSave", method = RequestMethod.POST)
+//	public String saveProduct(@ModelAttribute("employee") Employee emp) {
+// 		
+// 		log.info("=====> save: " + emp.getEmpName());
+//		employeeDao.save(emp);
+//		
+//		return "redirect:/emp";
+//	}	
+	
 	@GetMapping("/emp/delete/{empId}")
 	public String deleteEmplopyee(@PathVariable(name = "empId") Long empId) {
 		employeeDao.delete(empId);
 		log.warn("=====> delete(empId): " + empId);
 		return "redirect:/emp";
 	}
-	
+
+	@GetMapping("/error")
+	public String Error() {
+		return "error";						
+	}
 }

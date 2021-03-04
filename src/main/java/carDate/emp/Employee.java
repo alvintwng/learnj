@@ -75,7 +75,6 @@ public class Employee {
 		this.password = password;
 	}
 
-	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "EMPLOYEES_ROLES",
@@ -84,6 +83,7 @@ public class Employee {
 			)
 	
 	private Set<Role> roles = new HashSet<>(); 
+	
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -161,6 +161,35 @@ public class Employee {
 	}
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+	
+	public boolean loginIsValid() {
+		// tough to check password, yet to find how to decode
+		LocalDate today = LocalDate.now();
+		
+		if (this.pswdExpiry.isAfter(today) && this.userExpiry.isAfter(today)) {
+			return true;
+		} else {
+			System.out.println("Check on password, Pswd/ExpiryDate is valid.");
+			return false;
+		}
+	}
+	
+	public boolean emailIsValid(String useremail) {
+
+		if (this.email.contentEquals(useremail)	) {
+			return true;
+		} else {
+			System.out.println("email is NOT the same.");
+			return false;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [empName=" + empName + ", password=" + password + ", empFullName=" + empFullName + ", phoneNo="
+				+ phoneNo + ", email=" + email + ", jobTitle=" + jobTitle + ", isActive=" + isActive + ", userExpiry="
+				+ userExpiry + ", pswdExpiry=" + pswdExpiry + ", roles=" + roles + "]";
 	}
 
 }
