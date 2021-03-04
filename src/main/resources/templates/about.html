@@ -41,6 +41,10 @@
 			sec:authorize="hasAuthority('MANAGER')">2 MANAGER</a>, <a
 			sec:authorize="hasAnyAuthority('USER', 'MANAGER')">3 USER</a>.
 		</li>
+		<li>
+		<!-- link to EmpValid-->
+		<a th:href="@{/test}"> <h4>Test</h4> </a>
+		</li>
 
 		<li>Issue: white pages error for different url of localhost. </li>
 

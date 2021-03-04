@@ -79,7 +79,8 @@ public class EmployeeController {
 //		model.addAttribute("roles", roles);
 //		return "empEdit";
 //	}
-	
+
+/* WAS	
 	@PostMapping(value = "/emp/save")
 	public String saveEmp(@Valid @ModelAttribute("employee") Employee emp, BindingResult bindingResult) {
 		
@@ -87,16 +88,28 @@ public class EmployeeController {
 			return "employeeNew";
 
 		employeeDao.save(emp);
-		log.info("=====> save: " + emp.getEmpName());
-		// System.out.println("===== /emp/new > " + emp);
 		return "redirect:/emp";
 	}
+ */
 
+ 	@RequestMapping(value = "/empSave", method = RequestMethod.POST)
+	public String saveProduct(@ModelAttribute("employee") Employee emp) {
+ 		
+ 		log.info("=====> save: " + emp.getEmpName());
+		employeeDao.save(emp);
+		
+		return "redirect:/emp";
+	}	
+	
 	@GetMapping("/emp/delete/{empId}")
 	public String deleteEmplopyee(@PathVariable(name = "empId") Long empId) {
 		employeeDao.delete(empId);
 		log.warn("=====> delete(empId): " + empId);
 		return "redirect:/emp";
 	}
-	
+
+	@GetMapping("/error")
+	public String Error() {
+		return "error";						
+	}
 }

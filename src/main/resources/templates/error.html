@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Access Denied</title>
+
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+</head>
+<body>
+ 	<div th:replace="common :: navbar"></div>
+ 	
+	<div class="parent" >
+		<h2>
+			accessDeniedPage... There is an Error ....
+		</h2>
+
+		Please check the <b>User Name</b>, or <b>Email</b> <br>
+		should not be the same as in database.
+
+	</div>
+	<div th:replace="common :: footer"></div>
+</body>
+</html>
