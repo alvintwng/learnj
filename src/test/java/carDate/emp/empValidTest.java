@@ -15,9 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringRunner.class)
-@Transactional
-@SpringBootTest
+@RunWith(SpringRunner.class)	// for Dao testing 
+@Transactional					// for Dao testing
+@SpringBootTest					// for Dao testing
 public class empValidTest {
 	
 	@Autowired
@@ -27,14 +27,14 @@ public class empValidTest {
 	private EmployeeDao empDao; 
 	
 	@Test
-	public void getAllEmpTest() {
+	public void empDaoGetAllEmpTest() {
 		if (!empDao.getAllEmployees().isEmpty()) {
 			List<Employee>  employees = empDao.getAllEmployees();
 			assertThat(employees).isNotNull();
 		}
 	}
 	
-	/* Unable to run/test with DAO/Repo state 
+	/* Unable to run/test the bean with DAO/Repo state 
 	 * current test thru about.html/test */
 	@Disabled
 	@Test
@@ -53,7 +53,7 @@ public class empValidTest {
 		assertFalse(empValid.duplicateEmail("very@newEmail.com"));
 	}
 	
-	/* test on empRepo.findAllEmail() */
+	/* test on empRepo.findAllEmail(email) */
 	@Test
 	public void testRepoFindEmail() {
 		Employee emp = empRepo.findByEmail("ntuc@ntuc.com");
@@ -61,7 +61,7 @@ public class empValidTest {
 		assertEquals(emp.getPassword().length(), 60);
 	}
 	
-	/* test on empRepo.findAllByEmail() */
+	/* test on empRepo.findAllByEmail(email) */
 	@Test
 	public void testRepoFindAllEmail() {
 		Employee[] empS = empRepo.findAllByEmail("ntuc@ntuc.com");
@@ -69,5 +69,13 @@ public class empValidTest {
 		empS = empRepo.findAllByEmail("noSuch@email.com");
 		assertEquals(empS.length, 0);
 	}
-	
+
+	/* test on empDao.getAllByEmail(email) 
+	 * ref: https://dzone.com/articles/unit-testing-dao-service-and-controller-in-spring
+	 * */
+	@Test
+	public void testDaoFindAllEmail() {
+		Employee[] empS = empDao.getAllByEmail("ntuc@ntuc.com");
+		assertThat(empS).isNotNull();
+	}
 }

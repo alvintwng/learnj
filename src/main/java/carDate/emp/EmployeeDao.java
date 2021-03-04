@@ -14,5 +14,6 @@ public interface EmployeeDao {
 	public void save(Employee employee);
 	public void delete(Long id);
 	public Employee findByEmail(String email);
+	public Employee[] getAllByEmail(String email);
 
 }

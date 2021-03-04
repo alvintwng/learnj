@@ -50,4 +50,12 @@ public class EmployeeDaoImpl implements EmployeeDao{
 	public Employee findByEmail(String email) {
 		return employeeRepo.findByEmail(email);
 	}
+
+	@Override
+	public Employee[] getAllByEmail(String email) {
+		Employee[] list =  employeeRepo.findAllByEmail(email);
+		return list;
+	}
+	
+	
 }
