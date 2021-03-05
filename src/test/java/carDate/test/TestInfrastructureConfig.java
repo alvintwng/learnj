@@ -1,4 +1,4 @@
-package carDate;
+package carDate.test;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,10 +1,12 @@
-package carDate;
+package carDate.test;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+
+import carDate.emp.Employee;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,19 +19,19 @@ import org.junit.jupiter.api.Disabled;
  * database and JDBC implementations of the repositories.
  */
 @SpringJUnitConfig(classes=TestInfrastructureConfig.class)
-//@ActiveProfiles({ "local", "jdbc" })
+@ActiveProfiles({ "local", "jdbc" })
 public class DevCarDateTests {
 
 	/**
 	 * The object being tested.
 	 */
-//	@Autowired
-//	private Employee employee;
+//	@Autowired // will test fail if Autowired. ?
+	private Employee employee;
 	
 	private Integer TestValue = 11;
 
-	@Disabled
-	@Test
+//	@Disabled
+//	@Test
 	@DisplayName("test if works")
 	public void testToday() {
 

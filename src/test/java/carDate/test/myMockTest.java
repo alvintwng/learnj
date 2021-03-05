@@ -1,4 +1,4 @@
-package carDate;
+package carDate.test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -19,9 +19,9 @@ public class myMockTest {
 	@Autowired
 	MockMvc mockMvc;
 	
-	/* Only work on /login, other not work, guess require to loging*/
+	/* Only work on /login, other not work, guess due to security, or need login password*/
 //	@Disabled
-	@Test
+//	@Test
 	public void testBasicGet() throws Exception {
 		mockMvc.perform(
 			get("/login"))
