@@ -14,13 +14,13 @@
 	<h2>Employees Profile</h2>
 	
 	<nav class="nav nav-tabs justify-content-end">
-		<a class="nav-link btn btn-light" href="/emp">Back</a>
-		<a class="nav-link btn btn-light" th:href="@{'/emp/edit/' + ${empId}}">Edit</a>
+		<a class="nav-link" href="/emp">Back</a>
+		<a class="nav-link" th:href="@{'/emp/edit/' + ${empId}}">Edit</a>
 		<!-- <a class="nav-link" th:href="@{'/emp/delete/' + ${empId}}">Delete</a> -->
 		
 		<!-- ref: https://stackoverflow.com/questions/58191271/how-to-add-popup-window-on-spring-thymeleaf -->
 		<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#empDeleteConfirm">Delete</button> -->
-		<a class="nav-link btn btn-light" data-toggle="modal" data-target="#empDeleteConfirm">Delete</a>
+		<a class="nav-link" data-toggle="modal" data-target="#empDeleteConfirm" style="color: #17a2b8">Delete</a>
 
 		<div class="modal fade" id="empDeleteConfirm" tabindex="-1" role="dialog" aria-labelledby="empDeleteConfirm" aria-hidden="true">
 		     <div class="modal-dialog" role="document">
