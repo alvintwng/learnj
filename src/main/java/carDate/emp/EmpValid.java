@@ -11,6 +11,18 @@ public class EmpValid  {
 
 	@Autowired
 	private EmployeeDao empDao;
+
+/**
+	@GetMapping("/test")
+	public String showNewEmpForm(Model model) {
+//		Vehicle veh = new Vehicle();
+		model.addAttribute("listHires", hireDao.getAllHires());
+//		model.addAttribute("vehicle", veh);
+		System.out.println("=====> listHires: " + hireDao.getAllHires().size());
+		
+		return "test";
+	}
+ */
 	
 	@GetMapping("/test")
 	public String test() {
