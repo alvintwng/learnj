@@ -66,7 +66,7 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 			.antMatchers("/").hasAnyAuthority("USER", "MANAGER", "ADMIN")
 			.antMatchers("/cust")	.hasAnyAuthority("USER", "MANAGER")
 			.antMatchers("/hire")	.hasAnyAuthority("USER", "MANAGER")
-			.antMatchers("/veh")	.hasAnyAuthority("USER", "MANAGER")
+			.antMatchers("/veh*/**")	.hasAnyAuthority("USER", "MANAGER")
 			.antMatchers("/emp*/**")	.hasAuthority("ADMIN")
 			.anyRequest().authenticated()
 			.and()
