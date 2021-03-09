@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>New Customer</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+
+
+	<div class="parent">
+	<h2>Create New Customer</h2>
+	
+	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/cust">Back to Customer page</a>
+	</nav>
+	
+	<form action="#" th:action="@{/cust/save}" th:object="${customer}" method="POST">
+	
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label>Customer ID: </label>
+		</div>
+		
+		<div class="form-group col-md-6">
+				<label>Date Updated: 
+				<input class="form-control" type="date" th:field="*{dateUpd}" required/>
+				</label>
+		</div>
+	</div>
+	
+	
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label>User Name: </label>
+			<input class="form-control" type="text" th:field="*{custName}" required/>
+			<small class="form-text text-muted">size must be between 4 and 45</small>
+		</div>
+		<div class="form-group col-md-6">
+			<label>NRIC: </label>
+			<input class="form-control" type="text" th:field="*{nric}" required/>
+			<small class="form-text text-muted">Must be unique, size must be 9-chars code</small>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Email: </label>
+			<input class="form-control" type="email" th:field="*{email}" required/>
+			<small class="form-text text-muted">Must be unique Email, size between 8 and 30</small>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Phone No: </label>
+			<input class="form-control" type="text" th:field="*{phoneNo}" required/>
+			<small class="form-text text-muted">size must be between 8 and 15</small>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Address 1: </label>
+			<input class="form-control" type="text" th:field="*{addr1}" required/>
+			<small class="form-text text-muted">size must be between 2 and 30</small>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Address 2: </label>
+			<input class="form-control" type="text" th:field="*{addr2}" required/>
+			<small class="form-text text-muted">size must be between 2 and 30</small>
+		</div>
+		<div class="form-group col-md-6">
+			<label>City: </label>
+			<input class="form-control" type="text" th:field="*{city}" required/>
+			<small class="form-text text-muted">size must be between 2 and 30</small>
+		</div>
+		<div class="form-group col-md-6">
+			<label>DOB: </label>
+			<input class="form-control" type="date" th:field="*{dob}" required/>
+		</div>
+		<div class="form-group col-md-6">
+			<label>is Active ?: </label>
+			<!-- <input class="form-control" type="boolean" th:field="*{isActive}"/> -->
+			<input type="checkbox" th:field="*{isActive}" />
+		</div>
+		
+ 		<div class="form-group col-md-6">
+			<label>Category</label>
+			<select th:field="*{custState}" class="form-control" required>
+				<th:block th:each="custS : ${listCustStates}">
+					<option th:text="${custS.name}" th:value="${custS.custStateId}" required/>
+				</th:block>
+			</select>
+		</div>
+
+	</div>
+
+ 		<button class="btn btn-primary"  type="submit">Save</button>
+ 		<a class="btn btn-primary" href="/cust" role="button">Cancel</a>
+	</form>
+		
+	</div>
+	
+	
+	<div th:replace="common :: footer"></div>	
+</body>
+</html>
