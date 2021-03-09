@@ -1,0 +1,57 @@
+<!-- /mFCapStoneProj5/210113B-BankApp/   -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Rent - Customers</title>
+
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	<div class="parent">
+	<h2>Customer List</h2>
+	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/cust/new">Create New Customer</a>
+	</nav>
+		
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<!-- <th>Date of Birth</th> -->
+				<!-- <th>Email</th> -->
+				<th>is Active ?</th>
+				<!-- <th>Phone No</th> -->
+				<th>Category</th>
+				<th>Driving</th>
+				<th>Actions</th>
+		</thead>
+		<tbody>
+			<tr th:each="cust : ${listCustomers}">
+				<td th:text="${cust.custId}" />
+				<td th:text="${cust.custName}" />
+				<!-- <td>[[ ${cust.custName} ]]</td> -->
+				<!-- <td th:text="${cust.dob}" /> -->
+				<!-- <td th:text="${cust.email}"/> -->
+				<td th:text="${cust.isActive}"/>
+				<!-- <td th:text="${cust.phoneNo}"/> -->
+				<td th:text="${cust.custState.name}"/>
+				<td th:text="${cust.custState.isDriver}"/>
+				<td >
+					<a th:href="@{'/cust/prf/' + ${cust.custId}}">Profile </a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	</div>
+	
+	<div th:replace="common :: footer"></div>
+	
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Customer - Profile</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	<div class="parent">
+	<h2>Customer Profile</h2>
+	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/cust">Back</a>
+		<a class="nav-link" th:href="@{'/cust/edit/' + ${custId}}">Edit</a>
+		<a class="nav-link" th:href="@{'/cust/delete/' + ${custId}}">Delete</a>
+	</nav>
+	
+	<form th:object="${customer}">
+	
+	<div class="form-row">
+		<div class="form-group col-md-6">
+				<label>Customer ID: [[ ${custId} ]]</label>
+		</div>
+		<div class="form-group col-md-6">
+				<label>Date Updated: 
+				<input type="date" th:field="*{dateUpd}" readonly/>
+				</label>
+		</div>
+	</div>
+	
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label>User Name: </label>
+			<input class="form-control" type="text" th:field="*{custName}" readonly/>
+		</div>
+		<div class="form-group col-md-6">
+			<label>NRIC: </label>
+			<input class="form-control" type="text" th:field="*{nric}" readonly/>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Email: </label>
+			<input class="form-control" type="email" th:field="*{email}" readonly/>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Phone No: </label>
+			<input class="form-control" type="text" th:field="*{phoneNo}" readonly/>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Address 1: </label>
+			<input class="form-control" type="text" th:field="*{addr1}" readonly/>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Address 2: </label>
+			<input class="form-control" type="text" th:field="*{addr2}" readonly/>
+		</div>
+		<div class="form-group col-md-6">
+			<label>City: </label>
+			<input class="form-control" type="text" th:field="*{city}" readonly/>
+		</div>
+		<div class="form-group col-md-6">
+			<label>DOB: </label>
+			<input class="form-control" type="date" th:field="*{dob}" readonly/>
+		</div>
+		<div class="form-group col-md-6">
+			<label>is Active ?: </label>
+			<!-- <input class="form-control" type="boolean" th:field="*{isActive}" readonly/> -->
+			<input type="checkbox" th:field="*{isActive}" disabled />
+		</div>
+		
+ 		<div class="form-group col-md-6">
+			<label>Category</label>
+			<select th:field="*{custState}" class="form-control" disabled>
+				<th:block th:each="custS : ${listCustStates}">
+ 					<option th:text="${custS.name}" th:value="${custS.custStateId}"/>
+				</th:block>
+			</select>
+		</div>
+		
+	</div>
+	
+	</form>
+	</div>
+	
+	<div th:replace="common :: footer"></div>	
+</body>
+</html>
