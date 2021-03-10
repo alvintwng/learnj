@@ -17,7 +17,7 @@ public class VehicleDaoImpl implements VehicleDao {
 	@Override
 	public List<Vehicle> getAllVehicles() {
 		List<Vehicle> list = vehicleRepo.findAll();
-		System.out.println("***** Vehicle List Size " + list.size());
+
 		return list;
 	}
 

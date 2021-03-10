@@ -18,7 +18,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import carDate.hire.Hire;
+import carDate.hire.Hires;
 
 @Entity
 public class Vehicle {
@@ -41,6 +41,7 @@ public class Vehicle {
 	@NotNull
 	private String vehLicPlate;
 
+	/*DON'T USE! rate should at different table, shoud change to TYPE*/
 	@Min(value = 10)
 	@Max(value = 300)
 	@NotNull
