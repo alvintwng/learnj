@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Car Rent</title>
+<title>Car Rent - Vehicles List</title>
 
 	<!-- ==> common.html -->
 	<div th:replace="common :: header"></div>
@@ -22,13 +22,13 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Vehicle ID</th>
+				<th>ID</th>
 				<th>Model</th>
 				<th>Brand</th>
-				<th>Licence No</th>
-				<th>Daily Rate</th>
+				<th>Car No</th>
+				<!-- <th>Daily Rate</th> -->
 
-				<th>Vehicle Status</th>
+				<th>Status</th>
 				<th>Active</th>
 				<th>Actions</th>
 
@@ -40,14 +40,14 @@
 				<td>[[ ${veh.vehModel} ]]</td>
 				<td>[[ ${veh.vehBrand} ]]</td>
 				<td>[[ ${veh.vehLicPlate} ]]</td>
-				<td>[[ ${veh.dailyRate} ]]</td>
+				<!-- <td>[[ ${veh.dailyRate} ]]</td> -->
 
 				<td>[[ ${veh.vehStatus.name} ]]</td>
 				<td>[[ ${veh.vehStatus.isActive} ]]</td>
 			
 				<td sec:authorize="hasAnyAuthority('USER', 'ADMIN', 'MANAGER')">
-					<a th:href="@{'/vehEditForm/' + ${veh.vehId}}">Edit </a>		
-						&nbsp;&nbsp;&nbsp; 
+					<a th:href="@{'/vehEdit/' + ${veh.vehId}}">Edit </a>		
+						&nbsp;
 					<a th:href="@{/veh/delete/{vehId}(vehId=${veh.vehId})}">
 							Delete </a></td>
 			</tr>

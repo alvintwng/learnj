@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import carDate.emp.Employee;
 import carDate.emp.Role;
-import carDate.hire.Hire;
+import carDate.hire.Hires;
 import carDate.hire.HireDao;
 import carDate.hire.HireRepo;
 
@@ -66,7 +66,7 @@ public class VehicleController {
 		return "redirect:/veh";
 	}
 	
-	@GetMapping("/vehEditForm/{vehId}")
+	@GetMapping("/vehEdit/{vehId}")
 	public String showFormForUpdate(@PathVariable(value = "vehId") long vehId, Model model) {
 		Vehicle vehicle = vehDao.getVehicleById(vehId);
 		model.addAttribute("vehicle", vehicle);

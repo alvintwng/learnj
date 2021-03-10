@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CarRent - Hires</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+	
+</head>
+<body>	
+	<div th:replace="common :: navbar"></div>
+	
+	<div class="parent">
+	<h2>Hire List</h2>
+	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/hire/new">Create New Hire</a>
+	</nav>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Customer</th>
+				
+				<th>(ID)Car No</th>
+				<th>Date Start</th>
+				<th>Date End</th>
+				<th>Case Done</th>
+				<!-- <th>TEST</th> -->
+		</thead>
+		<tbody>
+			<tr th:each="hire : ${listHires}">
+				<td th:text="${hire.hireId}" />
+				<td> [[ ${hire.customer.custName} ]] </td>
+				<td> ([[ ${hire.vehicle.vehId} ]] ) [[ ${hire.vehicle.vehLicPlate} ]] </td>
+				<td th:text="${hire.dateStart}" />
+				<td th:text="${hire.dateEnd}" />
+				<td th:text="${hire.casedone}"/>
+				<!-- <td th:text="${test}" /> -->
+				
+				<td><a th:href="@{'/hireEdit/' + ${hire.hireId}}">Edit </a>		
+						&nbsp;
+					<a th:href="@{/hire/delete/{hireId}(hireId=${hire.hireId})}">
+							Delete </a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	</div>
+	<div th:replace="common :: footer"></div>
+	
+</body>
+</html>

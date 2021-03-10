@@ -37,12 +37,12 @@ public class EmployeeController {
 		List<Role> roles = rolerepo.findAll();
 		model.addAttribute("roles", roles);
 		model.addAttribute("listEmps", employeeDao.getAllEmployees());
-		return "employees";
+		return "emp/employees";
 	}
 
 	@GetMapping("/emp/prf/{empId}")
 	public ModelAndView profileEmployee(@PathVariable(value = "empId") long empId) {
-		ModelAndView mav = new ModelAndView("employeeProfile");	
+		ModelAndView mav = new ModelAndView("emp/employeeProfile");	
 		Employee emp = employeeDao.getEmployeeById(empId);
 		mav.addObject("employee", emp);		
 		List<Role> roles = rolerepo.findAll();
@@ -58,12 +58,12 @@ public class EmployeeController {
 		List<Role> roles = rolerepo.findAll();
 		model.addAttribute("roles", roles);
 		log.info("=====> new ");
-		return "employeeNew";
+		return "emp/employeeNew";
 	}
 	
 	@GetMapping("/emp/edit/{empId}")
 	public ModelAndView editEmployee(@PathVariable(value = "empId") long empId) {
-		ModelAndView mav = new ModelAndView("employeeEdit");	
+		ModelAndView mav = new ModelAndView("emp/employeeEdit");	
 		Employee emp = employeeDao.getEmployeeById(empId);
 		mav.addObject("employee", emp);		
 		List<Role> roles = rolerepo.findAll();
@@ -85,7 +85,7 @@ public class EmployeeController {
 	public String saveEmp(@Valid @ModelAttribute("employee") Employee emp, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors())
-			return "employeeNew";
+			return "emp/employeeNew";
 
 		employeeDao.save(emp);
 		return "redirect:/emp";
