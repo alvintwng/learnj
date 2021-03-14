@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Rent - create new role</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	
+	<div class="parent">
+	<h2>Create New Role</h2>
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/">Back to home page</a>
+	</nav>
+
+	<form action="#" th:action="@{/roleSave}" th:object="${role}" method="POST">
+	<div class="form-row form-group col-md-6">
+			<label>Role ID: </label>
+	</div>
+
+	<div class="form-row">	
+		<div class="form-group col-md-6">
+			<label>Name: </label> 
+			<input class="form-control" type="text" th:field="*{Name}" required/>
+			<small class="form-text text-muted">size must be between 1 and 45</small>
+		</div>
+	
+ 	</div>
+ 	</div>
+ 
+ 	<button class="btn btn-primary"  type="submit">Save</button>
+ 	<a class="btn btn-primary" href="/" role="button">Cancel</a>
+ 	</form>
+	</div>
+	
+
+	<div th:replace="common :: footer"></div>
+</body>
+</html>

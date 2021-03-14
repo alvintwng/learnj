@@ -41,6 +41,7 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 
 	/* for non-Sql login. UN-comment the above, and commented ALL below 
 	 * AND commented off MyUserDetailService/MyUserDetailService
+	 * common.html line 39,45 " sec:authorize="hasAnyAuthority('ADMIN','ROLE_ADMIN')
 	 * */
 	@Autowired
 	private UserDetailsService userDetailService;
@@ -62,7 +63,7 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 		http
 			.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/login").permitAll()
+			.antMatchers("/login","/css/**","/img/**").permitAll()
 			.antMatchers("/").hasAnyAuthority("USER", "MANAGER", "ADMIN")
 			.antMatchers("/cust/**")	.hasAnyAuthority("USER", "MANAGER")
 			.antMatchers("/hire*/**")	.hasAnyAuthority("USER", "MANAGER")

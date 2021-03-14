@@ -16,6 +16,7 @@ SET DEFINE OFF;
 Insert into SUMPROJ.ROLE (ROLEID,NAME) values ('ADMIN');
 Insert into SUMPROJ.ROLE (ROLEID,NAME) values ('MANAGER');
 Insert into SUMPROJ.ROLE (ROLEID,NAME) values ('USER');
+Insert into SUMPROJ.ROLE (NAME) values ('EDITOR');
 
 SET DEFINE OFF;
 Insert into SUMPROJ.EMPLOYEE (EMAIL,EMP_FULL_NAME,EMPNAME,ISACTIVE,JOB_TITLE,PASSWORD,PHONE_NO,PSWD_EXPIRY,USER_EXPIRY) values ('root@carDate.com','Simon Sridhar','root',1,'Director','$2y$12$B6v4.Xt3A/Ru850pmXwzjunyTZJkcv3kTOekHB2.vU/jmh31I9XiG','+9198989897',to_date('27-MAY-21','DD-MON-RR'),to_date('27-JUL-21','DD-MON-RR'));

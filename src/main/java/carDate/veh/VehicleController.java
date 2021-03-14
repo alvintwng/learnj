@@ -17,12 +17,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import carDate.emp.Employee;
-import carDate.emp.Role;
-import carDate.hire.Hires;
-import carDate.hire.HireDao;
-import carDate.hire.HireRepo;
-
 @Controller
 public class VehicleController {
 	
@@ -30,8 +24,6 @@ public class VehicleController {
 	
 	@Autowired
 	private VehicleDao vehDao;
-	@Autowired
-	private HireDao hireDao;
 	
 	@Autowired
 	private VehStatusRepo vehStatusRepo;
@@ -40,7 +32,7 @@ public class VehicleController {
 	public String viewVehPage(Model model) {
 		
 		model.addAttribute("listVehicles", vehDao.getAllVehicles());
-		log.info("=====> vehiclesController/viewVehPage size(): " + vehDao.getAllVehicles().size());
+		
 		return "veh/vehicles";
 		
 	}
@@ -52,6 +44,7 @@ public class VehicleController {
 //		model.addAttribute("listHires", hireDao.getAllHires());
 		model.addAttribute("vehicle", veh);
 		model.addAttribute("listVehStatus", listVehStatus);
+		
 		log.info("=====> new vehicle");
 		return "veh/vehicleNew";
 	}
@@ -59,10 +52,15 @@ public class VehicleController {
 	@PostMapping(value = "/veh/save")
 	public String saveVeh(@Valid @ModelAttribute("vehicle") Vehicle veh, BindingResult bindingResult) {
 		
-		if(bindingResult.hasErrors())
+		if(bindingResult.hasErrors()) {
+			log.warn("=====> saveVeh, bindingResult.getAllErrors():: " 
+					+ bindingResult.getAllErrors());
 			return "veh/vehicleNew";
+		}
+			
 
 		vehDao.save(veh);
+		log.info("=====> Saved vehicle");
 		return "redirect:/veh";
 	}
 	
@@ -72,6 +70,8 @@ public class VehicleController {
 		model.addAttribute("vehicle", vehicle);
 		List<VehStatus> listVehStatus = vehStatusRepo.findAll();
 		model.addAttribute("listVehStatus", listVehStatus);
+		
+		log.info("=====> vehEdit, vehId: " + vehicle.getVehId());
 		return "veh/vehicleEdit";
 	}
 
