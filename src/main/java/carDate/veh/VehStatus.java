@@ -20,12 +20,13 @@ public class VehStatus {
 	/* 210308 to check is ready for company*/
 	private boolean isActive;
 
-	
-	public boolean isActive() {
+	// was public boolean isActive() {
+	public boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	// was public void setActive(boolean isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 

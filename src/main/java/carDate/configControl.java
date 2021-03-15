@@ -1,81 +1,87 @@
 package carDate;
 
-//import java.util.List;
-//
-//import javax.persistence.EntityManager;
-//import javax.validation.Valid;
-//
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.validation.BindingResult;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//
-//import carDate.emp.Employee;
-//import carDate.emp.Role;
-//import carDate.emp.RoleDao;
-//import carDate.emp.RoleRepo;
-//
-//@Controller
-//public class configControl {
-//
-//	private final Logger log = LoggerFactory.getLogger(getClass());
-//
-//	RoleDao roleDao;
-//	RoleRepo roleRepo;
-//
-//	@RequestMapping("/testconfig")
-//	public String configToFactorySet(Model model) {
-//
-//		Role ro = new Role();
-//		model.addAttribute("role", ro);
-//
-//		System.out.println("=====> configToFactorySet() creating new role ");
-//		return "emp/roleNew";
-//	}
-///*
-// 	@GetMapping("/emp/new")
-//	public String showNewEmpForm(Model model) {
-//		Employee emp = new Employee();
-//		model.addAttribute("employee", emp);
-//		List<Role> roles = rolerepo.findAll();
-//		model.addAttribute("roles", roles);
-//		log.info("=====> new ");
-//		return "emp/employeeNew";
-//	}
-// * */
-//	@PostMapping(value = "/roleSave")
-//	public String saveEmp(@Valid @ModelAttribute("role") Role ro, BindingResult bindingResult) {
-//		
-//		if(bindingResult.hasErrors())
-//			return "emp/roleNew";
-//
-//		System.out.println("=====> configToFactorySet() saving new role ");
-////		roleDao.save(ro);
-////		roleRepo.save(ro);
-//
-//		log.info("=====> configToFactorySet() new role: " + ro.getName());
-//		return "redirect:/";
-//	}
-//	
-//	@RequestMapping("/config")
-//	public void testDirectAddRole(Model model) {
-////		Role roleSuper = new Role("SUPER");
-////		Role rolesMonkey = new Role("MONKEY");
-////		Role rolesHello = new Role("HELLO");
-////		EntityManager.persist(roleSuper);
-////		roleRepo.
-//		
-//	}
-//}
+import java.util.List;
 
-/*
- public Hires(Customer customer, Vehicle vehicle, @NotNull LocalDate dateStart, @NotNull LocalDate dateEnd,
-			boolean casedone) 
- * */
+import javax.persistence.EntityManager;
+import javax.validation.Valid;
 
- 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import carDate.cust.CustState;
+import carDate.cust.CustStateRepo;
+import carDate.veh.VehStatus;
+import carDate.veh.VehStatusRepo;
+import carDate.veh.VehicleRepo;
+
+
+@Controller
+public class configControl {
+
+	private final Logger log = LoggerFactory.getLogger(getClass());
+
+	@Autowired
+	private CustStateRepo custStateRepo;
+	
+	@Autowired
+	private VehStatusRepo vehStatusRepo;
+
+	@GetMapping("/config")
+	public String viewConfig(Model model) {
+		
+		List<CustState> listCustStates = custStateRepo.findAll();
+		model.addAttribute("listCustStates", listCustStates);
+		
+		List<VehStatus> listVehicleStatus = vehStatusRepo.findAll();
+		model.addAttribute("listVehicleStates", listVehicleStatus);
+
+		return "config";
+	}	
+	
+ 	@GetMapping("/cust/newCustState")
+	public String showNewCustStateForm(Model model) {
+ 		CustState custState = new CustState();
+ 		model.addAttribute("custState", custState);
+ 		
+ 		log.info("=====> new custState");
+		return "cust/newCustState";
+ 	}
+
+	@PostMapping(value = "/cust/saveState")
+	public String saveCustState(@Valid @ModelAttribute("custState") CustState custState, BindingResult bindingResult) {
+		if(bindingResult.hasErrors())
+			return "newCustState";
+		custStateRepo.save(custState);
+		
+		log.info("=====> saveCustState, name: " + custState.getName());
+		return "redirect:/config";
+	}
+
+ 	
+ 	@GetMapping("/veh/newVehSta")
+	public String showNewVehStateForm(Model model) {
+ 		VehStatus vehStatus = new VehStatus();
+ 		model.addAttribute("vehStatus", vehStatus);
+ 		
+ 		log.info("=====> new VehicleStatus");
+		return "veh/newVehStatus";
+ 	}
+ 	
+	@PostMapping(value = "/veh/saveVehStatus")
+	public String saveVehStatus(@Valid @ModelAttribute("vehStatus") VehStatus vehStatus, BindingResult bindingResult) {	
+		if(bindingResult.hasErrors())
+			return "newVehStatus";
+		vehStatusRepo.save(vehStatus);
+		
+		log.info("=====> saveVehicleStatus, name: " + vehStatus.getName());
+		return "redirect:/config";
+	}
+}

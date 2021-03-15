@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CarZoom - config</title>
+
+<!-- ==> common.html -->
+<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+
+	<div class="parent">
+		<h3 style="text-align: center">
+			<span>Config page </span>
+		</h3>
+		<hr>
+		
+		
+		<h3>Customer State</h3>
+		<nav class="nav nav-tabs">
+			<a class="nav-link" href="/cust/newCustState">Create New Customer State</a>
+		</nav>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+			</thead>
+			<tbody>
+				<tr th:each="custState : ${listCustStates}">
+					<td th:text="${custState.custStateId}" />
+					<td th:text="${custState.name}" />
+				</tr>
+
+			</tbody>
+		</table>
+		
+		<hr>
+		<h3>Vehicles Status</h3>
+		<nav class="nav nav-tabs">
+			<a class="nav-link" href="/veh/newVehSta">Create New Vehicles Status</a>
+		</nav>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Active</th>
+			</thead>
+			<tbody>
+				<tr th:each="vehState : ${listVehicleStates}">
+					<td th:text="${vehState.vehSttsId}" />
+					<td th:text="${vehState.name}" />
+					<td th:text="${vehState.isActive}" />
+				</tr>
+			</tbody>
+		</table>
+		<hr>
+		<h3>Hire Rate</h3>
+		<nav class="nav nav-tabs">
+		
+		Under Construction!!
+
+		</nav>
+		
+	</div>
+
+	<div th:replace="common :: footer"></div>
+</body>
+</html>
