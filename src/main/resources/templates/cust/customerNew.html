@@ -37,7 +37,7 @@
 		<div class="form-group col-md-6">
 			<label>User Name: </label>
 			<input class="form-control" type="text" th:field="*{custName}" required/>
-			<small class="form-text text-muted">size must be between 4 and 45</small>
+			<small class="form-text text-muted">size must be between 8 and 45</small>
 		</div>
 		<div class="form-group col-md-6">
 			<label>NRIC: </label>
@@ -83,7 +83,7 @@
 			<label>Category</label>
 			<select th:field="*{custState}" class="form-control" required>
 				<th:block th:each="custS : ${listCustStates}">
-					<option th:text="${custS.name}" th:value="${custS.custStateId}" required/>
+					<option th:text="${custS.name}" th:value="${custS.custStateId}" />
 				</th:block>
 			</select>
 		</div>

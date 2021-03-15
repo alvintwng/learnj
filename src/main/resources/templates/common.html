@@ -11,11 +11,17 @@
   	aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="/">
-   <img class="img-responsive" width="130px" height="" 
+<!--   
+	<a class="navbar-brand" href="/">
+  		<img class="img-responsive" width="130px" height="" 
 src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_81960000000000001/attachments/78818/lhub2020-logo.png">
-  </a>
+	</a>
+   -->
 
+	<a class="navbar-brand" href="/">
+		<img class="img-responsive" width="130px" height=""  src="img/car-lamborghini-red.jpeg">
+	</a>
+   
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
     
@@ -57,6 +63,8 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 			 	<b><span th:text="${#authentication.getPrincipal().getUsername()}"></span></b>
 			</a>
 			<ul class="dropdown-menu">
+				<li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN', 'ROLE_ADMIN')">
+					<a class="dropdown-item" href="/config">config</a></li>
 				<li><a class="dropdown-item" href="/login">re-Login</a></li>
 				<li><a class="dropdown-item" href="/logout"> Logout </a></li>
 			</ul>
@@ -72,7 +80,7 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 <!-- ***** common footer  -->
 		<div  th:fragment="footer">
 				<div class="text-center m-3 fixed-bottom"> 
-				<footer> Copyright &copy; NTUC Ltd. </footer>
+				<footer> Copyright &copy; CarZoom AlvinTWNG@gmail.com </footer>
 		</div>
 			<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 			        type="text/javascript"></script>

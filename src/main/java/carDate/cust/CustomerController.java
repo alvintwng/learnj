@@ -69,9 +69,12 @@ public class CustomerController {
 	
 	@PostMapping(value = "/cust/save")
 	public String saveCustomer(@Valid @ModelAttribute("customer") Customer cust, BindingResult bindingResult) {
-		
-		if(bindingResult.hasErrors())
-			return "customerNew";
+
+		if(bindingResult.hasErrors()) {
+			log.warn("=====> saveCustomer, bindingResult.getAllErrors():: " 
+						+ bindingResult.getAllErrors());
+			return "cust/customerNew";
+		}
 
 		customerDao.save(cust);
 		

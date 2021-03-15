@@ -54,6 +54,7 @@ public class HireController {
 		model.addAttribute("customers", customers);
 		List<Vehicle> vehicles = vehDao.getAllVehicles();
 		model.addAttribute("vehicles", vehicles);
+		
 		log.info("=====> HireNew ");
 		return "hire/hireNew";
 	}
@@ -70,6 +71,8 @@ public class HireController {
 		List<Vehicle> vehicles = vehDao.getAllVehicles();
 		
 		model.addAttribute("vehicles", vehicles);
+		
+		log.info("=====> hireEdit, hireId: " + hire.getHireId());
 		return "hire/hireEdit";
 	}	
 	
@@ -79,8 +82,8 @@ public class HireController {
 		if(bindingResult.hasErrors())
 			return "hire/hireNew";
 
-		log.info("=====> saveHire, hireId: " + hire.getHireId());
 		hireDao.save(hire);
+		log.info("=====> saveHire, hireId: " + hire.getHireId());
 		return "redirect:/hire";
 	}
 	

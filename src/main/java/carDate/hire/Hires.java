@@ -50,7 +50,7 @@ public class Hires {
 	/* can't set default false */
     private boolean casedone;
 
-    
+
 	public Hires() {
 		super();
 	}
@@ -112,8 +112,5 @@ public class Hires {
     	return name;
     } */
     
-	
 
 }
-
- 
