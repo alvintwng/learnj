@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <title>CarRent -  about </title>
+	<meta charset="UTF-8">
+          
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+	
+  </head>
+
+  <body>
+  	<div th:replace="common :: navbar"></div>
+  	
+  	<div class="parent">
+		<h3 style="text-align:center">
+			<span> This page is under construction. </span>
+		</h3>
+		<hr>
+	<div class="mx-auto" style="width: 560px;">
+
+	<h3>ToDoList: ....</h3>
+	
+	<ul>
+
+		<li>
+			<!-- link to EmpValid--> <a th:href="@{/test}">
+				<!-- <h4>Test</h4> -->
+		</a>
+		</li>
+
+		<li><s>Issue: white pages error for different url of localhost.</s></li>
+
+		<li>Login</li>
+		<ol>
+			<li>Unable to trace on unsuccessful login</li>
+			<li>reformat the page, with bigger fonts, and wall paper</li>
+			<!-- <li>for newly setup, Default user and password</li> -->
+		</ol>
+		<li>Configuration</li>
+		<ol>
+			<li><s>Add config for VehicleState, custCat</s></li>
+			<li>to assess log.text from Heroku</li>
+		</ol>
+		<li>Hire</li>
+		<ol>
+			<li>RateTable</li>
+			<li>Matrix table for vehicle available wrf customer</li>
+			<li>History Table</li>
+			<li></li>
+		</ol>
+		<li>Vehicle</li>
+		<ol>
+			<li>VehicleImage Table</li>
+			<li>Delete Error if vehicle constraint by hired</li>
+		</ol>
+		<li>common html</li>
+		<ol>
+			<li>images after profile issues</li>
+			<li></li>
+		</ol>
+		<li>Employee</li>
+		<ol>
+			<li><s>Issue: Need to double confirm for delete</s> done</li>
+			<li><s>Add in Role type</s> done</li>
+			<li><s>move Create New Employee to right</s> done</li>
+			<li>Pagination for user Name</li>
+			<li><s>move Delete to editEmp.html</s> done</li>
+			<li><s>shrink employee, add detail</s> done</li>
+			<li>testing - kiv</li>
+			<li><s>logging</s> done</li>
+		</ol>
+
+		<li>Edit/New Employee</li>
+		<ol>
+			<li><s>Add in roles drop, may not</s></li>
+			<li><s>Date: 2021-07-31 SET fixed width</s> Done</li>
+			<li><s>Hidden ID??</s></li>
+			<li><s>Cancel button</s> done</li>
+			<li><s>white page on Similar email, or similar userName</s></li>
+		</ol>
+		<li>profile Employee</li>
+		<ol>
+			<li><s>Roles and IsActive not ready only</s> done</li>
+		</ol>
+
+	</ul>
+	
+	</div>
+	</div>
+
+	<div th:replace="common :: footer"></div>
+  </body>
+
+</html>
