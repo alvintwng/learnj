@@ -10,13 +10,13 @@ import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+//import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringRunner.class)	// for Dao testing 
+//@RunWith(SpringRunner.class)	// for Dao testing 
 @Transactional					// for Dao testing
 @SpringBootTest					// for Dao testing
 @DisplayName("test empDao-GetAllByEmail if works")

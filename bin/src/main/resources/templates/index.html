@@ -4,29 +4,156 @@
 <head>
 <meta charset="UTF-8">
 <title>Car Rent</title>
+
+<!-- ==> common.html -->
+<div th:replace="common :: header"></div>
+
 </head>
 <body>
-	<h1>Customer List</h1>
-	<table border="1">
-		<thead>
-			<tr>
-				<th>Customer ID</th>
-				<th>Name</th>
-				<th>Date of Birth</th>
-				<th>Email</th>
-				<th>is Active ?</th>
-				<th>Phone No</th>
-		</thead>
-		<tbody>
-			<tr th:each="customer : ${listCustomers}">
-				<td th:text="${customer.custId}" />
-				<td th:text="${customer.custName}" />
-				<td th:text="${customer.dob}" />
-				<td th:text="${customer.email}"/>
-				<td th:text="${customer.isActive}"/>
-				<td th:text="${customer.phoneNo}"/>
-			</tr>
-		</tbody>
-	</table>
+
+	<div th:replace="common :: navbar"></div>
+
+	<div class="parent">
+		<h3 style="text-align: center">
+
+			<span>JAVA DEVELOPER – SUMMATIVE CAPSTONE PROJECT</span>
+
+		</h3>
+		<hr>
+		<div class="mx-auto" style="width: 560px;">
+
+
+			<h5>Cohort One</h5>
+
+			Project Title <br> 
+			<b>Car Rental Management</b> </br> 
+			Start Date: 9th February, 2021 </br> 
+			End Date: 17th May, 2021
+
+			<hr>
+			<h5>Car Rental Management system</h5>
+			</br> <b>Purpose:</b></br> 
+			This project is being taken up for demonstrating
+			skills acquired during the training. The scope of the project is
+			decided to be as below:
+			</br> Technical specifications: </br> 
+			The project will be developed
+			using the following tools. Outlined here are the basic requirements
+			and individuals can choose any other tools of their convenience.
+			<ol>
+				<li>Tools</li>
+				<ul>
+					<li>Windows or Mac operating system as available</li>
+					<li>STS 4.0 or equivalent</li>
+				</ul>
+				<li>Software & technologies to be used</li>
+				<ul>
+					<li>Oracle database version 12c (or any similar)</li>
+					<li>SQL</li>
+					<li>Java 8 (version can be changed as needed)</li>
+					<li>JavaScript</li>
+					<li>CSS</li>
+					<li>HTML 5.0</li>
+					<li>jQuery</li>
+					<li>Thymeleaf</li>
+					<li>Balsamiq or equivalent for wireframing</li>
+					<li>https://erdplus.com/ or any other ER modeling tool, to
+						determine the dB</li>
+				</ul>
+				<li>Others</li>
+				<li>Upload the final code to a git folder that will be given
+					later.</li>
+			</ol>
+			<ol>
+				<b>Business Requirements</b>
+				<li>Design an intuitive UI for the ease of use.</li>
+				<li>The facility for the user to login with his credentials as
+					given during the registration.</li>
+				<li>The complete user data should only be visible to the
+					administrator (individual user information can be amended by the
+					user)</li>
+				<li>All the rights to remove data rom the system will only be
+					available with the “admin”. Users can only add records for hire
+					data and see the list of hires.</li>
+				<li>However, the Managers can be given a provision of editing
+					/deleting the data across all the modules barring the user
+					information.</li>
+				<li>Addition of vehicles into the system can be done only by
+					the admin and not by any other users /managers.</li>
+				<li>The list of customers and their past bookings is to be
+					displayed in the reports section.</li>
+				<li>An invoice should be generated internally by the system at
+					the end of the trip.</li>
+				<li>Maintain the list of vehicles and allow the customer to
+					book a vehicle.</li>
+				<li>The vehicles that are currently in the status of the “free”
+					or any such status should be allowed to be booked.</li>
+				<li>Following will be details required in the system</li>
+				<ul>
+					<li>Vehicle</li>
+					<ol>
+						<li>Model</li>
+						<li>Brand</li>
+						<li>Status</li>
+						<li>Hire details</li>
+						<ul>
+							<li>Rate plans</li>
+							<li>All the data pertaining to the current and past hires</li>
+							<li>The current hire will not have the end date.</li>
+							<li>Employee who handled the hire (fulfillment agent)</li>
+						</ul>
+					</ol>
+					<li>Customer</li>
+					<ol>
+						<li>Details</li>
+						<ul>
+							<li>Name</li>
+							<li>Address</li>
+							<li>City</li>
+							<li>Phone #</li>
+							<li>Email</li>
+							<li>Website</li>
+							<li>Alternate contact details</li>
+							<li>Proof of identity (id captured or an image)</li>
+							<li>Invoice details per customer</li>
+							<li>Invoice status (paid or not)</li>
+						</ul>
+
+					</ol>
+					<li>Employee (all employees may not be the users)</li>
+					<ol>
+						<li>Name</li>
+						<li>Id</li>
+						<li>Email</li>
+						<li>Job Title</li>
+						<li>Phone #</li>
+					</ol>
+
+					<li>Users management</li>
+					<ol>
+						<li>Username (email)</li>
+						<li>Id</li>
+						<li>Password</li>
+						<li>position</li>
+					</ol>
+
+					<li>Invoices (Printing the PDF can be optional, record will
+						suffice)</li>
+					<ol>
+						<li>Invoice date</li>
+						<li>Payment date</li>
+						<li>Amount</li>
+						<li>Customer detail</li>
+						<li>Hire details (ID)</li>
+					</ol>
+				</ul>
+			</ol>
+			<hr>
+
+		</div>
+
+	</div>
+
+	<div th:replace="common :: footer"></div>
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!-- 210126-DaoAuthenticate/templates/login.html -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+<style>
+	.container {
+		margin-top: 3rem;
+		border-radius: 1rem;
+		padding: 2rem;
+	}
+	
+	img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.carz {
+		  font-family: "Brush Script MT", "Lucida Handwriting",Cursive;
+		  color: #7B0099;
+		  font-size:5em;
+		  text-align: center;
+		}
+</style>
+</head>
+<body>
+ 
+	<div class="parent" >
+
+		<a><img width="130px"  src="img/car-lamborghini-red.jpeg"></a>
+		<h1 class="carz">CarZoom</h1>
+
+		<div class="container col-md-4 bg-info text-white">
+		<form action="login" method="post">
+		<div style="text-align: center" class="h4 mb-5">Log in to your account</div>
+
+			<div class="form-group">
+				<label>User Name</label>
+		   		<input class="form-control border border-info rounded" 
+		   		type="text" name="username" value='' placeholder="User Name"/> 
+		   	</div>
+		   	
+		   	<div class="form-group">
+		   		<label>Password</label>
+		   		<input class="form-control border-info" 
+		   		type="password" name="password" placeholder="Password"/> 
+		   	</div>
+		   	
+		   	<button type="submit" class="btn btn-outline-light btn-block">Log In</button>
+
+		</form>
+		</div>
+	</div>
+
+</body>
+</html>

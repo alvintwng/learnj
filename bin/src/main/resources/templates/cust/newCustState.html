@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CarZoom - newCustState</title>
+
+<!-- ==> common.html -->
+<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+
+	<div class="parent">
+	<h2>Create New Customer State</h2>
+	
+	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/config">Back to Config page</a>
+	</nav>
+	
+	<form action="#" th:action="@{/cust/saveState}" th:object="${custState}" method="POST">
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label>ID: </label>
+		</div>
+		
+		<div class="form-group col-md-6">
+			<label>Name: 
+				<input class="form-control" type="text" th:field="*{name}"/>
+			</label>
+		</div>
+
+	</div>
+ 		<button class="btn btn-primary"  type="submit">Save</button>
+ 		<a class="btn btn-primary" href="/config" role="button">Cancel</a>
+	</form>		
+	</div>
+
+	<div th:replace="common :: footer"></div>
+</body>
+</html>
