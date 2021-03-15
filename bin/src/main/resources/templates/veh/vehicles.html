@@ -1,0 +1,61 @@
+<!-- ref: 210113B-BankApp/ -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Rent - Vehicles List</title>
+
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+	
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	<div class="parent">
+	<h2>Vehicle List</h2>
+	
+	<nav class="nav nav-tabs justify-content-end">
+ 		<a class="nav-link" href="/veh/new">Create NewVehicle</a>
+	</nav>
+	
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Model</th>
+				<th>Brand</th>
+				<th>Car No</th>
+				<!-- <th>Daily Rate</th> -->
+
+				<th>Status</th>
+				<th>Active</th>
+				<th>Actions</th>
+
+
+		</thead>
+		<tbody>
+			<tr th:each="veh : ${listVehicles}">
+				<td>[[ ${veh.VehId} ]]</td>
+				<td>[[ ${veh.vehModel} ]]</td>
+				<td>[[ ${veh.vehBrand} ]]</td>
+				<td>[[ ${veh.vehLicPlate} ]]</td>
+				<!-- <td>[[ ${veh.dailyRate} ]]</td> -->
+
+				<td>[[ ${veh.vehStatus.name} ]]</td>
+				<td>[[ ${veh.vehStatus.isActive} ]]</td>
+			
+				<td sec:authorize="hasAnyAuthority('USER', 'ADMIN', 'MANAGER')">
+					<a th:href="@{'/vehEdit/' + ${veh.vehId}}">Edit </a>		
+						&nbsp;
+					<a th:href="@{/veh/delete/{vehId}(vehId=${veh.vehId})}">
+							Delete </a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	</div>
+	<div th:replace="common :: footer"></div>
+	
+</body>
+</html>

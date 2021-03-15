@@ -1,0 +1,124 @@
+<!-- ref: 210209E-SpringManyToMany/templates/common.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- ***** common navbar start  -->
+		<div  th:fragment="navbar">
+		<div class="container-fluid ">
+		
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" 
+  	aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+<!--   
+	<a class="navbar-brand" href="/">
+  		<img class="img-responsive" width="130px" height="" 
+src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_81960000000000001/attachments/78818/lhub2020-logo.png">
+	</a>
+   -->
+
+	<a class="navbar-brand" href="/">
+		<img class="img-responsive" width="130px" height=""  src="img/car-lamborghini-red.jpeg">
+	</a>
+   
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    
+		<li class="nav-item active">
+		  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item dropdown" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
+			<a class="nav-link" href="/cust">Customer</a>	
+			<!-- <a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown"> Customers</a>
+			<ul class="dropdown-menu">
+				<li><a class="dropdown-item" href="/cust"> View Customer </a></li>
+				<li><a class="dropdown-item" href="/cust"> Add Customer </a></li>
+			</ul> -->
+		</li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
+		  <a class="nav-link" href="/hire">Hires</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
+		  <a class="nav-link" href="/veh">Vehicles</a>
+		</li>
+		<li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+		  <a class="nav-link" href="/emp">Employees</a>
+		</li>
+		 <li class="nav-item">
+		  <a class="nav-link" href="/about">About</a>
+		</li>
+		 <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+		  <a class="nav-link" href="/toDoList">ToDoList</a>
+		</li>
+    </ul>
+	<!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> 
+    -->
+    
+		<span class="nav-item dropdown">
+			<a class="nav-link active dropdown-toggle" href="/" data-toggle="dropdown"
+		 		sec:authorize="hasAnyAuthority('','ADMIN','USER', 'MANAGER')">
+				<small sec:authentication="principal.authorities">Roles</small> &nbsp;
+			 	<b><span th:text="${#authentication.getPrincipal().getUsername()}"></span></b>
+			</a>
+			<ul class="dropdown-menu">
+				<li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN', 'ROLE_ADMIN')">
+					<a class="dropdown-item" href="/config">config</a></li>
+				<li><a class="dropdown-item" href="/login">re-Login</a></li>
+				<li><a class="dropdown-item" href="/logout"> Logout </a></li>
+			</ul>
+		</span>
+
+  </div>
+</nav>
+		<hr>
+		</div>
+		</div>
+<!-- ***** common navbar end  -->
+
+<!-- ***** common footer  -->
+		<div  th:fragment="footer">
+				<div class="text-center m-3"> 
+				<footer> Copyright &copy; CarZoom AlvinTWNG@gmail.com </footer>
+		</div>
+			<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			        type="text/javascript"></script>
+			<script  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" type="text/javascript"></script>
+			<script  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" type="text/javascript"></script>
+			<!-- 			
+			<script src="../static/main.js" type="text/javascript" th:src="@{/main.js}"></script>
+			<script src="../static/nav.js" type="text/javascript" th:src="@{/nav.js}"></script>
+			 -->
+		</div>
+
+<!-- ***** common header  -->
+		<div  th:fragment="header">
+			<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		
+	<style>
+		.parent {
+			/* border: 5px solid #E18728; */
+			padding: 20px;
+			margin: 20px;
+			/* float: left; */
+		}
+		/* body  {
+		  background-image: url("paper.gif");
+		  background-color: #cccccc;
+		} */
+		a {
+		  color: var(--info);
+		}
+	</style>
+		</div>
+
+</body>
+</html>

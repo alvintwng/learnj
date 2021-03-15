@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Rent - create new vehicle</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	
+	<div class="parent">
+	<h2>Create Vehicle</h2>
+
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/veh">Back to Vehicle page</a>
+	</nav>
+
+	<form action="#" th:action="@{/veh/save}" th:object="${vehicle}" method="POST">
+	<div class="form-row form-group col-md-6">
+			<label>Vehicle ID: </label>
+	</div>
+	
+	<div class="form-row">
+	
+		<div class="form-group col-md-6">
+			<label>Vehicle Model: </label> 
+			<input class="form-control" type="text" th:field="*{vehModel}" required/>
+			<small class="form-text text-muted">size must be between 1 and 10</small>
+		</div>
+		
+		<div class="form-group col-md-6">
+			<label>Vehicle Brand: </label> 
+			<input class="form-control" type="text" th:field="*{vehBrand}" required/>
+			<small class="form-text text-muted">size must be between 3 and 15</small>
+		</div>
+	
+		<div class="form-group col-md-6">
+			<label>Vehicle Licence No: </label> 
+			<input class="form-control" type="text" th:field="*{vehLicPlate}" required/>
+			<small class="form-text text-muted">Must be Unique, and between 3 and 8</small>
+		</div>
+	
+		<div class="form-group col-md-6">
+			<label>Daily Rate: </label> 
+			<input class="form-control" type="text" th:field="*{dailyRate}" required/>
+		</div>
+ 		<div class="form-group col-md-6">
+			<label>Vehicle Status</label>
+			<select th:field="*{vehStatus}" class="form-control" required>
+				<th:block th:each="vehS : ${listVehStatus}">
+					<option th:text="${vehS.name}" th:value="${vehS.vehSttsId}" />
+				</th:block>
+			</select>
+		</div>
+		
+<!-- 	Probable will use java to evaluate	
+		<div class="form-group col-md-6">
+			<label>Current Hired</label>
+			<div>
+			<select th:field="*{listHires}" class="form-control">
+				<th:block th:each="hire : ${listHires}">
+					<option th:text="${hire.hireId}" th:value="${hire.hireId}"/>
+				</th:block>
+			</select>
+			</div>
+		</div>
+		 -->
+	</div>
+	
+ 	<button class="btn btn-primary"  type="submit">Save</button>
+ 	<a class="btn btn-primary" href="/veh" role="button">Cancel</a>
+ 	</form>
+ 	
+	</div>
+
+	<div th:replace="common :: footer"></div>	
+</body>
+</html>
