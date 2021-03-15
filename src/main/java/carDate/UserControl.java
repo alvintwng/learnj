@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class UserControl {
 	
+	
+	@RequestMapping("/toDoList")
+	public String toDoListPage() {
+		return "toDoList";
+	}
+	
 	@RequestMapping("/about")
-	public String Welcome() {
+	public String aboutPage() {
 		return "about";
 	}
 
