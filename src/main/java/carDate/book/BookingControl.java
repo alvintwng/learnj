@@ -80,6 +80,6 @@ public class BookingControl {
 
 		hireDao.save(hire);
 		log.info("=====> Booking Saved, hireId: " + hire.getHireId());
-		return "redirect:/hire";
+		return "redirect:/booking";
 	}
 }

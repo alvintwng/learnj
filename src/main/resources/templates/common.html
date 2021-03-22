@@ -6,7 +6,8 @@
 		<div  th:fragment="navbar">
 		<div class="container-fluid ">
 		
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light"> -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" 
   	aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -84,8 +85,9 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 
 <!-- ***** common footer  -->
 		<div  th:fragment="footer">
-			<div class="text-center m-3"> 
-				<footer> Copyright &copy; CarZoom AlvinTWNG@gmail.com </footer>
+			<div class="text-center m-3 fixed-bottom" style="font-size: small;"> 
+				<footer>Version 1.00 | java 1.8</footer>
+				<!-- <footer> Copyright &copy; CarZoom AlvinTWNG@gmail.com </footer> -->
 			</div>
 	
 			<script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -111,11 +113,11 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 		.parent {
 			/* border: 5px solid #E18728; */
 			padding: 20px;
-			margin: 20px;
+			margin-top: 50px;
 			/* float: left; */
 		}
 		/* body  {
-		  background-image: url("paper.gif");
+		  background-image: url("paper-textured.gif");
 		  background-color: #cccccc;
 		} */
 		a {

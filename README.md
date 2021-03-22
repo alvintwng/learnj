@@ -18,6 +18,18 @@ antw@Mac-mini learnj % git checkout -b branch4
 antw@Mac-mini learnj % git add .
 antw@Mac-mini learnj % git commit -m "transfer to /Users/antw/ntuc/mJCap7/learnj"
 ```
+# git Heroku
+``` console
+antw@Mac-mini carzoom % git status                         
+On branch master
+...
+antw@Mac-mini carzoom % git add .
+antw@Mac-mini carzoom % git commit -m "Booking system, blocked dates, LocalDateArrayMany.java"
+...
+antw@Mac-mini carzoom % git push heroku master
+Enumerating objects: 52, done.
+
+```
 
 # sqlScript
 ``` sql
