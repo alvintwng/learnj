@@ -5,9 +5,18 @@ sqlScript
 # git
 ``` console 
 antw@Mac-mini SumProj % git remote add origin https://.../learnj.git
-
 antw@Mac-mini SumProj % git checkout branch3
 
+Mar 15, 2021
+antw@Mac-mini mJCap7 % git clone https://github.com/alvintwng/learnj.git
+antw@Mac-mini mJCap7 % cd learnj
+
+antw@Mac-mini learnj % pwd             
+/Users/antw/ntuc/mJCap7/learnj
+
+antw@Mac-mini learnj % git checkout -b branch4
+antw@Mac-mini learnj % git add .
+antw@Mac-mini learnj % git commit -m "transfer to /Users/antw/ntuc/mJCap7/learnj"
 ```
 
 # sqlScript

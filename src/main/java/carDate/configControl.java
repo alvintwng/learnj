@@ -43,7 +43,7 @@ public class configControl {
 		List<VehStatus> listVehicleStatus = vehStatusRepo.findAll();
 		model.addAttribute("listVehicleStates", listVehicleStatus);
 
-		return "config";
+		return "main/config";
 	}	
 	
  	@GetMapping("/cust/newCustState")
@@ -62,7 +62,7 @@ public class configControl {
 		custStateRepo.save(custState);
 		
 		log.info("=====> saveCustState, name: " + custState.getName());
-		return "redirect:/config";
+		return "redirect:main/config";
 	}
 
  	
@@ -82,6 +82,6 @@ public class configControl {
 		vehStatusRepo.save(vehStatus);
 		
 		log.info("=====> saveVehicleStatus, name: " + vehStatus.getName());
-		return "redirect:/config";
+		return "redirect:main/config";
 	}
 }

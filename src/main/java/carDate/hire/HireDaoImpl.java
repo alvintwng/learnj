@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import carDate.veh.Vehicle;
+
 @Service
 public class HireDaoImpl implements HireDao {
 	
@@ -44,6 +46,12 @@ public class HireDaoImpl implements HireDao {
 	@Override
 	public void delete(Long hireId) {
 		hireRepo.deleteById(hireId);
+	}
+
+	@Override
+	public List<Hires> getAllHiresByVehicle(Vehicle vehicle) {
+		List<Hires> list = hireRepo.findAllByVehicle(vehicle);
+		return list;
 	}
 
 }

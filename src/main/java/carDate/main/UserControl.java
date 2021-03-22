@@ -1,24 +1,24 @@
-/* ref: 210126-DaoAuthenticate/UserControl.java */
-package carDate;
+package carDate.main;
 
-import java.security.Principal;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserControl {
 	
+	private final Logger log = LoggerFactory.getLogger(getClass());
+
 	
 	@RequestMapping("/toDoList")
 	public String toDoListPage() {
-		return "toDoList";
+		return "main/toDoList";
 	}
-	
+
 	@RequestMapping("/about")
 	public String aboutPage() {
-		return "about";
+		return "main/about";
 	}
 
 //	@RequestMapping("/testaop")
