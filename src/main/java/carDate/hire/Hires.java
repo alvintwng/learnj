@@ -16,9 +16,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import carDate.cust.Customer;
-import carDate.veh.VehStatus;
 import carDate.veh.Vehicle;
-import carDate.veh.VehicleDao;
+
 
 @Entity
 public class Hires {
@@ -101,6 +100,13 @@ public class Hires {
 
 	public void setCasedone(boolean casedone) {
 		this.casedone = casedone;
+	}
+
+	@Override
+	public String toString() {
+		return "Hires [hireId=" + hireId + ", customer=" + customer 
+				+ ", vehicle=" + vehicle + ", dateStart=" + dateStart 
+				+ ", dateEnd=" + dateEnd + ", casedone=" + casedone + "]";
 	}
 
     /* K I V 

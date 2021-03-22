@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CarZoom - Booking</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+	
+	<link href= 
+'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css'
+		rel='stylesheet'> 
+	<script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"> 
+	</script> 
+	<script src= 
+"https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"> 
+	</script> 
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	<div class="parent">
+	<h2>Booking</h2>
+
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/booking">Back</a>
+	</nav>
+	
+	<p></p>
+	<form action="#" th:action="@{/book/save}" th:object="${hire}" method="POST">
+<!-- 	
+	<div class="form-row form-group col-md-6">
+			<label>Hire ID: </label>
+	</div>
+	 -->
+	<div class="form-row">
+	
+		<div class="form-group col-md-6">
+				<label>Customer: [[ ${customers.custName} ]]</label>
+				<input type="text" th:field="*{customer}" readonly="readonly" hidden/>
+		</div>
+		<div class="form-group col-md-6">
+				<label>Vehicle: [[${vehicles.vehBrand}]] [[${vehicles.vehModel}]]
+				[[${vehicles.vehLicPlate}]]</label>
+				<input type="text" th:field="*{vehicle}" readonly="readonly" hidden/>
+		</div>
+	
+		<div class="form-group col-md-6">
+				<label><b>Date Start:</b> 
+			 	<input class="form-control" type="text" id="my_date_picker1" th:field="*{dateStart}" required/> 
+				</label>
+		</div>
+
+		<div class="form-group col-md-6">
+				<label><b>Date End:</b> 
+				<input class="form-control" type="text" id="my_date_picker2" th:field="*{dateEnd}" required/>
+				</label>
+		</div>
+<!-- 		
+		<div class="form-group col-md-6">
+			<label>Case Done? </label>
+			<input type="checkbox" th:field="*{casedone}" />
+		</div>
+		 -->
+	</div>
+ 		<button class="btn btn-primary"  type="submit">Save</button>
+ 		<a class="btn btn-primary" href="/hire" role="button">Cancel</a>
+
+	</form>
+	
+	
+	</div>
+
+	<div> <!-- common footer will cause JS issues -->
+		<div class="text-center m-3"> 
+			<footer> Copyright &copy; CarZoom AlvinTWNG@gmail.com </footer>
+		</div>
+	</div>
+		
+	 
+	<script th:inline="javascript">
+		$(document).ready(function() { 
+	
+			var cdate = new Date();
+			
+			var my_array = [];
+			//my_array = new Array('4/4/2021','13/4/2021','28/3/2021');
+			
+				/*<![CDATA[*/
+			   	/*[# th:each="n : ${localDateArrayMany}"]*/
+				my_array.push("[(${n})]");
+				/*[/]*/
+								
+			$(function() { 
+				$("#my_date_picker1").datepicker({ 
+					dateFormat: 'yy-mm-dd', 
+					//dateFormat: 'dd-mm-yy', 
+					numberOfMonths:2,
+					minDate: cdate,
+					maxDate:60,
+					defaultDate: cdate,
+					beforeShowDay: my_check 
+				}); 
+				$("#my_date_picker2").datepicker({ 
+					dateFormat: 'yy-mm-dd', 
+					//dateFormat: 'dd-mm-yy', 
+					numberOfMonths:2,
+					minDate: cdate,
+					maxDate:60,
+					defaultDate: cdate,
+					beforeShowDay: my_check 
+				}); 
+			}); 
+	
+			function my_check(in_date) { 
+				in_date = in_date.getDate() + '/' 
+					+ (in_date.getMonth() + 1) + '/' + in_date.getFullYear(); 
+	
+				if (my_array.indexOf(in_date) >= 0) { 
+					return [false, "notav", 'Not Available']; 
+				} else { 
+					return [true, "av", "available"]; 
+				}
+			} 
+		}) 
+	</script> 
+
+</body>
+</html>

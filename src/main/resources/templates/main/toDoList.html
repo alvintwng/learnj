@@ -22,14 +22,16 @@
 	<div class="mx-auto" style="width: 560px;">
 
 	<h3>ToDoList: ....</h3>
-	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/">Test page</a>
+	</nav>
 	<ul>
 
-		<li>
-			<!-- link to EmpValid--> <a th:href="@{/test}">
-				<!-- <h4>Test</h4> -->
-		</a>
-		</li>
+		<li>Mobile App</li>
+		<ol>
+			<li>Display Layout not good</li>
+			<li></li>
+		</ol>
 
 		<li><s>Issue: white pages error for different url of localhost.</s></li>
 
@@ -39,37 +41,44 @@
 			<li>reformat the page, with bigger fonts, and wall paper</li>
 			<!-- <li>for newly setup, Default user and password</li> -->
 		</ol>
+		
 		<li>Configuration</li>
 		<ol>
-			<li><s>Add config for VehicleState, custCat</s></li>
 			<li>to assess log.text from Heroku</li>
+			<li><s>Add config for VehicleState, custCat</s></li>
 		</ol>
+		
 		<li>Hire</li>
 		<ol>
 			<li>RateTable</li>
 			<li>Matrix table for vehicle available wrf customer</li>
 			<li>History Table</li>
-			<li></li>
+			<li>BookingControl - Issues on dates overlapp. </li>
+			<li>BookingControl - issues on opposite dates</li>
 		</ol>
+		
 		<li>Vehicle</li>
 		<ol>
 			<li>VehicleImage Table</li>
 			<li>Delete Error if vehicle constraint by hired</li>
 		</ol>
+		
 		<li>common html</li>
 		<ol>
 			<li>images after profile issues</li>
 			<li></li>
 		</ol>
+		
 		<li>Employee</li>
 		<ol>
+			<li>Should not be delete for ID=1</li>
+			<li>Pagination for user Name</li>
+			<li>testing - kiv</li>
 			<li><s>Issue: Need to double confirm for delete</s> done</li>
 			<li><s>Add in Role type</s> done</li>
 			<li><s>move Create New Employee to right</s> done</li>
-			<li>Pagination for user Name</li>
 			<li><s>move Delete to editEmp.html</s> done</li>
 			<li><s>shrink employee, add detail</s> done</li>
-			<li>testing - kiv</li>
 			<li><s>logging</s> done</li>
 		</ol>
 
@@ -92,6 +101,7 @@
 	</div>
 
 	<div th:replace="common :: footer"></div>
+
   </body>
 
 </html>
