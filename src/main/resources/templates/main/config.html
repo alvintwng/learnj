@@ -51,20 +51,36 @@
 					<th>Active</th>
 			</thead>
 			<tbody>
-				<tr th:each="vehState : ${listVehicleStates}">
-					<td th:text="${vehState.vehSttsId}" />
-					<td th:text="${vehState.name}" />
-					<td th:text="${vehState.isActive}" />
+				<tr th:each="vS : ${listVehicleStates}">
+					<td th:text="${vS.vehSttsId}" />
+					<td th:text="${vS.name}" />
+					<td th:text="${vS.isActive}" />
 				</tr>
 			</tbody>
 		</table>
 		<hr>
+		
 		<h3>Hire Rate</h3>
 		<nav class="nav nav-tabs">
-		
-		Under Construction!!
-
+			<a class="nav-link" href="newDailyRate">Create New Daily Rate</a>
 		</nav>
+		<table class="table table-striped">
+			<thead>
+				<th>ID</th>
+				<th>Customer Category</th>
+				<th>Vehicle Class</th>
+				<th>Rate</th>
+			</thead>
+			<tbody>
+				<tr th:each="dR : ${listDailyRate}">
+					<td>[[${dR.id}]]</td>
+					<td>[[${dR.custCatId}]]</td>
+					<td>[[${dR.vehClassId}]]
+					<td>[[${dR.dayrate}]]
+				</tr>
+			</tbody>
+		</table>
+		<hr>
 		
 	</div>
 

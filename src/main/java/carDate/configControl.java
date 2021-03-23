@@ -1,6 +1,7 @@
 package carDate;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.persistence.EntityManager;
 import javax.validation.Valid;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import carDate.book.DailyRate;
+import carDate.book.DailyRateRepo;
 import carDate.cust.CustState;
 import carDate.cust.CustStateRepo;
 import carDate.veh.VehStatus;
@@ -30,9 +33,10 @@ public class configControl {
 
 	@Autowired
 	private CustStateRepo custStateRepo;
-	
 	@Autowired
 	private VehStatusRepo vehStatusRepo;
+	@Autowired
+	private DailyRateRepo dailyRateRepo;
 
 	@GetMapping("/config")
 	public String viewConfig(Model model) {
@@ -42,7 +46,11 @@ public class configControl {
 		
 		List<VehStatus> listVehicleStatus = vehStatusRepo.findAll();
 		model.addAttribute("listVehicleStates", listVehicleStatus);
-
+		
+		List<DailyRate> listDailyRate = dailyRateRepo.findAll();
+		model.addAttribute("listDailyRate", listDailyRate);
+		
+		//Stream.of(listDailyRate).forEach(s -> System.out.println(s));
 		return "main/config";
 	}	
 	
@@ -62,7 +70,7 @@ public class configControl {
 		custStateRepo.save(custState);
 		
 		log.info("=====> saveCustState, name: " + custState.getName());
-		return "redirect:main/config";
+		return "redirect:/config";
 	}
 
  	
@@ -82,6 +90,30 @@ public class configControl {
 		vehStatusRepo.save(vehStatus);
 		
 		log.info("=====> saveVehicleStatus, name: " + vehStatus.getName());
-		return "redirect:main/config";
+		return "redirect:/config";
+	}
+
+
+	@GetMapping("newDailyRate")
+	public String showNewRateForm(Model model) {
+		DailyRate dailyRate = new DailyRate();
+		model.addAttribute("dailyRate",dailyRate);
+		List<CustState> listCustStates = custStateRepo.findAll();
+		model.addAttribute("listCustStates", listCustStates);
+		List<VehStatus> listVehicleStatus = vehStatusRepo.findAll();
+		model.addAttribute("listVehicleStates", listVehicleStatus);
+		
+		log.info("=====> new newDailyRate");
+		return "book/newDailyRate";
+	}
+	
+	@PostMapping(value = "saveDailyRate")
+	public String saveDailyRate(@Valid @ModelAttribute("dailyRate") DailyRate dailyRate, BindingResult bindingResult) {
+		if(bindingResult.hasErrors())
+			return "newDailyRate";
+		dailyRateRepo.save(dailyRate);
+
+		log.info("=====> saveDailyRate, rate: $" + dailyRate.getDayrate());
+		return "redirect:/config";
 	}
 }
