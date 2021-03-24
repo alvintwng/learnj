@@ -67,15 +67,15 @@
 		<table class="table table-striped">
 			<thead>
 				<th>ID</th>
-				<th>Customer Category</th>
 				<th>Vehicle Class</th>
-				<th>Rate</th>
+				<th>Customer Category</th>
+				<th>Daily Rate</th>
 			</thead>
 			<tbody>
 				<tr th:each="dR : ${listDailyRate}">
 					<td>[[${dR.id}]]</td>
-					<td>[[${dR.custCatId}]]</td>
 					<td>[[${dR.vehClassId}]]
+					<td>[[${dR.custCatId}]]
 					<td>[[${dR.dayrate}]]
 				</tr>
 			</tbody>

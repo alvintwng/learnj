@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CarZoom - Booking</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+	
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	<div class="parent">
+	<h2>Booking of Vehicle</h2>
+	<h4>Select Vehicle</h4>
+ 	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/booking">back to Booking Page</a>
+	</nav>
+	
+	<p></p>
+	<form action="#" th:action="@{/book/dates}" th:object="${booking}" method="POST">
+
+	<div class="form-row">
+		<div class="form-group col-md-6">
+				<label>Customer: [[ ${customer.custName} ]]</label>
+				<input type="text" th:field="*{customer}" readonly="readonly" hidden/>
+		</div>
+
+ 		<div class="form-group col-md-6">
+			<label><b>Select Vehicle</b></label>
+			<select th:field="*{vehicle}" class="form-control" required>
+				<th:block th:each="veh : ${vehicles}">
+					<option th:text="${veh.vehBrand} + ' ' + ${veh.vehModel} + ' ' + ${veh.vehLicPlate}"  
+					th:value="${veh.vehId}" required/>
+					
+				</th:block>
+			</select>
+		</div>
+	</div>
+ 		<button class="btn btn-primary"  type="submit">Next</button>
+ 		<a class="btn btn-primary" href="/" role="button">Cancel</a>
+	</form>
+	<hr>
+	<i>Current Hire List</i>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<!-- <th>Customer</th> -->
+				<th>Brand, Car No</th>
+				<th>Date Start</th>
+				<th>Date End</th>
+				<th>Case Done</th>
+		</thead>
+		<tbody>
+			<tr th:each="hire : ${listHires}">
+				<td th:text="${hire.hireId}" />
+				<!-- <td> [[ ${hire.customer.custName} ]] </td> -->
+				<td> [[ ${hire.vehicle.vehBrand} ]], [[ ${hire.vehicle.vehLicPlate} ]] </td>
+				<td th:text="${hire.dateStart}" />
+				<td th:text="${hire.dateEnd}" />
+				<td th:text="${hire.casedone}"/>
+			</tr>
+		</tbody>
+	</table>
+
+	</div>
+	
+ 	<div th:replace="common :: footer"></div> 
+</body>
+</html>

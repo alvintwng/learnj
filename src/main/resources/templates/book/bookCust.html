@@ -12,13 +12,15 @@
 	
 	<div class="parent">
 	<h2>Booking of Vehicle</h2>
+	<h4>Customer first</h4>
  	
 	<nav class="nav nav-tabs justify-content-end">
 		<a class="nav-link" href="/cust">Customer List</a>
 	</nav>
 	
 	<p></p>
-	<form action="#" th:action="@{/book/dates}" th:object="${hire}" method="POST">
+	<form action="#" th:action="@{bookVeh}" th:object="${booking}" method="POST">
+	<!-- <form action="#" th:action="@{'bookVeh/' + ${booking.test}}" th:object="${booking}" method="POST"> -->
 
 	<div class="form-row">
  		<div class="form-group col-md-6">
@@ -26,22 +28,10 @@
 			<select th:field="*{customer}" class="form-control" required>
 				<th:block th:each="cust : ${customers}">
 					<option th:text="'[' + ${cust.custId} + '] ' + ${cust.custName}" 
-					th:value="${cust.custId}" required/>
+					th:value="${cust.custId}"/>
 				</th:block>
 			</select>
 		</div>
-
- 		<div class="form-group col-md-6">
-			<label><b>Select Vehicle</b></label>
-			<select th:field="*{vehicle}" class="form-control" required>
-				<th:block th:each="veh : ${vehicles}">
-					<option th:text="${veh.vehBrand} + ' ' + ${veh.vehModel} + ' ' + ${veh.vehLicPlate}"  
-					th:value="${veh.vehId}" required/>
-					
-				</th:block>
-			</select>
-		</div>
-
 	
 	</div>
  		<button class="btn btn-primary"  type="submit">Next</button>

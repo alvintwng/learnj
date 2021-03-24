@@ -23,7 +23,7 @@
 	<h2>Booking</h2>
 
 	<nav class="nav nav-tabs justify-content-end">
-		<a class="nav-link" href="/booking">Back</a>
+		<a class="nav-link" href="/booking">back to Booking Page</a>
 	</nav>
 	
 	<p></p>
@@ -35,7 +35,7 @@
 	 -->
 	<div class="form-row">
 	
-		<div class="form-group col-md-6">
+		<div class="form-group col-md-12">
 				<label>Customer: [[ ${customers.custName} ]]</label>
 				<input type="text" th:field="*{customer}" readonly="readonly" hidden/>
 		</div>
@@ -43,6 +43,10 @@
 				<label>Vehicle: [[${vehicles.vehBrand}]] [[${vehicles.vehModel}]]
 				[[${vehicles.vehLicPlate}]]</label>
 				<input type="text" th:field="*{vehicle}" readonly="readonly" hidden/>
+		</div>
+		
+		<div class="form-group col-md-6">
+			<label>Daily Rate: <b>$[[${dayRate}]]</b></label>
 		</div>
 	
 		<div class="form-group col-md-6">
@@ -64,7 +68,7 @@
 		 -->
 	</div>
  		<button class="btn btn-primary"  type="submit">Save</button>
- 		<a class="btn btn-primary" href="/hire" role="button">Cancel</a>
+ 		<a class="btn btn-primary" href="/" role="button">Cancel</a>
  		<hr>
 		<div class="form-group col-md-6">
 				<label>Current hires status:</label>

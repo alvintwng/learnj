@@ -1,7 +1,7 @@
 package carDate.book;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Stream;
 
 import javax.validation.Valid;
 
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,22 +34,55 @@ public class BookingControl {
 	private CustomerDao custDao;
 	@Autowired
 	private VehicleDao vehDao;
-
+	@Autowired
+	private DailyRateRepo rateRepo;
+	@Autowired
+	private HistoryRepo historyRepo;
 	
 	@RequestMapping("booking")
-	public String bookCustVeh(Model model) {
-		Hires hire = new Hires();
-		model.addAttribute("hire", hire);
+	public String booking(Model model) {
+		return "redirect:/bookCust";
+	}
+
+	@RequestMapping("bookCust")
+	public String bookCust(Model model) {
+		Booking booking = new Booking();
+		model.addAttribute("booking", booking);
 		List<Customer> customers = custDao.getAllCustomers();
 		model.addAttribute("customers", customers);
+		return "book/bookCust";
+	}
+	
+	// not working .. To Be Delete
+	@RequestMapping("bookVeh/{custId}")
+	public String bookVehCustomer(@PathVariable("custId") Long custId, Model model) {
+		System.out.println("=====> bookVeh/{custId}: " + custId);
+		//return "redirect:/bookCust";
+		return "book/bookVeh";
+	}
+	
+	@RequestMapping("bookVeh")
+	public String bookVeh(@ModelAttribute("booking") Booking booking, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			log.warn("=====> bookVeh, BindingResult: ERROR");
+			return "bookVeh";
+		}
+
+		model.addAttribute("booking", booking);
+
+		Customer customer = booking.getCustomer();
+		model.addAttribute("customer", customer);
+		
 		List<Vehicle> vehicles = vehDao.getAllVehicles();
 		model.addAttribute("vehicles", vehicles);
-		return "book/custVeh";
+		
+		model.addAttribute("listHires", hireDao.findAllByCustomer(customer));
+		
+		return "book/bookVeh";
 	}	
 	
 	@RequestMapping("/book/dates")
 	public String bookDates(@ModelAttribute("hire") Hires hire, BindingResult bindingResult, Model model) {
-
 		if(bindingResult.hasErrors())
 			return "book/custVeh";
 		
@@ -60,26 +94,71 @@ public class BookingControl {
 		Vehicle veh = vehDao.getVehicleById(bookVehId);
 		model.addAttribute("vehicles", veh);
 		
+		model.addAttribute("dayRate", calDayRate(hire));
+		
 		Vehicle thisVeh = vehDao.getVehicleById(bookVehId);
 		List<Hires> listBddates = hireDao.getAllHiresByVehicle(thisVeh);
 		String[] fdates = LocalDateArrayMany.
 				allListsToDMY(listBddates);
-		model.addAttribute("localDateArrayMany", fdates); // finalDates can only add once
-//		Stream.of(fdates).forEach(s -> System.out.println("listToDMY :: " + s));
+		model.addAttribute("localDateArrayMany", fdates);
+		//Stream.of(fdates).forEach(s -> System.out.println("listToDMY :: " + s));
 		
 		model.addAttribute("hire", hire);
-
-		return "book/dates";
+		return "book/bookDate";
 	}
 
 	@PostMapping(value = "/book/save")
-	public String saveEmp(@Valid @ModelAttribute("hire") Hires hire, BindingResult bindingResult) {
-
-		if(bindingResult.hasErrors())
-			return "book/booking";
+	public String saveBooking(@Valid @ModelAttribute("hire") Hires hire, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			log.warn("=====> book/save, BindingResult: ERROR");
+			return "/403";
+		}
+			
 
 		hireDao.save(hire);
-		log.info("=====> Booking Saved, hireId: " + hire.getHireId());
-		return "redirect:/booking";
+		
+		long newHireId = hire.getHireId();
+		log.info("=====> Booking Saved, hireId: " + newHireId);
+		
+		Hires latestHire = hireDao.getHireById(newHireId);
+		History history = 
+		hireToHistory(latestHire);
+		historyRepo.save(history);
+		log.info("=====> History Saved. ");
+	
+		return "redirect:/";
 	}
+	
+	public History hireToHistory(Hires hire) {
+		History history = new History();
+		history.setHireId(		hire.getHireId());
+		history.setCustId(		hire.getCustomer().getCustId());
+		history.setVehId(		hire.getVehicle().getVehId());
+		history.setDateStart(	hire.getDateStart());
+		history.setDateEnd(		hire.getDateEnd());
+		history.setCustNric(	hire.getCustomer().getNric());
+		history.setCustCatId(	hire.getCustomer().getCustState().getCustStateId());
+		history.setVehClassId(	hire.getVehicle().getVehStatus().getVehSttsId());
+		history.setDayrate(		calDayRate(hire));
+		history.setAmoint(		calAmount(hire));
+		history.setRecorded(	LocalDateTime.now());
+		
+		//System.out.println("====> hireToHistory history: " + history.toString());
+		return history;
+	}
+	
+	public float calDayRate(Hires hire) {
+		long vehStatId = hire.getVehicle().getVehStatus().getVehSttsId();
+		DailyRate dR = rateRepo.findByVehClassId(vehStatId);
+		float dayRate = (float)dR.getDayrate();
+		return dayRate;
+	}
+	
+	public float calAmount(Hires hire) {
+		int getDays = LocalDateArrayMany.getDays(hire.getDateStart(), hire.getDateEnd().plusDays(1));	
+		float dayRate = calDayRate(hire);
+		float amount = dayRate * getDays;
+		return amount;
+	}
+	
 }
