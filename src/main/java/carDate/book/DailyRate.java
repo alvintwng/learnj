@@ -15,12 +15,12 @@ public class DailyRate {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)  
 	private int id;
 	
-	@Column(name="custcatid")
-	private long custCatId;
-	
-	@Column(name="vehclassid")
+	@Column(name="vehclassid", nullable = false, unique = true)
 	private long vehClassId;
 	
+	@Column(name="custcatid")
+	private long custCatId;
+
 	private float dayrate;
 	
 	public DailyRate() {

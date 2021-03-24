@@ -24,20 +24,22 @@
 				<label>ID: </label>
 			</div>
 			<div class="form-group col-md-6">
-				<label>Customer Category</label>
-				<select th:field="*{custCatId}" class="form-control">
-					<th:block th:each="custS : ${listCustStates}">
-						<option th:text="${custS.name}" th:value="${custS.custStateId}" />
-					</th:block>
-				</select>
-			</div>
-			<div class="form-group col-md-6">
 				<label>Vehicle Class</label>
 				<select th:field="*{vehClassId}" class="form-control" >
 					<th:block th:each="vS : ${listVehicleStates}">
 						<option th:text="${vS.name}" th:value="${vS.vehSttsId}"/>
 					</th:block>
 				</select>
+				<small class="form-text text-muted">Must be unique</small>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Customer Category</label>
+				<select th:field="*{custCatId}" class="form-control">
+					<th:block th:each="custS : ${listCustStates}">
+						<option th:text="${custS.name}" th:value="${custS.custStateId}" />
+					</th:block>
+				</select>
+				<small class="form-text text-muted">Optional, Reference purposes</small>
 			</div>
 			<div class="form-group col-md-6">
 				<label>Daily Rate</label>
