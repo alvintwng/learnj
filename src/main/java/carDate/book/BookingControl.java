@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -113,7 +114,6 @@ public class BookingControl {
 			log.warn("=====> book/save, BindingResult: ERROR");
 			return "/403";
 		}
-			
 
 		hireDao.save(hire);
 		
@@ -128,6 +128,26 @@ public class BookingControl {
 	
 		return "redirect:/";
 	}
+
+	@GetMapping("/hist")
+	public String historyList(Model model) {
+		List<History> histories = historyRepo.findAll();
+		model.addAttribute("histories", histories);
+		List<Customer> customers = custDao.getAllCustomers();
+		model.addAttribute("customers", customers);
+		List<Vehicle> vehicles = vehDao.getAllVehicles();
+		model.addAttribute("vehicles", vehicles);
+		System.out.println("====> History Size: " + histories.size());
+		return "book/historyList";
+	}
+	
+	@GetMapping("/histData")
+	public String historyDate(Model model) {
+		List<History> histories = historyRepo.findAll();
+		model.addAttribute("histories", histories);
+		System.out.println("====> History Size: " + histories.size());
+		return "book/historyData";
+	}
 	
 	public History hireToHistory(Hires hire) {
 		History history = new History();
@@ -139,6 +159,7 @@ public class BookingControl {
 		history.setCustNric(	hire.getCustomer().getNric());
 		history.setCustCatId(	hire.getCustomer().getCustState().getCustStateId());
 		history.setVehClassId(	hire.getVehicle().getVehStatus().getVehSttsId());
+		history.setVehLicPlate(	hire.getVehicle().getVehLicPlate());
 		history.setDayrate(		calDayRate(hire));
 		history.setAmoint(		calAmount(hire));
 		history.setRecorded(	LocalDateTime.now());

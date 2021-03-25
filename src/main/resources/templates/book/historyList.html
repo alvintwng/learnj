@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CarRent - History data</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+	
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	<div class="parent">
+	<h2>History</h2>
+	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/histData">data</a>
+	</nav>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Date__Start, Date_End</th>
+				<th>Cust Nric, VehLicPlate</th>
+				<th>Amount</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="hist : ${histories}">
+				<td>[[${hist.id}]]</td>
+				<td>[[${hist.dateStart}]], [[${hist.dateEnd}]]</td>
+				<td>[[${hist.custNric}]], [[${hist.vehLicPlate}]]</td>
+				<td>$[[${hist.amoint}]]</td>
+			</tr>
+		</tbody>
+	</table>
+
+	</div>
+	<div th:replace="common :: footer"></div>
+</body>
+</html>
