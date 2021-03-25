@@ -40,6 +40,9 @@ public class History {
 	@Column(name="VEHCLASSID")
 	private Integer vehClassId;
 	
+	@Column(name="VEHLICPLATE")
+	private String vehLicPlate;
+	
 	private float dayrate;
 	
 	private float amoint;
@@ -122,6 +125,14 @@ public class History {
 		this.vehClassId = vehClassId;
 	}
 
+	public String getVehLicPlate() {
+		return vehLicPlate;
+	}
+
+	public void setVehLicPlate(String vehLicPlate) {
+		this.vehLicPlate = vehLicPlate;
+	}
+
 	public float getDayrate() {
 		return dayrate;
 	}
@@ -148,11 +159,10 @@ public class History {
 
 	@Override
 	public String toString() {
-		return "History [id=" + id + ", hireId=" + hireId + ", custId=" + custId 
-				+ ", vehId=" + vehId + ", dateStart=" + dateStart + ", dateEnd=" 
-				+ dateEnd + ", custNric=" + custNric + ", custCatId=" + custCatId
-				+ ", vehClassId=" + vehClassId + ", dayrate=" + dayrate 
-				+ ", amoint=" + amoint + ", recorded=" + recorded + "]";
+		return "History [id=" + id + ", hireId=" + hireId + ", custId=" + custId + ", vehId=" + vehId + ", dateStart="
+				+ dateStart + ", dateEnd=" + dateEnd + ", custNric=" + custNric + ", custCatId=" + custCatId
+				+ ", vehClassId=" + vehClassId + ", vehLicPlate=" + vehLicPlate + ", dayrate=" + dayrate + ", amoint="
+				+ amoint + ", recorded=" + recorded + "]";
 	}
 
 }

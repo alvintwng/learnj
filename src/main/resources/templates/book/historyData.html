@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CarRent - History data</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+	
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	<div class="parent">
+	<h2>History data</h2>
+	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/hist">back</a>
+	</nav>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>HireId</th>
+				<th>CustId</th>
+				<th>VehId</th>
+				<th>Date Start</th>
+				<th>Date End</th>
+				<th>CustNric</th>
+				<th>CustCatId</th>
+				<th>VehClass</th>
+				<th>VehLicPlate</th>
+				<th>DayRate</th>
+				<th>Amount</th>
+				<th>Recorded</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="hist : ${histories}">
+				<td>[[ ${hist.id}]]</td>
+				<td>[[ ${hist.hireId}]]</td>
+				<td>[[ ${hist.custId}]]</td>
+				<td>[[ ${hist.vehId}]]</td>
+				<td>[[ ${hist.dateStart}]]</td>
+				<td>[[ ${hist.dateEnd}]]</td>
+				<td>[[ ${hist.custNric}]]</td>
+				<td>[[ ${hist.custCatId}]]</td>
+				<td>[[ ${hist.vehClassId}]]</td>
+				<td>[[ ${hist.vehLicPlate}]]</td>
+				<td>[[ ${hist.dayrate}]]</td>
+				<td>[[ ${hist.amoint}]]</td>
+				<td>[[ ${hist.recorded}]]</td>
+			</tr>
+		</tbody>
+	</table>
+
+	</div>
+	<div th:replace="common :: footer"></div>
+</body>
+</html>
