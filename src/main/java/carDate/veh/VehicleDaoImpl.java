@@ -42,7 +42,7 @@ public class VehicleDaoImpl implements VehicleDao {
 	}
 
 	@Override
-	public void delete(Long vehId) {
+	public void delete(long vehId) {
 		vehicleRepo.deleteById(vehId);
 	}
 

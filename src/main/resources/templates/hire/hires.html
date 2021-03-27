@@ -17,13 +17,12 @@
 		<a class="nav-link" href="/hire/new">Create New Hire</a>
 	</nav>
 
-	<table class="table table-striped">
+	<table class="table table-striped" id="table">
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Customer</th>
-				
 				<th>(ID)Car No</th>
+				<th>Customer</th>
 				<th>Date Start</th>
 				<th>Date End</th>
 				<th>Case Done</th>
@@ -32,23 +31,47 @@
 		<tbody>
 			<tr th:each="hire : ${listHires}">
 				<td th:text="${hire.hireId}" />
-				<td> [[ ${hire.customer.custName} ]] </td>
 				<td> ([[ ${hire.vehicle.vehId} ]] ) [[ ${hire.vehicle.vehLicPlate} ]] </td>
+				<td> [[ ${hire.customer.custName} ]] </td>
 				<td th:text="${hire.dateStart}" />
 				<td th:text="${hire.dateEnd}" />
 				<td th:text="${hire.casedone}"/>
 				<!-- <td th:text="${test}" /> -->
 				
-				<td><a th:href="@{'/hireEdit/' + ${hire.hireId}}">Edit </a>		
-						&nbsp;
-					<a th:href="@{/hire/delete/{hireId}(hireId=${hire.hireId})}">
-							Delete </a></td>
+				<td><a class="btn btn-info btn-sm" th:href="@{'/hireEdit/' + ${hire.hireId}}">
+						<span class="fa fa-edit"></span></a>		
+					<a class="btn btn-warning btn-sm delBtn" th:href="@{/hire/delete/{hireId}(hireId=${hire.hireId})}">
+						<span class="fa fa-trash"></span></a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
 
 	</div>
 	<div th:replace="common :: footer"></div>
+
+	<div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" 
+			tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="deleteModalLabel">Delete Record</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<p class="alert alert-danger">
+			Do you want to delete <div id="main"> </div>
+			</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keep</button>
+	        <a class="btn btn-danger" href="" id="delRef">proceed </a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	
 </body>
 </html>

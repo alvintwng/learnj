@@ -19,7 +19,7 @@
  		<a class="nav-link" href="/veh/new">Create NewVehicle</a>
 	</nav>
 	
-	<table class="table table-striped">
+	<table class="table table-striped" id="table">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -27,11 +27,9 @@
 				<th>Brand</th>
 				<th>Car No</th>
 				<!-- <th>Daily Rate</th> -->
-
 				<th>Status</th>
 				<th>Active</th>
 				<th>Actions</th>
-
 
 		</thead>
 		<tbody>
@@ -41,15 +39,15 @@
 				<td>[[ ${veh.vehBrand} ]]</td>
 				<td>[[ ${veh.vehLicPlate} ]]</td>
 				<!-- <td>[[ ${veh.dailyRate} ]]</td> -->
-
 				<td>[[ ${veh.vehStatus.name} ]]</td>
 				<td>[[ ${veh.vehStatus.isActive} ]]</td>
 			
 				<td sec:authorize="hasAnyAuthority('USER', 'ADMIN', 'MANAGER')">
-					<a th:href="@{'/vehEdit/' + ${veh.vehId}}">Edit </a>		
-						&nbsp;
-					<a th:href="@{/veh/delete/{vehId}(vehId=${veh.vehId})}">
-							Delete </a></td>
+					<a class="btn btn-info btn-sm" th:href="@{'/vehEdit/' + ${veh.vehId}}">
+						<span class="fa fa-edit"></span></a>
+					<a class="btn btn-warning btn-sm delBtn" th:href="@{/veh/delete/{vehId}(vehId=${veh.vehId})}">
+						<span class="fa fa-trash"></span></a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -57,5 +55,28 @@
 	</div>
 	<div th:replace="common :: footer"></div>
 	
+	<div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" 
+			tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="deleteModalLabel">Delete Record</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<p class="alert alert-danger">
+			Do you want to delete <div id="main"> </div>
+			</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keep</button>
+	        <a class="btn btn-danger" href="" id="delRef">proceed </a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 </body>
 </html>
