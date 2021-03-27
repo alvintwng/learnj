@@ -8,6 +8,6 @@ public interface VehicleDao {
 	public List<Vehicle> getAllVehicles();
 	public Vehicle getVehicleById(long vehId);
 	public void save(Vehicle vehicle);
-	public void delete(Long vehId);
+	public void delete(long vehId);
 
 }

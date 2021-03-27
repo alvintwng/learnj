@@ -76,7 +76,7 @@ public class VehicleController {
 	}
 
 	@GetMapping("/veh/delete/{vehId}")
-	public String deleteVehicle(@PathVariable(name = "vehId") Long vehId) {
+	public String deleteVehicle(@PathVariable(name = "vehId") long vehId) {
 		vehDao.delete(vehId);
 		log.warn("=====> delete(vehId): " + vehId);
 		return "redirect:/veh";

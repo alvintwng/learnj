@@ -3,15 +3,20 @@
       xmlns:th="http://www.thymeleaf.org"
       layout:decorate="~{fragments/layout}">
 <head>
-    <title>Index</title>
+    <title>Logout</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
 </head>
 <body>
-
-    <h2 style="text-align:center">
+ 
+	<div class="parent" >
+	
+    <h2 style="text-align:center"><i>
     	You have been Logged out successfully. <br>
     	<br>
     	<a  href="/login">Login again?</a>
-    </h2>
-
+    </i></h2>
+	
+	</div>
 </body>
 </html>

@@ -54,7 +54,7 @@ public class BookingControl {
 		return "book/bookCust";
 	}
 	
-	// not working .. To Be Delete
+	// this method not working yet ... from HireController ...
 	@RequestMapping("bookVeh/{custId}")
 	public String bookVehCustomer(@PathVariable("custId") Long custId, Model model) {
 		System.out.println("=====> bookVeh/{custId}: " + custId);
@@ -62,7 +62,7 @@ public class BookingControl {
 		return "book/bookVeh";
 	}
 	
-	@RequestMapping("bookVeh")
+	@PostMapping(value = "bookVeh")
 	public String bookVeh(@ModelAttribute("booking") Booking booking, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			log.warn("=====> bookVeh, BindingResult: ERROR");
@@ -82,7 +82,7 @@ public class BookingControl {
 		return "book/bookVeh";
 	}	
 	
-	@RequestMapping("/book/dates")
+	@PostMapping(value = "/book/dates")
 	public String bookDates(@ModelAttribute("hire") Hires hire, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors())
 			return "book/custVeh";
@@ -111,7 +111,8 @@ public class BookingControl {
 	@PostMapping(value = "/book/save")
 	public String saveBooking(@Valid @ModelAttribute("hire") Hires hire, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
-			log.warn("=====> book/save, BindingResult: ERROR");
+			log.warn("=====> book/save, bindingResult.getAllErrors():: " 
+					+ bindingResult.getAllErrors());
 			return "/403";
 		}
 
@@ -145,7 +146,6 @@ public class BookingControl {
 	public String historyDate(Model model) {
 		List<History> histories = historyRepo.findAll();
 		model.addAttribute("histories", histories);
-		System.out.println("====> History Size: " + histories.size());
 		return "book/historyData";
 	}
 	
