@@ -17,12 +17,34 @@
 	</nav>
 	
 	<p></p>
-	<form action="#" th:action="@{/book/cnfm}" th:object="${hire}" method="POST">
+	<form action="#" th:action="@{/book/save}" th:object="${booking}" method="POST">
+	<!-- <form th:object="${booking}"> -->
 
 	<div class="form-row">
+		<div class="form-group col-md-12">
+				<label>Customer: [[${booking.customer.custName}]]  </label>
+				<input type="text" th:field="*{customer}" readonly="readonly" hidden/>
+		</div>
+		
+		<div class="form-group col-md-6">
+				<label>Vehicle: [[${booking.vehicle.vehBrand}]] [[${booking.vehicle.vehModel}]] [[${booking.vehicle.vehLicPlate}]] </label>
+				<input type="text" th:field="*{vehicle}" readonly="readonly" hidden/>
+		</div>
 
+		<div class="form-group col-md-6">
+			<label>Daily Rate: <b>$[[${dayRate}]]</b></label>
+		</div>
+
+		<div class="form-group col-md-6">
+				<label>Date Start: [[${booking.dateStart}]]  </label>
+				<input type="date" th:field="*{dateStart}" hidden/>
+		</div>
+		<div class="form-group col-md-6">
+				<label>Date End:  [[${booking.dateEnd}]]  </label>
+				<input type="date" th:field="*{dateEnd}" hidden/>
+		</div>
 	</div>
- 		<button class="btn btn-primary"  type="submit">Save</button>
+ 		<button class="btn btn-primary"  type="submit">Confirm</button>
  		<a class="btn btn-primary" href="/" role="button">Cancel</a>
  		<hr>
 		<div class="form-group col-md-6">

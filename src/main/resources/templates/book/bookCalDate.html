@@ -20,54 +20,44 @@
 	<div th:replace="common :: navbar"></div>
 	
 	<div class="parent">
-	<h2>Booking - NOT USE - ToBeDel</h2>
+	<h2>Booking - calender dates</h2>
 
 	<nav class="nav nav-tabs justify-content-end">
 		<a class="nav-link" href="/booking">back to Booking Page</a>
 	</nav>
 	
 	<p></p>
-	<form action="#" th:action="@{/book/save}" th:object="${hire}" method="POST">
-<!-- 	
-	<div class="form-row form-group col-md-6">
-			<label>Hire ID: </label>
-	</div>
-	 -->
+	<form action="#" th:action="@{/book/cnfm}" th:object="${booking}" method="POST">
+
 	<div class="form-row">
 	
 		<div class="form-group col-md-12">
-				<label>Customer: [[ ${customers.custName} ]]</label>
+				<label>Customer: [[ ${customer.custName} ]]</label>
 				<input type="text" th:field="*{customer}" readonly="readonly" hidden/>
 		</div>
+		
 		<div class="form-group col-md-6">
-				<label>Vehicle: [[${vehicles.vehBrand}]] [[${vehicles.vehModel}]]
-				[[${vehicles.vehLicPlate}]]</label>
+				<label>Vehicle: [[${vehicle.vehBrand}]] [[${vehicle.vehModel}]] [[${vehicle.vehLicPlate}]]</label>
 				<input type="text" th:field="*{vehicle}" readonly="readonly" hidden/>
 		</div>
 		
 		<div class="form-group col-md-6">
 			<label>Daily Rate: <b>$[[${dayRate}]]</b></label>
 		</div>
-	
+
 		<div class="form-group col-md-6">
 				<label><b>Date Start:</b> 
 			 	<input class="form-control" type="text" id="my_date_picker1" th:field="*{dateStart}" required/> 
 				</label>
 		</div>
-
 		<div class="form-group col-md-6">
 				<label><b>Date End:</b> 
 				<input class="form-control" type="text" id="my_date_picker2" th:field="*{dateEnd}" required/>
 				</label>
 		</div>
-<!-- 		
-		<div class="form-group col-md-6">
-			<label>Case Done? </label>
-			<input type="checkbox" th:field="*{casedone}" />
-		</div>
-		 -->
+
 	</div>
- 		<button class="btn btn-primary"  type="submit">Save</button>
+ 		<button class="btn btn-primary"  type="submit">Next</button>
  		<a class="btn btn-primary" href="/" role="button">Cancel</a>
  		<hr>
 		<div class="form-group col-md-6">
