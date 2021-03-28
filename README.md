@@ -17,6 +17,17 @@ antw@Mac-mini learnj % pwd
 antw@Mac-mini learnj % git checkout -b branch4
 antw@Mac-mini learnj % git add .
 antw@Mac-mini learnj % git commit -m "transfer to /Users/antw/ntuc/mJCap7/learnj"
+
+Mar 27, 2021
+antw@Mac-mini learnj % git diff
+antw@Mac-mini learnj % git status
+On branch branch4
+Your branch is up to date with 'origin/branch4'
+antw@Mac-mini learnj % git add .
+antw@Mac-mini learnj % git commit -m "Delete Confimration Alert for: Customer, Vehicle, Hire" 
+
+antw@Mac-mini learnj % git push -u origin branch4   
+
 ```
 # git Heroku
 ``` console

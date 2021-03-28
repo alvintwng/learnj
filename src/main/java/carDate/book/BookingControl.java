@@ -82,32 +82,68 @@ public class BookingControl {
 		return "book/bookVeh";
 	}	
 	
-	@PostMapping(value = "/book/dates")
-	public String bookDates(@ModelAttribute("hire") Hires hire, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors())
-			return "book/custVeh";
-		
-		long bookCustId = hire.getCustomer().getCustId();
-		Customer cust = custDao.getCustomerById(bookCustId);
-		model.addAttribute("customers", cust);
-		
-		long bookVehId = hire.getVehicle().getVehId();
-		Vehicle veh = vehDao.getVehicleById(bookVehId);
-		model.addAttribute("vehicles", veh);
-		
-		model.addAttribute("dayRate", calDayRate(hire));
-		
-		Vehicle thisVeh = vehDao.getVehicleById(bookVehId);
-		List<Hires> listBddates = hireDao.getAllHiresByVehicle(thisVeh);
-		String[] fdates = LocalDateArrayMany.
-				allListsToDMY(listBddates);
-		model.addAttribute("localDateArrayMany", fdates);
-		//Stream.of(fdates).forEach(s -> System.out.println("listToDMY :: " + s));
-		
-		model.addAttribute("hire", hire);
-		return "book/bookDate";
-	}
 
+//	// skip
+//	//@PostMapping(value = "/book/dates")
+//	public String bookDates(@ModelAttribute("hire") Hires hire, BindingResult bindingResult, Model model) {
+//		if(bindingResult.hasErrors())
+//			return "book/custVeh";
+//		
+//		long bookCustId = hire.getCustomer().getCustId();
+//		Customer cust = custDao.getCustomerById(bookCustId);
+//		model.addAttribute("customers", cust);
+//		
+//		long bookVehId = hire.getVehicle().getVehId();
+//		Vehicle veh = vehDao.getVehicleById(bookVehId);
+//		model.addAttribute("vehicles", veh);
+//		
+//		model.addAttribute("dayRate", calDayRateByHire(hire));
+//		
+//		Vehicle thisVeh = vehDao.getVehicleById(bookVehId);
+//		List<Hires> listBddates = hireDao.getAllHiresByVehicle(thisVeh);
+//		String[] fdates = LocalDateArrayMany.
+//				allListsToDMY(listBddates);
+//		model.addAttribute("localDateArrayMany", fdates);
+//		//Stream.of(fdates).forEach(s -> System.out.println("listToDMY :: " + s));
+//		
+//		model.addAttribute("hire", hire);
+//		return "book/bookDate";
+//	}
+	
+	@PostMapping(value = "/book/calDate")
+	public String bookCalDate(@ModelAttribute("booking") Booking booking, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors())
+			return "book/bookVeh";
+		
+		model.addAttribute("booking", booking);
+		
+		Customer customer = booking.getCustomer();
+		model.addAttribute("customer", customer);
+		
+		Vehicle vehicle = booking.getVehicle();
+		model.addAttribute("vehicle", vehicle);
+		
+		model.addAttribute("dayRate", calDayRateByBooking(booking));
+		
+		List<Hires> listBddates = hireDao.getAllHiresByVehicle(vehicle);
+		String[] fdates = LocalDateArrayMany.allListsToDMY(listBddates);
+		model.addAttribute("localDateArrayMany", fdates);
+		
+		//System.out.println("=====> calDate}: booking : " + booking.toString() );
+		return "book/bookCalDate";
+	}
+	
+	@PostMapping(value = "/book/cnfm")
+	public String bookConfirm(@ModelAttribute("booking") Booking booking, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors())
+			return "book/bookVeh";
+		
+		model.addAttribute("dayRate", calDayRateByBooking(booking));
+		
+		//System.out.println("=====> book/cnfm}: " + booking.toString());
+		return "book/bookConfirm";
+	}
+	
 	@PostMapping(value = "/book/save")
 	public String saveBooking(@Valid @ModelAttribute("hire") Hires hire, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
@@ -117,15 +153,16 @@ public class BookingControl {
 		}
 
 		hireDao.save(hire);
+		//System.out.println("=====> book/save.. hire: " + hire.toString());
 		
 		long newHireId = hire.getHireId();
-		log.info("=====> Booking Saved, hireId: " + newHireId);
+		log.warn("=====> Booking Saved, hireId: " + newHireId);
 		
 		Hires latestHire = hireDao.getHireById(newHireId);
 		History history = 
 		hireToHistory(latestHire);
 		historyRepo.save(history);
-		log.info("=====> History Saved. ");
+		log.info("=====> History Saved. id:" + history.getId());
 	
 		return "redirect:/";
 	}
@@ -138,7 +175,7 @@ public class BookingControl {
 		model.addAttribute("customers", customers);
 		List<Vehicle> vehicles = vehDao.getAllVehicles();
 		model.addAttribute("vehicles", vehicles);
-		System.out.println("====> History Size: " + histories.size());
+		//System.out.println("====> History Size: " + histories.size());
 		return "book/historyList";
 	}
 	
@@ -160,15 +197,23 @@ public class BookingControl {
 		history.setCustCatId(	hire.getCustomer().getCustState().getCustStateId());
 		history.setVehClassId(	hire.getVehicle().getVehStatus().getVehSttsId());
 		history.setVehLicPlate(	hire.getVehicle().getVehLicPlate());
-		history.setDayrate(		calDayRate(hire));
+		history.setDayrate(		calDayRateByHire(hire)); // by Hire
 		history.setAmoint(		calAmount(hire));
 		history.setRecorded(	LocalDateTime.now());
 		
 		//System.out.println("====> hireToHistory history: " + history.toString());
 		return history;
 	}
+
 	
-	public float calDayRate(Hires hire) {
+	public float calDayRateByBooking(Booking booking) {
+		long vehStatId = booking.getVehicle().getVehStatus().getVehSttsId();
+		DailyRate dR = rateRepo.findByVehClassId(vehStatId);
+		float dayRate = (float)dR.getDayrate();
+		return dayRate;
+	}
+	
+	public float calDayRateByHire(Hires hire) {
 		long vehStatId = hire.getVehicle().getVehStatus().getVehSttsId();
 		DailyRate dR = rateRepo.findByVehClassId(vehStatId);
 		float dayRate = (float)dR.getDayrate();
@@ -177,7 +222,7 @@ public class BookingControl {
 	
 	public float calAmount(Hires hire) {
 		int getDays = LocalDateArrayMany.getDays(hire.getDateStart(), hire.getDateEnd().plusDays(1));	
-		float dayRate = calDayRate(hire);
+		float dayRate = calDayRateByHire(hire);
 		float amount = dayRate * getDays;
 		return amount;
 	}
