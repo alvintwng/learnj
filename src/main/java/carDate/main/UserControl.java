@@ -28,18 +28,20 @@ public class UserControl {
 
 	@RequestMapping("/login")
 	public String login() {
-			return "login";
+		log.info("=====> login ");	
+		return "login";
 	}
 
 	@RequestMapping("/logout-success")
 	public String logout() {
-			return "logout";
+		log.info("=====> logout ");	
+		return "logout";
 	}
 	
 	@RequestMapping("/403")
 	public String errorPage() {
-			System.out.println("=====> UserController /403 ");
-			return "403";
+		log.warn("=====>  UserController /403 ");	
+		return "403";
 	}
 	
 }

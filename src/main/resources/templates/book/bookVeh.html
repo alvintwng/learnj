@@ -52,7 +52,7 @@
 				<th>Brand, Car No</th>
 				<th>Date Start</th>
 				<th>Date End</th>
-				<th>Case Done</th>
+				<!-- <th>Case Done</th> -->
 		</thead>
 		<tbody>
 			<tr th:each="hire : ${listHires}">
@@ -61,7 +61,7 @@
 				<td> [[ ${hire.vehicle.vehBrand} ]], [[ ${hire.vehicle.vehLicPlate} ]] </td>
 				<td th:text="${hire.dateStart}" />
 				<td th:text="${hire.dateEnd}" />
-				<td th:text="${hire.casedone}"/>
+				<!-- <td th:text="${hire.casedone}"/> -->
 			</tr>
 		</tbody>
 	</table>

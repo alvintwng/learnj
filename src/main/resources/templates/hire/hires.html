@@ -14,7 +14,7 @@
 	<h2>Hire List</h2>
 	
 	<nav class="nav nav-tabs justify-content-end">
-		<a class="nav-link" href="/hire/new">Create New Hire</a>
+		<a class="nav-link" href="/">Back</a>
 	</nav>
 
 	<table class="table table-striped" id="table">
@@ -25,8 +25,8 @@
 				<th>Customer</th>
 				<th>Date Start</th>
 				<th>Date End</th>
-				<th>Case Done</th>
-				<!-- <th>TEST</th> -->
+				<th>Invoice No</th>
+				<th>Action</th>
 		</thead>
 		<tbody>
 			<tr th:each="hire : ${listHires}">
@@ -35,11 +35,10 @@
 				<td> [[ ${hire.customer.custName} ]] </td>
 				<td th:text="${hire.dateStart}" />
 				<td th:text="${hire.dateEnd}" />
-				<td th:text="${hire.casedone}"/>
-				<!-- <td th:text="${test}" /> -->
-				
-				<td><a class="btn btn-info btn-sm" th:href="@{'/hireEdit/' + ${hire.hireId}}">
-						<span class="fa fa-edit"></span></a>		
+				<td th:text="${ hire.casedone == true ?  hire.hireId : '' }" />
+				<td>
+					<a th:classappend="${hire.casedone != true ? 'btn btn-info btn-sm fa fa-edit' : hidden}"
+				 	th:href="@{'/hireEdit/' + ${hire.hireId}}"> </a>
 					<a class="btn btn-warning btn-sm delBtn" th:href="@{/hire/delete/{hireId}(hireId=${hire.hireId})}">
 						<span class="fa fa-trash"></span></a>
 				</td>

@@ -23,7 +23,7 @@ public class MyUserDetailService implements UserDetailsService {
 		if(employee==null)
 			throw new UsernameNotFoundException(empName);
 		
-		log.info("=====> loadUserByUsername, getEmpName: " + employee.getEmpName());
+		log.warn("=====> loadUserByUsername, getEmpName: " + employee.getEmpName());
 		return new UserDetailImpl(employee);
 		}
 
