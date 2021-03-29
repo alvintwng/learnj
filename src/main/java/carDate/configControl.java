@@ -69,7 +69,7 @@ public class configControl {
 			return "newCustState";
 		custStateRepo.save(custState);
 		
-		log.info("=====> saveCustState, name: " + custState.getName());
+		log.warn("=====> saveCustState, name: " + custState.getName());
 		return "redirect:/config";
 	}
 
@@ -89,7 +89,7 @@ public class configControl {
 			return "newVehStatus";
 		vehStatusRepo.save(vehStatus);
 		
-		log.info("=====> saveVehicleStatus, name: " + vehStatus.getName());
+		log.warn("=====> saveVehicleStatus, name: " + vehStatus.getName());
 		return "redirect:/config";
 	}
 
@@ -113,7 +113,7 @@ public class configControl {
 			return "newDailyRate";
 		dailyRateRepo.save(dailyRate);
 
-		log.info("=====> saveDailyRate, rate: $" + dailyRate.getDayrate());
+		log.warn("=====> saveDailyRate, rate: $" + dailyRate.getDayrate());
 		return "redirect:/config";
 	}
 }

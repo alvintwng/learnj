@@ -79,6 +79,7 @@ public class BookingControl {
 		
 		model.addAttribute("listHires", hireDao.findAllByCustomer(customer));
 		
+		log.info("=====> bookVeh, custid: " + customer.getCustId());
 		return "book/bookVeh";
 	}	
 	
