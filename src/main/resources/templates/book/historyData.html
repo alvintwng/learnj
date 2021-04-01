@@ -10,14 +10,15 @@
 <body>
 	<div th:replace="common :: navbar"></div>
 	
-	<div class="parent">
+<div class="parent">
 	<h2>History data</h2>
 	
 	<nav class="nav nav-tabs justify-content-end">
 		<a class="nav-link" href="/hist">back</a>
 	</nav>
 
-	<table class="table table-striped">
+	<div class = "container mb-3 mt-3">
+	<table class="table table-striped mydatatable">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -53,8 +54,12 @@
 			</tr>
 		</tbody>
 	</table>
-
 	</div>
+
+</div>
 	<div th:replace="common :: footer"></div>
+	<!-- https://cdn.datatables.net/ --> <script>
+		$('.mydatatable').DataTable();
+	</script>
 </body>
 </html>

@@ -12,14 +12,15 @@
 <body>
 	<div th:replace="common :: navbar"></div>
 	
-	<div class="parent">
+<div class="parent">
 	<h2>Vehicle List</h2>
 	
 	<nav class="nav nav-tabs justify-content-end">
  		<a class="nav-link" href="/veh/new">Create NewVehicle</a>
 	</nav>
 	
-	<table class="table table-striped" id="table">
+	<div class = "container mb-3 mt-3">
+	<table class="table table-striped mydatatable" id="table">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -51,10 +52,14 @@
 			</tr>
 		</tbody>
 	</table>
-
 	</div>
+
+</div>
 	<div th:replace="common :: footer"></div>
-	
+	<!-- https://cdn.datatables.net/ --> <script>
+		$('.mydatatable').DataTable();
+	</script>
+		
 	<div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" 
 			tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog">
