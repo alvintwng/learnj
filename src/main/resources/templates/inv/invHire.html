@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hire Edit/Invoice</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Car Rental - Edit / Invoice</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	<div class="parent">
+	<h2>CarRent - Edit / Invoice</h2>
+	
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/hire">Back to Hire page</a>
+	</nav>
+	
+<form action="#" th:action="@{/inv/save}" th:object="${inv}" method="POST">
+<div class = "container mb-3 mt-3">
+	<div class="form-row form-group col-md-6">
+			<label>Dated: 
+			<input type="text" th:field="*{dated}" /></label>
+	</div>
+	<div class="form-row form-group col-md-6">
+			<label>Invoice No: </label>
+			<input type="text" th:field="*{invNo}" required/>
+	</div>
+	<div class="form-row form-group col-md-6">
+			<label>Customer ID: </label>
+			<input type="text" th:field="*{custId}" readonly="readonly"/>
+	</div>		
+	<div class="form-row form-group col-md-9">
+			<label>Start and End Time: </label>
+			 <input type="text" th:field="*{desc1}" required/>
+	</div>		
+	<div class="form-row form-group col-md-9">
+			<label>Car: </label><input type="text" th:field="*{desc2}" required/>
+	</div>		
+	<div class="form-row form-group col-md-9">
+			<label></label><input type="text" th:field="*{desc3}"/>
+	</div>	
+	
+	<div class="form-row form-group col-md-6">
+			<label>Hire ID: </label>
+			<input type="text" th:field="*{hireId}" readonly="readonly"/>
+	</div>
+
+	<div class="form-row form-group col-md-6">
+			<label>Daily Rate: </label>
+			<input type="text" th:field="*{rated}" required/>
+	</div>
+	<div class="form-row form-group col-md-6">
+			<label>Amount Due: </label>
+			<input type="text" th:field="*{amount}" required/>
+	</div>
+</div>
+ 	 <button class="btn btn-info"  type="submit">Submit</button>
+</form>
+
+	</div>
+	<div th:replace="common :: footer"></div>
+</body>
+</html>

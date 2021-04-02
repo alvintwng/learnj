@@ -2,7 +2,7 @@ package carDate.book;
 
 import java.util.List;
 
-import carDate.hire.Hires;
+import carDate.hire.Hire;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -17,7 +17,7 @@ public class LocalDateArrayMany {
      *
      * @param
      * @return String[] **/
-	public static String[] allListsToDMY(List<Hires> listBddates) {
+	public static String[] allListsToDMY(List<Hire> listBddates) {
 
 		//listBddates.forEach(b -> System.out.println("Dates blocked: " + b.getBdate() 
 		//								+ " to " + b.getEdate() ));
@@ -29,7 +29,7 @@ public class LocalDateArrayMany {
 		LocalDate[] mergedates;
 		mergedates = getDatesFromStart(dummyDate, 0);
 		
-		for (Hires bd: listBddates){
+		for (Hire bd: listBddates){
 
 			LocalDate[] ld = getDatesStartToEnd(bd.getDateStart(), bd.getDateEnd().plusDays(1));
 			mergedates = mergeDatelists(mergedates, ld );

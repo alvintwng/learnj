@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import carDate.cust.Customer;
 import carDate.cust.CustomerDao;
 import carDate.hire.HireDao;
-import carDate.hire.Hires;
+import carDate.hire.Hire;
 import carDate.veh.Vehicle;
 import carDate.veh.VehicleDao;
 
@@ -126,7 +126,7 @@ public class BookingControl {
 		
 		model.addAttribute("dayRate", calDayRateByBooking(booking));
 		
-		List<Hires> listBddates = hireDao.getAllHiresByVehicle(vehicle);
+		List<Hire> listBddates = hireDao.getAllHiresByVehicle(vehicle);
 		String[] fdates = LocalDateArrayMany.allListsToDMY(listBddates);
 		model.addAttribute("localDateArrayMany", fdates);
 		
@@ -146,7 +146,7 @@ public class BookingControl {
 	}
 	
 	@PostMapping(value = "/book/save")
-	public String saveBooking(@Valid @ModelAttribute("hire") Hires hire, BindingResult bindingResult) {
+	public String saveBooking(@Valid @ModelAttribute("hire") Hire hire, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			log.warn("=====> book/save, bindingResult.getAllErrors():: " 
 					+ bindingResult.getAllErrors());
@@ -159,7 +159,7 @@ public class BookingControl {
 		long newHireId = hire.getHireId();
 		log.warn("=====> Booking Saved, hireId: " + newHireId);
 		
-		Hires latestHire = hireDao.getHireById(newHireId);
+		Hire latestHire = hireDao.getHireById(newHireId);
 		History history = 
 		hireToHistory(latestHire);
 		historyRepo.save(history);
@@ -187,7 +187,7 @@ public class BookingControl {
 		return "book/historyData";
 	}
 	
-	public History hireToHistory(Hires hire) {
+	public History hireToHistory(Hire hire) {
 		History history = new History();
 		history.setHireId(		hire.getHireId());
 		history.setCustId(		hire.getCustomer().getCustId());
@@ -214,14 +214,14 @@ public class BookingControl {
 		return dayRate;
 	}
 	
-	public float calDayRateByHire(Hires hire) {
+	public float calDayRateByHire(Hire hire) {
 		long vehStatId = hire.getVehicle().getVehStatus().getVehSttsId();
 		DailyRate dR = rateRepo.findByVehClassId(vehStatId);
 		float dayRate = (float)dR.getDayrate();
 		return dayRate;
 	}
 	
-	public float calAmount(Hires hire) {
+	public float calAmount(Hire hire) {
 		int getDays = LocalDateArrayMany.getDays(hire.getDateStart(), hire.getDateEnd().plusDays(1));	
 		float dayRate = calDayRateByHire(hire);
 		float amount = dayRate * getDays;

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CarZoom - Invoice</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+	<div class="parent">
+	<h2 style="text-align: center;">INVOICE</h2>
+	<nav class="nav nav-tabs justify-content-end">
+		<a class="nav-link" href="/">Back</a>
+	</nav>
+		
+<form th:object="${inv}">
+<div class = "container mb-3 mt-3"> 
+	<div class="form-row">
+		<div class="form-group col-md-8">
+			<label><b>Date:</b> [[${inv.dated}]]</label>
+		</div>
+		<div class="form-group col-md-4">
+			<label ><b>Invoice Number:[[${inv.invNo}]]</b></label>
+		</div>
+
+		<div class="form-group col-md-12">
+			<label><b>Customer's ID:</b> [[${inv.custId}]]</label>
+		</div>
+	
+	</div>
+	<div class="form-row">		
+
+		<h3 class="form-group col-md-12">Reservation Summary</h3>
+			
+		<div class="form-group col-md-12">
+			<label>Start and End Time: [[${inv.desc1}]]</label><br>
+			<label>Car: [[${inv.desc2}]]</label><br>
+			<label>[[${inv.desc3}]]</label>
+		</div>
+	</div>
+	<div class="form-row">
+		<h3 class="form-group col-md-12">Invoice Details</h3>
+		<h5 class="form-group col-md-12">Reservation Charges No.: [[${inv.hireId}]]</h5>
+		<div class="form-group col-md-8">
+			<label>Total Time Charge at Daily Rate: $[[${inv.rated}]]</label>
+		</div>
+		<div class="form-group col-md-4">
+			<label>Sub Total: $[[${inv.amount}]]</label>
+		</div>								
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-8"></div>
+		<div class="form-group col-md-4">
+			<label><b>Total Due: $[[${inv.amount}]]</b></label>
+		</div>
+	</div>
+
+<!--  		<button class="btn btn-primary"  type="submit">Export to PDF</button>
+ 		<a class="btn btn-primary" href="/hire" role="button">Cancel</a> -->
+ 		
+    <a th:href="@{/users/export/pdf}">Export to PDF</a> &nbsp;&nbsp;&nbsp;
+    <a th:href="@{/users/export}">Export to CSV</a>
+</div>
+</form>
+	</div>
+	<div th:replace="common :: footer"></div>
+</body>
+</html>

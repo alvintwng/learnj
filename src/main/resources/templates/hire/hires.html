@@ -36,7 +36,12 @@
 					<td> [[ ${hire.customer.custName} ]] </td>
 					<td th:text="${hire.dateStart}" />
 					<td th:text="${hire.dateEnd}" />
-					<td th:text="${ hire.casedone == true ?  hire.hireId : '' }" />
+					<td> [[${ hire.casedone == true ?  hire.hireId : "" } ]]</td>
+					<!-- <td th:text="${ hire.casedone == true ?  hire.hireId : '' }" /> -->
+<!-- 					<td>
+						<a th:text="${hire.casedone == true ? hire.hireId: ''}"
+						 th:href="@{'/inv/invoice/' + 6}"></a>
+					<td/> -->
 					<td>
 						<a th:classappend="${hire.casedone != true ? 'btn btn-info btn-sm fa fa-edit' : hidden}"
 					 	th:href="@{'/hireEdit/' + ${hire.hireId}}"> </a>
@@ -49,7 +54,7 @@
 	</div>
 </div>
 
-<div th:replace="common :: footer"></div>
+	<div th:replace="common :: footer"></div>
 	<!-- https://cdn.datatables.net/ --> <script>
 		$('.mydatatable').DataTable();
 	</script>
