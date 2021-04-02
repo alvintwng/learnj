@@ -53,13 +53,11 @@ public class Hire {
     @JoinColumn(name = "INVID")
     private Invoice invoice;
 
-    @ManyToOne
-    @JoinColumn(name = "HISTID")
-    private History history;
+    @Column(name = "HISTID")
+    private Integer histId;
 
-    @ManyToOne
-    @JoinColumn(name = "EMPID")
-    private Employee empoyee;
+    @Column(name = "EMPID")
+    private Integer empId;
     
 	/* can't set default false */
     private boolean casedone;
@@ -126,20 +124,20 @@ public class Hire {
 		this.invoice = invoice;
 	}
 
-	public History getHistory() {
-		return history;
+	public Integer getHistId() {
+		return histId;
 	}
 
-	public void setHistory(History history) {
-		this.history = history;
+	public void setHistId(Integer histId) {
+		this.histId = histId;
 	}
 
-	public Employee getEmpoyee() {
-		return empoyee;
+	public Integer getEmpId() {
+		return empId;
 	}
 
-	public void setEmpoyee(Employee empoyee) {
-		this.empoyee = empoyee;
+	public void setEmpId(Integer empId) {
+		this.empId = empId;
 	}
 
 	public boolean isCasedone() {

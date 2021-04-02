@@ -13,7 +13,8 @@ public class Invoice {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name="INVID")
+	private int invId;
 	
 	@Column(name="invno", unique=true)
 	private String invNo;
@@ -40,13 +41,20 @@ public class Invoice {
 	public Invoice() {
 		super();
 	}
-
-	public int getId() {
-		return id;
+	
+	@Override
+	public String toString() {
+		return "Invoice [id=" + invId + ", invNo=" + invNo + ", dated=" + dated + ", custId=" + custId + ", hireId="
+				+ hireId + ", desc1=" + desc1 + ", desc2=" + desc2 + ", desc3=" + desc3 + ", invMapId=" + invMapId
+				+ ", rated=" + rated + ", amount=" + amount + "]";
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getInvId() {
+		return invId;
+	}
+
+	public void setInvId(int invId) {
+		this.invId = invId;
 	}
 
 	public String getInvNo() {
@@ -128,13 +136,4 @@ public class Invoice {
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
-
-	@Override
-	public String toString() {
-		return "Invoice [id=" + id + ", invNo=" + invNo + ", dated=" + dated + ", custId=" + custId + ", hireId="
-				+ hireId + ", desc1=" + desc1 + ", desc2=" + desc2 + ", desc3=" + desc3 + ", invMapId=" + invMapId
-				+ ", rated=" + rated + ", amount=" + amount + "]";
-	}
-
-
 }

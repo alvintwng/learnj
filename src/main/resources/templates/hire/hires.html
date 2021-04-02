@@ -26,7 +26,7 @@
 					<th>Customer</th>
 					<th>Date Start</th>
 					<th>Date End</th>
-					<th>Invoice No</th>
+					<th>Invoice</th>
 					<th>Action</th>
 			</thead>
 			<tbody>
@@ -36,15 +36,14 @@
 					<td> [[ ${hire.customer.custName} ]] </td>
 					<td th:text="${hire.dateStart}" />
 					<td th:text="${hire.dateEnd}" />
-					<td> [[${ hire.casedone == true ?  hire.hireId : "" } ]]</td>
-					<!-- <td th:text="${ hire.casedone == true ?  hire.hireId : '' }" /> -->
-<!-- 					<td>
-						<a th:text="${hire.casedone == true ? hire.hireId: ''}"
-						 th:href="@{'/inv/invoice/' + 6}"></a>
-					<td/> -->
-					<td>
+					<td><a th:href="@{'/inv/invoice/' + 
+						${ hire.casedone == true ? hire.invoice.invId : hire.hireId } }"> <!-- hire.hireId  is dummy -->
+						[[${ hire.casedone == true ?  hire.invoice.invNo : "" } ]]</a>
+						
 						<a th:classappend="${hire.casedone != true ? 'btn btn-info btn-sm fa fa-edit' : hidden}"
 					 	th:href="@{'/hireEdit/' + ${hire.hireId}}"> </a>
+					</td>
+					<td>
 						<a class="btn btn-warning btn-sm delBtn" th:href="@{/hire/delete/{hireId}(hireId=${hire.hireId})}">
 							<span class="fa fa-trash"></span></a>
 					</td>
