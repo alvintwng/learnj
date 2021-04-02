@@ -18,10 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import carDate.book.DailyRate;
 import carDate.book.DailyRateRepo;
 import carDate.book.LocalDateArrayMany;
-import carDate.cust.CustomerDao;
-import carDate.hire.HireDao;
 import carDate.hire.Hire;
-import carDate.veh.VehicleDao;
+import carDate.hire.HireDao;
 
 @Controller
 public class InvController {
@@ -30,12 +28,6 @@ public class InvController {
 	
 	@Autowired
 	private InvoiceDao invoiceDao;
-	@Autowired
-	private InvMapRepo mapRepo;
-	@Autowired
-	private CustomerDao custDao;
-	@Autowired
-	private VehicleDao vehDao;
 	@Autowired
 	private HireDao hireDao;
 	@Autowired
@@ -48,13 +40,8 @@ public class InvController {
 //		Optional<InvMap> invMap = mapRepo.findById(inv.getInvMapId());
 //		Customer cust = custDao.getCustomerById(invMap.get().getCustNameId());
 		model.addAttribute("inv", inv);
-//		model.addAttribute("cust", cust);
-//		
-//		
-//		System.out.println("=====> inv/invoice, invMapId: " +  inv.getInvMapId());
-//		System.out.println("=====> inv/invoice, invMap.toString " + invMap.toString());
-//		System.out.println("=====> inv/invoice, customer name: " + cust.getCustName());
-		log.info("=====> inv/invoice/" + inv.getId());
+
+		log.info("=====> inv/invoice/" + inv.getInvId());
 		return "inv/invoice";
 	}
 	
@@ -65,7 +52,7 @@ public class InvController {
 
 		Invoice inv = new Invoice();
 
-			inv.setInvNo("AV" + (800000 + hireId) ); // under construction > to get the last invNo
+			inv.setInvNo("CZ" + (10000 + hireId) ); // under construction > to get the last invNo
 			inv.setHireId((int) hireId);
 		LocalDate d = LocalDate.now();
 			inv.setDated(d);
@@ -93,13 +80,15 @@ public class InvController {
 			return "hire";
 
 		invoiceDao.save(inv);
-		log.info("=====> invoice Save, invId: " + inv.getId());
+		log.warn("=====> invoice Save, invId: " + inv.getInvId());
 		
 		Hire hire = hireDao.getHireById(inv.getHireId());
 		hire.setCasedone(true);
+		hire.setInvoice(inv);
 		hireDao.save(hire);
-		
-		return "redirect:/inv/invoice/" + inv.getId() ;
+		log.info("=====> invoice Save, hire updated: " + hire.getHireId());
+		//System.out.println("=====> inv/save> hire invId: " + hire.getInvoice().getInvNo() );
+		return "redirect:/inv/invoice/" + inv.getInvId() ;
 	}
 	
 	public float calDayRateByHire(Hire hire) {

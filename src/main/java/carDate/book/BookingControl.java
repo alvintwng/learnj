@@ -165,7 +165,7 @@ public class BookingControl {
 		historyRepo.save(history);
 		log.info("=====> History Saved. id:" + history.getId());
 	
-		return "redirect:/";
+		return "redirect:/hire";
 	}
 
 	@GetMapping("/hist")

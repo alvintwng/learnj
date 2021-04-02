@@ -2,6 +2,7 @@ package carDate.hire;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.validation.Valid;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import carDate.cust.Customer;
 import carDate.cust.CustomerDao;
+import carDate.inv.InvoiceDao;
 import carDate.veh.Vehicle;
 import carDate.veh.VehicleDao;
 
@@ -28,25 +30,24 @@ public class HireController {
 	
 	@Autowired
 	private HireDao hireDao;
-
 	@Autowired
-	private CustomerDao custDao;
-	
+	private CustomerDao custDao;	
 	@Autowired
 	private VehicleDao vehDao;
+	@Autowired
+	private InvoiceDao invDao;
 	
 	@GetMapping("/hire")
 	public String viewHirePage(Model model) {
-		List<Customer> customers = custDao.getAllCustomers();
-		model.addAttribute("customers", customers);
-		List<Vehicle> vehicles = vehDao.getAllVehicles();
-		model.addAttribute("vehicles", vehicles);
-		model.addAttribute("listHires", hireDao.getAllHires());
-		model.addAttribute("test", "test123");
+
+		List<Hire> listHires = hireDao.getAllHires();
+		model.addAttribute("listHires", listHires);
+
+		//Stream.of(listHires).forEach(s -> System.out.println("hire :: " + s));
 		return "hire/hires";
 	}
 	
-	@GetMapping("/hire/new")
+/*	@GetMapping("/hire/new")
 	public String showNewHireForm(Model model) {
 		Hire hire = new Hire();
 		model.addAttribute("hire", hire);
@@ -57,7 +58,7 @@ public class HireController {
 		
 		log.info("=====> HireNew ");
 		return "hire/hireNew";
-	}
+	} */
 
 	@GetMapping("/hireEdit/{hireId}")
 	public String editHireForm(@PathVariable(value = "hireId") long hireId, Model model) {
