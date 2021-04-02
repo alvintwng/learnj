@@ -15,13 +15,16 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import carDate.book.History;
 import carDate.cust.Customer;
+import carDate.emp.Employee;
+import carDate.inv.Invoice;
 import carDate.veh.Vehicle;
 
 
 @Entity
-public class Hires {
-	
+public class Hire {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	@Column(name="HIREID")
@@ -45,13 +48,34 @@ public class Hires {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="DATEEND")
 	private LocalDate dateEnd;
+    
+    @ManyToOne
+    @JoinColumn(name = "INVID")
+    private Invoice invoice;
 
+    @ManyToOne
+    @JoinColumn(name = "HISTID")
+    private History history;
+
+    @ManyToOne
+    @JoinColumn(name = "EMPID")
+    private Employee empoyee;
+    
 	/* can't set default false */
     private boolean casedone;
+    
+    private Integer entity;
 
-
-	public Hires() {
+	public Hire() {
 		super();
+	}
+
+	@Override
+	public String toString() {
+		return ""
+		+ "Hire [hireId=" + hireId + ", customer=" + customer + ", vehicle=" + vehicle 
+		+ ", dateStart=" + dateStart + ", dateEnd=" + dateEnd + ", invoice=" + invoice 
+		+ ", casedone=" + casedone  + "]";
 	}
 
 	public long getHireId() {
@@ -94,6 +118,30 @@ public class Hires {
 		this.dateEnd = dateEnd;
 	}
 
+	public Invoice getInvoice() {
+		return invoice;
+	}
+
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
+	}
+
+	public History getHistory() {
+		return history;
+	}
+
+	public void setHistory(History history) {
+		this.history = history;
+	}
+
+	public Employee getEmpoyee() {
+		return empoyee;
+	}
+
+	public void setEmpoyee(Employee empoyee) {
+		this.empoyee = empoyee;
+	}
+
 	public boolean isCasedone() {
 		return casedone;
 	}
@@ -102,21 +150,11 @@ public class Hires {
 		this.casedone = casedone;
 	}
 
-	@Override
-	public String toString() {
-		return "Hires [hireId=" + hireId + ", customer=" + customer 
-				+ ", vehicle=" + vehicle + ", dateStart=" + dateStart 
-				+ ", dateEnd=" + dateEnd + ", casedone=" + casedone + "]";
+	public Integer getEntity() {
+		return entity;
 	}
 
-    /* K I V 
-    public String VehicleName(long vehId) {
-    	String name = "testName";
-//    	Vehicle vehicle = new Vehicle();
-//    	VehicleRepo vehDao;
-//    	Vehicle test = vehDao.getVehicleById(vehId);
-    	return name;
-    } */
-    
-
+	public void setEntity(Integer entity) {
+		this.entity = entity;
+	}
 }

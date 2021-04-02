@@ -9,9 +9,9 @@ import carDate.cust.Customer;
 import carDate.veh.Vehicle;
 
 @Repository
-public interface HireRepo extends JpaRepository<Hires, Long> {
+public interface HireRepo extends JpaRepository<Hire, Long> {
 	
-	List<Hires> findAllByVehicle(Vehicle vehicle);
-	List<Hires> findAllByCustomer(Customer customer);
+	List<Hire> findAllByVehicle(Vehicle vehicle);
+	List<Hire> findAllByCustomer(Customer customer);
 
 }

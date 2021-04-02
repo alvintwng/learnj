@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
-import carDate.hire.Hires;
+import carDate.hire.Hire;
 import carDate.hire.HireRepo;
 import carDate.book.BookingControl;
 
@@ -33,10 +33,10 @@ public class bookingTest {
 
 	@Test
 	public void calDayRateTest() {
-		List<Hires> listHires =  hireRepo.findAll();
+		List<Hire> listHires =  hireRepo.findAll();
 		assertThat(listHires).isNotNull();
 		
-		Hires hire = listHires.get(1);
+		Hire hire = listHires.get(1);
 		assertThat(hire).isNotNull();
 		
 		BookingControl bc = new BookingControl();

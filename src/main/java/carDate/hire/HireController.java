@@ -48,7 +48,7 @@ public class HireController {
 	
 	@GetMapping("/hire/new")
 	public String showNewHireForm(Model model) {
-		Hires hire = new Hires();
+		Hire hire = new Hire();
 		model.addAttribute("hire", hire);
 		List<Customer> customers = custDao.getAllCustomers();
 		model.addAttribute("customers", customers);
@@ -61,7 +61,7 @@ public class HireController {
 
 	@GetMapping("/hireEdit/{hireId}")
 	public String editHireForm(@PathVariable(value = "hireId") long hireId, Model model) {
-		Hires hire = hireDao.getHireById(hireId);
+		Hire hire = hireDao.getHireById(hireId);
 //		Optional<Hires> hire = hireRepo.findById(hireId);
 		
 		model.addAttribute("hire", hire);
@@ -74,10 +74,11 @@ public class HireController {
 		
 		log.info("=====> hireEdit, hireId: " + hire.getHireId());
 		return "hire/hireEdit";
+
 	}	
 	
 	@PostMapping(value = "/hire/save")
-	public String saveEmp(@Valid @ModelAttribute("hire") Hires hire, BindingResult bindingResult) {
+	public String saveEmp(@Valid @ModelAttribute("hire") Hire hire, BindingResult bindingResult) {
 		
 		if(bindingResult.hasErrors())
 			return "hire/hireNew";

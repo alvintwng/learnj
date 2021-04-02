@@ -10,11 +10,11 @@ import carDate.veh.Vehicle;
 @Component
 public interface HireDao {
 	
-	public List<Hires> getAllHires();
-	public void save(Hires hires);
-	public Hires getHireById(long hireId);
+	public List<Hire> getAllHires();
+	public void save(Hire hires);
+	public Hire getHireById(long hireId);
 	public void delete(Long hireId);
-	public List<Hires> getAllHiresByVehicle(Vehicle vehicle);
-	public List<Hires> findAllByCustomer(Customer customer);
+	public List<Hire> getAllHiresByVehicle(Vehicle vehicle);
+	public List<Hire> findAllByCustomer(Customer customer);
 
 }

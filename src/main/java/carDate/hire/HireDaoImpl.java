@@ -16,25 +16,25 @@ public class HireDaoImpl implements HireDao {
 	private HireRepo hireRepo;
 	
 	@Override
-	public List<Hires> getAllHires() {
+	public List<Hire> getAllHires() {
 		
-		List<Hires> list = hireRepo.findAll();
+		List<Hire> list = hireRepo.findAll();
 		
 		//System.out.println("***** Hire List Size " + list.size());
 		return list;
 	}
 
 	@Override
-	public void save(Hires hire) {
+	public void save(Hire hire) {
 		hireRepo.save(hire);
 
 	}
 
 	@Override
-	public Hires getHireById(long hireId) {
+	public Hire getHireById(long hireId) {
 		
-		Optional <Hires> optional =  hireRepo.findById(hireId);
-		Hires h = null;
+		Optional <Hire> optional =  hireRepo.findById(hireId);
+		Hire h = null;
 		
 		if (optional.isPresent())
 			h = optional.get();
@@ -50,14 +50,14 @@ public class HireDaoImpl implements HireDao {
 	}
 
 	@Override
-	public List<Hires> getAllHiresByVehicle(Vehicle vehicle) {
-		List<Hires> list = hireRepo.findAllByVehicle(vehicle);
+	public List<Hire> getAllHiresByVehicle(Vehicle vehicle) {
+		List<Hire> list = hireRepo.findAllByVehicle(vehicle);
 		return list;
 	}
 
 	@Override
-	public List<Hires> findAllByCustomer(Customer customer) {
-		List<Hires> list = hireRepo.findAllByCustomer(customer);
+	public List<Hire> findAllByCustomer(Customer customer) {
+		List<Hire> list = hireRepo.findAllByCustomer(customer);
 		return list;
 	}
 

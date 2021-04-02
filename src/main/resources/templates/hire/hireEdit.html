@@ -65,13 +65,15 @@
 		</div>
 		
 		<div class="form-group col-md-6">
-			<label>Case Done? </label>
-			<input type="checkbox" th:field="*{casedone}" />
+			<label>Invoice? </label>
+			<input type="checkbox" th:field="*{casedone}" disabled/>
+			<a class="btn btn-info" th:href="@{'/invHire/' + ${hire.hireId}}" >Invoice</a>
+			>>> under contruction on tenary operator!!
 		</div>
 		
 	</div>
-	 		<button class="btn btn-primary"  type="submit">Save</button>
- 		<a class="btn btn-primary" href="/hire" role="button">Cancel</a>
+	 	<button class="btn btn-primary"  type="submit">Save</button> 
+ 		<a class="btn btn-primary" href="/hire">Cancel</a>
 	</form>
 	
 	
