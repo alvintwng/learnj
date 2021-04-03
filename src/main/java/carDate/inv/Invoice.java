@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Invoice {
 	
@@ -19,7 +21,13 @@ public class Invoice {
 	@Column(name="invno", unique=true)
 	private String invNo;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name="dated")
 	private LocalDate dated;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name="paiddate")
+	private LocalDate paidDate;
 	
 	@Column(name="custid")
 	private int custId;
@@ -35,18 +43,20 @@ public class Invoice {
 	private int invMapId;
 	
 	private float rated;
-	
 	private float amount;
+
+	@Column(name="paymtdone")
+	private boolean paymtDone;
 	
 	public Invoice() {
 		super();
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Invoice [id=" + invId + ", invNo=" + invNo + ", dated=" + dated + ", custId=" + custId + ", hireId="
-				+ hireId + ", desc1=" + desc1 + ", desc2=" + desc2 + ", desc3=" + desc3 + ", invMapId=" + invMapId
-				+ ", rated=" + rated + ", amount=" + amount + "]";
+		return "Invoice [invId=" + invId + ", invNo=" + invNo + ", dated=" + dated 
+				+ ", custId=" + custId + ", hireId=" + hireId + ", rated=" + rated 
+				+ ", amount=" + amount + ", paidDate=" + paidDate + "]";
 	}
 
 	public int getInvId() {
@@ -71,6 +81,14 @@ public class Invoice {
 
 	public void setDated(LocalDate dated) {
 		this.dated = dated;
+	}
+
+	public LocalDate getPaidDate() {
+		return paidDate;
+	}
+
+	public void setPaidDate(LocalDate paidDate) {
+		this.paidDate = paidDate;
 	}
 
 	public int getCustId() {
@@ -135,5 +153,13 @@ public class Invoice {
 
 	public void setAmount(float amount) {
 		this.amount = amount;
+	}
+
+	public boolean isPaymtDone() {
+		return paymtDone;
+	}
+
+	public void setPaymtDone(boolean paymtDone) {
+		this.paymtDone = paymtDone;
 	}
 }

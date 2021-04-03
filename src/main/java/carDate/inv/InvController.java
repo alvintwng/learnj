@@ -39,11 +39,25 @@ public class InvController {
 		Invoice inv = invoiceDao.getInvoiceById(id);
 //		Optional<InvMap> invMap = mapRepo.findById(inv.getInvMapId());
 //		Customer cust = custDao.getCustomerById(invMap.get().getCustNameId());
+		
 		model.addAttribute("inv", inv);
-
 		log.info("=====> inv/invoice/" + inv.getInvId());
 		return "inv/invoice";
 	}
+	
+	@GetMapping("inv/invPaid/{id}")
+	public String paidInv(@PathVariable("id") int id) {
+		Invoice inv = new Invoice();
+			inv = invoiceDao.getInvoiceById(id);
+		LocalDate d = LocalDate.now();
+			inv.setPaidDate(d);
+			inv.setPaymtDone(true);
+		invoiceDao.save(inv);
+		
+		log.info("=====> invoice PaidDate, invId: " + inv.getInvId());
+		return "redirect:/inv/invoice/" + id ;
+	}
+
 	
 	@GetMapping("/invHire/{hireId}")
 	public String invHireForm(@PathVariable(value = "hireId") long hireId, Model model) {
@@ -51,7 +65,6 @@ public class InvController {
 		Hire hire = hireDao.getHireById(hireId);
 
 		Invoice inv = new Invoice();
-
 			inv.setInvNo("CZ" + (10000 + hireId) ); // under construction > to get the last invNo
 			inv.setHireId((int) hireId);
 		LocalDate d = LocalDate.now();
@@ -69,35 +82,60 @@ public class InvController {
 			inv.setDesc3(desc3);
 
 		model.addAttribute("inv", inv);
-		
 		log.info("=====> invHire, hireId: " + hire.getHireId());
 		return "inv/invHire";
 	}
-	
+
 	@PostMapping(value = "/inv/save")
-	public String saveInv(@Valid @ModelAttribute("inv") Invoice inv, BindingResult bindingResult) {	
+	public String saveNewInv(@Valid @ModelAttribute("inv") Invoice inv, BindingResult bindingResult) {	
 		if(bindingResult.hasErrors())
 			return "hire";
 
 		invoiceDao.save(inv);
-		log.warn("=====> invoice Save, invId: " + inv.getInvId());
+		log.warn("=====> invoice SaveNew, invId: " + inv.getInvId());
 		
 		Hire hire = hireDao.getHireById(inv.getHireId());
 		hire.setCasedone(true);
 		hire.setInvoice(inv);
 		hireDao.save(hire);
 		log.info("=====> invoice Save, hire updated: " + hire.getHireId());
+
 		//System.out.println("=====> inv/save> hire invId: " + hire.getInvoice().getInvNo() );
 		return "redirect:/inv/invoice/" + inv.getInvId() ;
 	}
 	
+	@GetMapping("/inv/invEdit/{invId}")
+	public String editInv(@PathVariable("invId") int invId, Model model) {
+		Invoice inv = invoiceDao.getInvoiceById(invId);
+		
+		LocalDate thisdate = LocalDate.now();
+			inv.setPaidDate(thisdate);
+		
+		model.addAttribute("inv", inv);
+		log.info("=====> inv/invEdit/invId: " + inv.getInvId());
+		return "inv/invEdit";
+	}
+
+	@PostMapping(value = "/inv/saveEdit")
+	public String saveInvEdit(@Valid @ModelAttribute("inv") Invoice inv, BindingResult bindingResult) {	
+		if(bindingResult.hasErrors()) {
+			log.warn("=====> book/save Errors():: " 
+					+ bindingResult.getAllErrors());
+			return "/403";
+		}
+
+		invoiceDao.save(inv);
+		log.warn("=====> invoice SaveEdit, invId: " + inv.getInvId());
+		return "redirect:/inv/invoice/" + inv.getInvId() ;
+	}
+
 	public float calDayRateByHire(Hire hire) {
 		long vehStatId = hire.getVehicle().getVehStatus().getVehSttsId();
 		DailyRate dR = rateRepo.findByVehClassId(vehStatId);
 		float dayRate = (float)dR.getDayrate();
 		return dayRate;
 	}
-	
+
 	public float calAmount(Hire hire) {
 		int getDays = LocalDateArrayMany.getDays(hire.getDateStart(), hire.getDateEnd().plusDays(1));	
 		float dayRate = calDayRateByHire(hire);

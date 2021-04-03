@@ -16,17 +16,18 @@
 <body>
 	<div th:replace="common :: navbar"></div>
 	
-	<div class="parent">
+<div class="parent">
 	<h2>CarRent - Edit Hire</h2>
 	
 	<nav class="nav nav-tabs justify-content-end">
 		<a class="nav-link" href="/hire">Back to Hire page</a>
 	</nav>
 	
-	<form action="#" th:action="@{/hire/save}" th:object="${hire}" method="POST">
+<form action="#" th:action="@{/hire/save}" th:object="${hire}" method="POST">
+<div class = "container mb-3 mt-3"> 
 	<div class="form-row form-group col-md-6">
-			<label>Hire ID: </label>
-			<input type="text" th:field="*{hireId}" readonly="readonly"/>
+			<label>Hire ID: [[${hireId}]]</label>
+			<input type="text" th:field="*{hireId}" readonly="readonly" hidden/>
 	</div>
 	
 	<div class="form-row">
@@ -44,11 +45,10 @@
  		<div class="form-group col-md-6">
 			<label>Vehicle</label>
 			<select th:field="*{vehicle}" class="form-control" required>
-				<th:block th:each="veh : ${vehicles}">
-					<option th:text="${veh.vehBrand} + ' ' + ${veh.vehModel} + ' ' + ${veh.vehLicPlate}"  
-					th:value="${veh.vehId}" required/>
-					
-				</th:block>
+			<th:block th:each="veh : ${vehicles}">
+				<option th:text="${veh.vehBrand} + ' ' + ${veh.vehModel} + ' ' + ${veh.vehLicPlate}"  
+				th:value="${veh.vehId}" required/>
+			</th:block>
 			</select>
 		</div>
 	
@@ -67,17 +67,16 @@
 		<div class="form-group col-md-6">
 			<label>Invoice? </label>
 			<input type="checkbox" th:field="*{casedone}" disabled/>
-			<a class="btn btn-info" th:href="@{'/invHire/' + ${hire.hireId}}" >Invoice</a>
-			>>> under contruction on tenary operator!!
+			<a class="btn btn-info" th:href="@{'/invHire/' + ${hire.hireId}}" >Convert to Invoice</a>
 		</div>
 		
 	</div>
 	 	<button class="btn btn-primary"  type="submit">Save</button> 
  		<a class="btn btn-primary" href="/hire">Cancel</a>
-	</form>
+</div>
+</form>
+</div>
 	
-	
-	</div>
 	<div th:replace="common :: footer"></div>
 </body>
 </html>
