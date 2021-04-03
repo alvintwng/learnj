@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>CarZoom - New Invoice</title>
+<title>CarZoom - Invoice Edit</title>
 	<!-- ==> common.html -->
 	<div th:replace="common :: header"></div>
 </head>
@@ -10,21 +10,27 @@
 	<div th:replace="common :: navbar"></div>
 	
 	<div class="parent">
-	<h2>CarZoom - New Invoice</h2>
+	<h2>CarZoom - Edit Invoice</h2>
 	
 	<nav class="nav nav-tabs justify-content-end">
 		<a class="nav-link" href="/hire">Back to Hire page</a>
 	</nav>
 	
-<form action="#" th:action="@{/inv/save}" th:object="${inv}" method="POST">
+<form action="#" th:action="@{/inv/saveEdit}" th:object="${inv}" method="POST">
 <div class = "container mb-3 mt-3">
+	<div class="form-row">
+		<div class="form-row form-group col-md-4">
+				<label hidden>Invoice ID: </label>
+				<input type="text" class="form-control" th:field="*{invId}" readonly="readonly" hidden>
+		</div>	
+	</div>
+	
 	<div class="form-row">
 		<div class="form-group col-md-4">
 			<label>Customer ID: [[${inv.custId}]]</label>
-			<input type="text" class="form-control" th:field="*{custId}" hidden/>
+			<input type="text" hidden th:field="*{custId}" readonly="readonly"/>
 		</div>
-	</div>
-	
+	</div>	
 	<div class="form-row">	
 		<div class="form-group col-md-4">
 			<label>Dated: </label>
@@ -38,9 +44,9 @@
 	
 	<div class="form-row">	
 		<h3 class="form-group col-md-12">Reservation Summary</h3>
-		<div class="fform-group col-md-12">
+		<div class="form-group col-md-12">
 			<label>Start and End Time: </label>
-			<input type="text" class="form-control" th:field="*{desc1}" required/>
+			 <input type="text" class="form-control" th:field="*{desc1}" required/>
 		</div>		
 		<div class="form-group col-md-12">
 			<input type="text" class="form-control" th:field="*{desc2}" required/>
@@ -55,20 +61,33 @@
 	
 		<div class="form-group col-md-12">
 			<h5>Reservation Charges No.: [[${inv.hireId}]]</h5>
-			<input type="text" class="form-control"  th:field="*{hireId}" hidden/>
+			<input type="text" hidden  th:field="*{hireId}" readonly="readonly"/>
 		</div>
 	
 		<div class="form-group col-md-4">
-				<label>Daily Rate: </label>
-				<input type="text" class="form-control"  th:field="*{rated}" required/>
+			<label>Daily Rate: </label>
+			<input type="text" class="form-control"  th:field="*{rated}" required/>
 		</div>
 		<div class="form-group col-md-4">
-				<label>Amount Due: </label>
-				<input type="text" class="form-control"  th:field="*{amount}" required/>
+			<label>Amount Due: </label>
+			<input type="text" class="form-control"  th:field="*{amount}" required/>
 		</div>
 	</div>
 	
-	<button class="btn btn-info"  type="submit">Submit</button>
+	<div class="form-row">		
+		<h3 class="form-group col-md-12">Payment</h3>
+		<div class="form-group col-md-4">
+			<label>Payment Date: [[${inv.paidDate}]]</label>
+			<input type="date" class="form-control" th:field="*{paidDate}" required/>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Payment Done ? [[${inv.paymtDone}]]</label>
+			<input type="checkbox" th:field="*{paymtDone}" readonly="readonly" hidden/>
+		</div>
+	</div>
+	
+ 	 <button class="btn btn-info"  type="submit">Save</button>
+ 	 <button class="btn btn-info" href="/hire" role="button">Cancel</button>
 </div>
 </form>
 

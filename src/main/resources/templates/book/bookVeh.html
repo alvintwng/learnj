@@ -20,7 +20,7 @@
 	
 	<p></p>
 	<form action="#" th:action="@{/book/calDate}" th:object="${booking}" method="POST">
-
+	<div class = "container mb-3 mt-3">
 	<div class="form-row">
 		<div class="form-group col-md-6">
 				<label>Customer: [[ ${customer.custName} ]]</label>
@@ -40,10 +40,12 @@
 	</div>
  		<button class="btn btn-primary"  type="submit">Next</button>
  		<a class="btn btn-primary" href="/" role="button">Cancel</a>
+	</div>
 	</form>
 	<hr>
+	
 	<i>Current Hire List</i>
-
+	<div class = "container mb-3 mt-3">
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -65,7 +67,7 @@
 			</tr>
 		</tbody>
 	</table>
-
+	</div>
 	</div>
 	
  	<div th:replace="common :: footer"></div> 
