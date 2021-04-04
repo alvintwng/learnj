@@ -12,7 +12,7 @@
 <div class="parent">
 	<h2 style="text-align: center;">INVOICE</h2>
 	<nav class="nav nav-tabs justify-content-end">
-		<a class="nav-link" href="/hire">Back to hire list</a>
+		<a class="nav-link" href="/hire">Back to Hire List</a>
 	</nav>
 		
 <form th:object="${inv}">
@@ -72,12 +72,13 @@
 		<div class="form-group col-md-12">
 			<label>Payment Date: [[${inv.paidDate}]] </label>
 			<a th:classappend="${inv.paymtDone == true ? 'paymentHidden' : 'btn btn-light'}"
-			 th:href="@{'/inv/invPaid/' + ${inv.invId}}">Pay Now?</a>
+			 th:href="@{'/inv/invPaid/' + ${inv.invId}}">Pay now & close case?</a>
 		</div>
 	</div>
 		
 	<hr>
-	 <a th:href="@{'/inv/invEdit/' + ${inv.invId}}"><b>Edit Invoice </b></a>
+	<a href="/hire"><b>Back</b> to Hire List</a> 		&nbsp;&nbsp;&nbsp;
+	<a th:href="@{'/inv/invEdit/' + ${inv.invId}}"><b>Edit</b> Invoice</a>
  		&nbsp;&nbsp;&nbsp;
     <a th:href="@{/inv/export/pdf}">Export to PDF</a> &nbsp;&nbsp;&nbsp;
     <a th:href="@{/inv/export}">Export to CSV</a>
