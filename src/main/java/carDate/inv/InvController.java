@@ -53,8 +53,13 @@ public class InvController {
 			inv.setPaidDate(d);
 			inv.setPaymtDone(true);
 		invoiceDao.save(inv);
+		log.info("=====> invoice PaidDate, update Inv: " + inv.getInvId());
 		
-		log.info("=====> invoice PaidDate, invId: " + inv.getInvId());
+		Hire hire = hireDao.getHireById(inv.getHireId());
+		hire.setCasedone(true);
+		hireDao.save(hire);
+		log.info("=====> invoice PaidDate, update Hire: " + hire.getHireId());
+
 		return "redirect:/inv/invoice/" + id ;
 	}
 
@@ -95,7 +100,7 @@ public class InvController {
 		log.warn("=====> invoice SaveNew, invId: " + inv.getInvId());
 		
 		Hire hire = hireDao.getHireById(inv.getHireId());
-		hire.setCasedone(true);
+		//hire.setCasedone(true);
 		hire.setInvoice(inv);
 		hireDao.save(hire);
 		log.info("=====> invoice Save, hire updated: " + hire.getHireId());
