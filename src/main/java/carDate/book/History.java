@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 @Entity
 public class History {
@@ -31,6 +32,7 @@ public class History {
 	@Column(name="DATEEND")
 	private LocalDate dateEnd;
 	
+	@Size (max = 9)
 	@Column(name="CUSTNRIC")
 	private String custNric;
 	
@@ -40,6 +42,7 @@ public class History {
 	@Column(name="VEHCLASSID")
 	private Integer vehClassId;
 	
+	@Size(max = 8)
 	@Column(name="VEHLICPLATE")
 	private String vehLicPlate;
 	
@@ -155,14 +158,6 @@ public class History {
 
 	public void setRecorded(LocalDateTime recorded) {
 		this.recorded = recorded;
-	}
-
-	@Override
-	public String toString() {
-		return "History [id=" + id + ", hireId=" + hireId + ", custId=" + custId + ", vehId=" + vehId + ", dateStart="
-				+ dateStart + ", dateEnd=" + dateEnd + ", custNric=" + custNric + ", custCatId=" + custCatId
-				+ ", vehClassId=" + vehClassId + ", vehLicPlate=" + vehLicPlate + ", dayrate=" + dayrate + ", amoint="
-				+ amoint + ", recorded=" + recorded + "]";
 	}
 
 }

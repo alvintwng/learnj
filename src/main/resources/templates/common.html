@@ -30,8 +30,12 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 		<li class="nav-item active">
 		  <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 		</li>
-		<li class="nav-item" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
-		  <a class="nav-link" href="/booking">Booking</a>
+		<li class="nav-item dropdown" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
+		  <a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown">Hires</a>
+		  <ul class="dropdown-menu">
+		  	<li><a class="dropdown-item" href="/hire">Hires List</a></li>
+		  	<li><a class="dropdown-item" href="/booking">Booking</a></li>
+		  </ul>
 		</li>
 		<li class="nav-item dropdown" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
 			<a class="nav-link" href="/cust">Customer</a>	
@@ -40,9 +44,6 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 				<li><a class="dropdown-item" href="/cust"> View Customer </a></li>
 				<li><a class="dropdown-item" href="/cust"> Add Customer </a></li>
 			</ul> -->
-		</li>
-		<li class="nav-item" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
-		  <a class="nav-link" href="/hire">Hires</a>
 		</li>
 		<li class="nav-item" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
 		  <a class="nav-link" href="/veh">Vehicles</a>

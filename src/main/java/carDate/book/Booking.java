@@ -1,14 +1,13 @@
 package carDate.book;
 
 import java.time.LocalDate;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import carDate.cust.Customer;
 import carDate.veh.Vehicle;
 
 public class Booking {
-
-	// private long hireId;
 
 	private Customer customer;
 	private Vehicle vehicle;
@@ -20,7 +19,7 @@ public class Booking {
 	private LocalDate dateEnd;
 
 	private boolean casedone;
-
+	
 	public Booking() {
 		super();
 	}

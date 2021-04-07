@@ -16,7 +16,7 @@
 		<a class="nav-link" href="/hire">Back to Hire page</a>
 	</nav>
 	
-<form action="#" th:action="@{/inv/save}" th:object="${inv}" method="POST">
+<form action="#" th:action="@{/inv/newSave}" th:object="${inv}" method="POST">
 <div class = "container mb-3 mt-3">
 	<div class="form-row">
 		<div class="form-group col-md-4">
@@ -40,13 +40,14 @@
 		<h3 class="form-group col-md-12">Reservation Summary</h3>
 		<div class="fform-group col-md-12">
 			<label>Start and End Time: </label>
-			<input type="text" class="form-control" th:field="*{desc1}" required/>
+			<input type="text" class="form-control" th:field="*{desc1}" maxlength="65" size="65" required/>
 		</div>		
 		<div class="form-group col-md-12">
-			<input type="text" class="form-control" th:field="*{desc2}" required/>
+			<input type="text" class="form-control" th:field="*{desc2}" maxlength="65" size="65" />
 		</div>		
 		<div class="form-group col-md-12">
-			<input type="text" class="form-control" th:field="*{desc3}"/>
+			<input type="text" class="form-control" th:field="*{desc3}" maxlength="65" size="65" />
+			<small class="form-text text-muted">size must be less than 65 chars per row</small>
 		</div>	
 	</div>
 	
@@ -64,7 +65,7 @@
 		</div>
 		<div class="form-group col-md-4">
 				<label>Amount Due: </label>
-				<input type="text" class="form-control"  th:field="*{amount}" required/>
+				<input type="text" class="form-control"  th:field="*{invPaymt.amount}" required/>
 		</div>
 	</div>
 	

@@ -1,5 +1,6 @@
 package carDate.inv;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -32,6 +33,12 @@ public class InvoiceDaoImpl implements InvoiceDao{
 	public void save(@Valid Invoice invoice) {
 		invRepo.save(invoice);
 		
+	}
+
+	@Override
+	public List<Invoice> getAllInvoices() {
+		List <Invoice> list = invRepo.findAll();
+		return list;
 	}
 }
 

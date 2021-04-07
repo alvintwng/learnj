@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,54 +20,67 @@ public class Invoice {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="INVID")
 	private int invId;
-	
+
+    @OneToOne
+    @JoinColumn(name = "invpaymtid")
+	private InvPaymt invPaymt;
+    
 	@Column(name="invno", unique=true)
+	@Size(min = 4, max = 20)
 	private String invNo;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="dated")
 	private LocalDate dated;
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name="paiddate")
-	private LocalDate paidDate;
-	
+
 	@Column(name="custid")
 	private int custId;
 	
 	@Column(name="hireid")
 	private int hireId;	
 	
+	@Size(max =65)
 	private String desc1;
+	
+	@Size(max =65)
 	private String desc2;
+	
+	@Size(max =65)
 	private String desc3;
-	
-	@Column(name = "invmapid", nullable = false)
-	private int invMapId;
-	
+
 	private float rated;
-	private float amount;
 
 	@Column(name="paymtdone")
 	private boolean paymtDone;
-	
+
 	public Invoice() {
 		super();
 	}
 
 	@Override
 	public String toString() {
-		return "Invoice [invId=" + invId + ", invNo=" + invNo + ", dated=" + dated 
-				+ ", custId=" + custId + ", hireId=" + hireId + ", rated=" + rated 
-				+ ", amount=" + amount + ", paidDate=" + paidDate + "]";
+		return "Invoice [invId=" + invId + ", invpaymt=" + invPaymt + ", invNo=" + invNo + ", dated=" + dated
+				+ ", custId=" + custId + ", hireId=" + hireId + ", rated=" + rated + "]";
 	}
 
 	public int getInvId() {
 		return invId;
 	}
 
-	public void setInvId(int invId) {
-		this.invId = invId;
+
+	public void setPaidDate(LocalDate paidDate) {
+		this.invPaymt.setPaidDate(paidDate);
+	}
+	public LocalDate getPaidDate() {
+		return this.invPaymt.getPaidDate();
+	}
+
+	public InvPaymt getInvPaymt() {
+		return invPaymt;
+	}
+
+	public void setInvPaymt(InvPaymt invPaymt) {
+		this.invPaymt = invPaymt;
 	}
 
 	public String getInvNo() {
@@ -81,14 +97,6 @@ public class Invoice {
 
 	public void setDated(LocalDate dated) {
 		this.dated = dated;
-	}
-
-	public LocalDate getPaidDate() {
-		return paidDate;
-	}
-
-	public void setPaidDate(LocalDate paidDate) {
-		this.paidDate = paidDate;
 	}
 
 	public int getCustId() {
@@ -131,28 +139,12 @@ public class Invoice {
 		this.desc3 = desc3;
 	}
 
-	public int getInvMapId() {
-		return invMapId;
-	}
-
-	public void setInvMapId(int invMapId) {
-		this.invMapId = invMapId;
-	}
-
 	public float getRated() {
 		return rated;
 	}
 
 	public void setRated(float rated) {
 		this.rated = rated;
-	}
-
-	public float getAmount() {
-		return amount;
-	}
-
-	public void setAmount(float amount) {
-		this.amount = amount;
 	}
 
 	public boolean isPaymtDone() {
@@ -162,4 +154,9 @@ public class Invoice {
 	public void setPaymtDone(boolean paymtDone) {
 		this.paymtDone = paymtDone;
 	}
+
+	public void setInvId(int invId) {
+		this.invId = invId;
+	}
+
 }
