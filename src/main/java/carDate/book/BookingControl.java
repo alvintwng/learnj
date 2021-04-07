@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import carDate.cust.Customer;
 import carDate.cust.CustomerDao;
-import carDate.hire.HireDao;
 import carDate.hire.Hire;
+import carDate.hire.HireDao;
 import carDate.veh.Vehicle;
 import carDate.veh.VehicleDao;
 
@@ -51,7 +51,7 @@ public class BookingControl {
 		model.addAttribute("booking", booking);
 		List<Customer> customers = custDao.getAllCustomers();
 		model.addAttribute("customers", customers);
-		return "book/bookCust";
+		return "book/bookCust"; // post > bookVeh
 	}
 	
 	// this method not working yet ... from HireController ...
@@ -59,7 +59,7 @@ public class BookingControl {
 	public String bookVehCustomer(@PathVariable("custId") Long custId, Model model) {
 		System.out.println("=====> bookVeh/{custId}: " + custId);
 		//return "redirect:/bookCust";
-		return "book/bookVeh";
+		return "book/bookVeh"; // post > book/calDate
 	}
 	
 	@PostMapping(value = "bookVeh")
@@ -80,36 +80,8 @@ public class BookingControl {
 		model.addAttribute("listHires", hireDao.findAllByCustomer(customer));
 		
 		log.info("=====> bookVeh, custid: " + customer.getCustId());
-		return "book/bookVeh";
+		return "book/bookVeh"; // post > book/calDate
 	}	
-	
-
-//	// skip
-//	//@PostMapping(value = "/book/dates")
-//	public String bookDates(@ModelAttribute("hire") Hires hire, BindingResult bindingResult, Model model) {
-//		if(bindingResult.hasErrors())
-//			return "book/custVeh";
-//		
-//		long bookCustId = hire.getCustomer().getCustId();
-//		Customer cust = custDao.getCustomerById(bookCustId);
-//		model.addAttribute("customers", cust);
-//		
-//		long bookVehId = hire.getVehicle().getVehId();
-//		Vehicle veh = vehDao.getVehicleById(bookVehId);
-//		model.addAttribute("vehicles", veh);
-//		
-//		model.addAttribute("dayRate", calDayRateByHire(hire));
-//		
-//		Vehicle thisVeh = vehDao.getVehicleById(bookVehId);
-//		List<Hires> listBddates = hireDao.getAllHiresByVehicle(thisVeh);
-//		String[] fdates = LocalDateArrayMany.
-//				allListsToDMY(listBddates);
-//		model.addAttribute("localDateArrayMany", fdates);
-//		//Stream.of(fdates).forEach(s -> System.out.println("listToDMY :: " + s));
-//		
-//		model.addAttribute("hire", hire);
-//		return "book/bookDate";
-//	}
 	
 	@PostMapping(value = "/book/calDate")
 	public String bookCalDate(@ModelAttribute("booking") Booking booking, BindingResult bindingResult, Model model) {
@@ -130,8 +102,7 @@ public class BookingControl {
 		String[] fdates = LocalDateArrayMany.allListsToDMY(listBddates);
 		model.addAttribute("localDateArrayMany", fdates);
 		
-		//System.out.println("=====> calDate}: booking : " + booking.toString() );
-		return "book/bookCalDate";
+		return "book/bookCalDate";	// post > book/cnfm 
 	}
 	
 	@PostMapping(value = "/book/cnfm")
@@ -141,8 +112,7 @@ public class BookingControl {
 		
 		model.addAttribute("dayRate", calDayRateByBooking(booking));
 		
-		//System.out.println("=====> book/cnfm}: " + booking.toString());
-		return "book/bookConfirm";
+		return "book/bookConfirm";	// Post > book/save
 	}
 	
 	@PostMapping(value = "/book/save")
@@ -154,7 +124,6 @@ public class BookingControl {
 		}
 
 		hireDao.save(hire);
-		//System.out.println("=====> book/save.. hire: " + hire.toString());
 		
 		long newHireId = hire.getHireId();
 		log.warn("=====> Booking Saved, hireId: " + newHireId);
@@ -201,8 +170,7 @@ public class BookingControl {
 		history.setDayrate(		calDayRateByHire(hire)); // by Hire
 		history.setAmoint(		calAmount(hire));
 		history.setRecorded(	LocalDateTime.now());
-		
-		//System.out.println("====> hireToHistory history: " + history.toString());
+
 		return history;
 	}
 

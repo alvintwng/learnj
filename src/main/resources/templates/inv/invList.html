@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CarZoom - Invoice List</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+	
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+	
+<div class="parent">
+	<h2>Invoices</h2>
+
+<div class = "container mb-3 mt-3">
+	<table class="table table-striped mydatatable">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Inv No.</th>
+			<th>CustId</th>
+			<th>Hire Id</th>
+			<th>Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="inv: ${invList}">
+			<td>[[${inv.invId}]]</td>
+			<td><a th:href="@{'/inv/invoice/' + ${inv.invId}}">[[${inv.invNo}]]</td>
+			<td>[[${inv.custId}]]</td>
+			<td>[[${inv.hireId}]]</td>
+			<td>[[${inv.invPaymt.amount}]]</td>
+		</tr>
+	</tbody>
+	</table>
+</div>
+
+</div>
+<div th:replace="common :: footer"></div>
+
+	<!-- https://cdn.datatables.net/ --> <script>
+		$('.mydatatable').DataTable();
+	</script>
+</body>
+</html>
