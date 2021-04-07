@@ -16,7 +16,7 @@
 		<a class="nav-link" href="/">Back to home page</a>
 	</nav>
 
-	<form action="#" th:action="@{/roleSave}" th:object="${role}" method="POST">
+	<form action="#" th:action="@{/emp/roleSave}" th:object="${role}" method="POST">
 	<div class="form-row form-group col-md-6">
 			<label>Role ID: </label>
 	</div>
@@ -24,7 +24,7 @@
 	<div class="form-row">	
 		<div class="form-group col-md-6">
 			<label>Name: </label> 
-			<input class="form-control" type="text" th:field="*{Name}" required/>
+			<input class="form-control" type="text" th:field="*{name}" required/>
 			<small class="form-text text-muted">size must be between 1 and 45</small>
 		</div>
 	

@@ -153,6 +153,10 @@
 		</div>
 
 	</div>
+		<div sec:authorize="isAuthenticated()">
+			<b><span sec:authentication="name">Username</span></b> &nbsp;
+			<i><span sec:authentication="principal.authorities">Roles</span></i>
+		</div> 
 
 	<div th:replace="common :: footer-note"></div>
 	<div th:replace="common :: footer"></div>
