@@ -33,7 +33,7 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 //		users.add(User.withDefaultPasswordEncoder().
 //				username("ntuc").
 //				password("ntuc").
-//				roles("USER").
+//				roles("ADMIN").
 //				build());
 //			
 //		return new InMemoryUserDetailsManager(users);
@@ -41,7 +41,8 @@ public class AppSecurity extends WebSecurityConfigurerAdapter{
 
 	/* for non-Sql login. UN-comment the above, and commented ALL below 
 	 * AND commented off MyUserDetailService/MyUserDetailService
-	 * common.html line 39,45 " sec:authorize="hasAnyAuthority('ADMIN','ROLE_ADMIN')
+	 * common.html line 51 " sec:authorize="hasAnyAuthority('ADMIN','ROLE_ADMIN')
+	 * or index.html add <a href="/emp" >Employees</a>
 	 * */
 	@Autowired
 	private UserDetailsService userDetailService;
