@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>CarZoom - booking</title>
-
+<script type="text/javascript"
+    src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- ==> common.html -->
 <div th:replace="common :: header"></div>
 
@@ -31,18 +32,44 @@
 		<div class="form-row">
 		<div class="form-group col-md-6">
 		
-		<label>Customers Total Days hire within year:</label>
-		<label>Vehicles Total Days Usage within year:</label>
+			<label>Vehicle# reservation: Total no of booking Usage:</label>
 		</div>
-		
 
+		<div id="piechart" style="width: 450px; height: 250px;"></div>
+		
 		<hr>
 		<span>Recent Activities</span>
-		<!-- </div> -->
 
+		</div>
 	</div>
-
 	<div th:replace="common :: footer"></div>
+	
 
+	<script th:inline="javascript">
+	        var real_data = /*[[${chartData}]]*/'noValue';
+	 
+	        $(document).ready(function() {
+	            google.charts.load('current', {
+	                packages : [ 'corechart', 'bar' ]
+	            });
+	
+	            google.charts.setOnLoadCallback(drawPieChart);
+	        });
+	 
+	        function drawPieChart() {
+	            var data = new google.visualization.DataTable();
+	            data.addColumn('string', 'Year');
+	            data.addColumn('number', 'Views');
+	            Object.keys(real_data).forEach(function(key) {
+	                data.addRow([ key, real_data[key] ]);
+	            });
+	            var options = {
+	                title : 'Vehicle usage'
+	            };
+	            var chart = new google.visualization.PieChart(document
+	                    .getElementById('piechart'));
+	            chart.draw(data, options);
+	        }
+	</script>
 </body>
 </html>
