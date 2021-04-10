@@ -38,12 +38,12 @@ public class empValidTest {
 	
 	/* Unable to run/test the bean with DAO/Repo state 
 	 * current test thru about.html/test */
-	@Disabled
-	@Test
-	public void testTest() {
-		EmpValid empValid = new EmpValid();
-		assertEquals(empValid.test(), "test" );
-	}
+//	@Disabled
+//	@Test
+//	public void testTest() {
+//		EmpValid empValid = new EmpValid();
+//		assertEquals(empValid.test(), "test" );
+//	}
 	
 	/* Unable to run/test with DAO/Repo state 
 	 * current test thru about.html/test */

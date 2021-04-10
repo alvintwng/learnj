@@ -24,13 +24,13 @@ public class EmpValid  {
 	}
  */
 	
-	@GetMapping("/test")
-	public String test() {
-		System.out.println("=====> T E S T");
-		duplicateEmail("ntuc@ntuc.com");
-		duplicateEmail("very@newEmail.com");
-		return "index";
-	}
+//	@GetMapping("/test")
+//	public String test() {
+//		System.out.println("=====> T E S T");
+//		duplicateEmail("ntuc@ntuc.com");
+//		duplicateEmail("very@newEmail.com");
+//		return "index";
+//	}
 
 	/* Return True if there are such email found in database.
 	 * planning to use to check duplicate email during new emp.

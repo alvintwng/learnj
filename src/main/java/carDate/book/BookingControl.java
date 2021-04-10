@@ -1,5 +1,6 @@
 package carDate.book;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -44,12 +45,14 @@ public class BookingControl {
 	public String booking(Model model) {
 		return "redirect:/bookCust";
 	}
-
+	
 	@RequestMapping("bookCust")
 	public String bookCust(Model model) {
+		
 		Booking booking = new Booking();
-		model.addAttribute("booking", booking);
 		List<Customer> customers = custDao.getAllCustomers();
+		
+		model.addAttribute("booking", booking);
 		model.addAttribute("customers", customers);
 		return "book/bookCust"; // post > bookVeh
 	}
@@ -69,16 +72,13 @@ public class BookingControl {
 			return "bookVeh";
 		}
 
-		model.addAttribute("booking", booking);
-
 		Customer customer = booking.getCustomer();
+		List<Vehicle> vehicles = vehDao.getAllVehicles();	
+		
+		model.addAttribute("booking", booking);
 		model.addAttribute("customer", customer);
-		
-		List<Vehicle> vehicles = vehDao.getAllVehicles();
 		model.addAttribute("vehicles", vehicles);
-		
 		model.addAttribute("listHires", hireDao.findAllByCustomer(customer));
-		
 		log.info("=====> bookVeh, custid: " + customer.getCustId());
 		return "book/bookVeh"; // post > book/calDate
 	}	
@@ -87,21 +87,19 @@ public class BookingControl {
 	public String bookCalDate(@ModelAttribute("booking") Booking booking, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors())
 			return "book/bookVeh";
-		
-		model.addAttribute("booking", booking);
-		
+
 		Customer customer = booking.getCustomer();
-		model.addAttribute("customer", customer);
-		
-		Vehicle vehicle = booking.getVehicle();
-		model.addAttribute("vehicle", vehicle);
-		
-		model.addAttribute("dayRate", calDayRateByBooking(booking));
+		Vehicle vehicle = booking.getVehicle();	
 		
 		List<Hire> listBddates = hireDao.getAllHiresByVehicle(vehicle);
-		String[] fdates = LocalDateArrayMany.allListsToDMY(listBddates);
-		model.addAttribute("localDateArrayMany", fdates);
+		String[] fdates = LocalDateArrayMany.allListsToDMY(listBddates);	
 		
+		model.addAttribute("booking", booking);
+		model.addAttribute("customer", customer);
+		model.addAttribute("vehicle", vehicle);
+		model.addAttribute("dayRate", calDayRateByBooking(booking));
+		model.addAttribute("localDateArrayMany", fdates);
+		log.info("=====> book/calDate, fdates");
 		return "book/bookCalDate";	// post > book/cnfm 
 	}
 	
@@ -109,11 +107,30 @@ public class BookingControl {
 	public String bookConfirm(@ModelAttribute("booking") Booking booking, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors())
 			return "book/bookVeh";
+
+		Boolean chkvalid = LocalDateArrayMany.checkValidDates(booking.getDateStart(), booking.getDateEnd());
+		Boolean crashed = crashedDates(booking.getVehicle() ,booking.getDateStart(), booking.getDateEnd());
+		
+		// for return to bookCalDate
+		List<Hire> listBddates = hireDao.getAllHiresByVehicle(booking.getVehicle());
+		String[] fdates = LocalDateArrayMany.allListsToDMY(listBddates);
 		
 		model.addAttribute("dayRate", calDayRateByBooking(booking));
+		model.addAttribute("booking", booking);
+		model.addAttribute("customer", booking.getCustomer());
+		model.addAttribute("vehicle", booking.getVehicle());
+		model.addAttribute("localDateArrayMany", fdates);
 		
-		return "book/bookConfirm";	// Post > book/save
+		if(!chkvalid)
+			return "book/bookCalDate";	
+
+		if(crashed) 
+			return "book/bookCalDate";	
+		
+		log.info("=====> book/cnfm, " + chkvalid + !crashed );
+		return "book/bookConfirm";	// Post > book/save	
 	}
+
 	
 	@PostMapping(value = "/book/save")
 	public String saveBooking(@Valid @ModelAttribute("hire") Hire hire, BindingResult bindingResult) {
@@ -140,10 +157,11 @@ public class BookingControl {
 	@GetMapping("/hist")
 	public String historyList(Model model) {
 		List<History> histories = historyRepo.findAll();
-		model.addAttribute("histories", histories);
 		List<Customer> customers = custDao.getAllCustomers();
-		model.addAttribute("customers", customers);
 		List<Vehicle> vehicles = vehDao.getAllVehicles();
+		
+		model.addAttribute("histories", histories);
+		model.addAttribute("customers", customers);
 		model.addAttribute("vehicles", vehicles);
 		//System.out.println("====> History Size: " + histories.size());
 		return "book/historyList";
@@ -152,10 +170,12 @@ public class BookingControl {
 	@GetMapping("/histData")
 	public String historyDate(Model model) {
 		List<History> histories = historyRepo.findAll();
+		
 		model.addAttribute("histories", histories);
 		return "book/historyData";
 	}
-	
+
+
 	public History hireToHistory(Hire hire) {
 		History history = new History();
 		history.setHireId(		hire.getHireId());
@@ -174,6 +194,19 @@ public class BookingControl {
 		return history;
 	}
 
+	public boolean crashedDates(Vehicle veh, LocalDate newStart, LocalDate newEnd) {	
+		List<Hire> listHires =  hireDao.getAllHiresByVehicle(veh);
+
+		for (Hire b: listHires) {
+			Boolean crashHireStartTrue 	=  LocalDateArrayMany.chkCrashdDates( b.getDateStart(), newStart,newEnd );
+			Boolean crashHireEndTrue 	=  LocalDateArrayMany.chkCrashdDates( b.getDateEnd(), newStart,newEnd );
+			Boolean crashNewInsideTrue 	=  LocalDateArrayMany.chkCrashdDates(newStart, b.getDateStart(), b.getDateEnd() );
+
+			if ((crashHireStartTrue) || (crashHireEndTrue) || (crashNewInsideTrue) ){
+				return true; }
+		}
+		return false;
+	}
 	
 	public float calDayRateByBooking(Booking booking) {
 		long vehStatId = booking.getVehicle().getVehStatus().getVehSttsId();
@@ -195,5 +228,5 @@ public class BookingControl {
 		float amount = dayRate * getDays;
 		return amount;
 	}
-	
+
 }

@@ -63,11 +63,6 @@ public class Booking {
 	public void setCasedone(boolean casedone) {
 		this.casedone = casedone;
 	}
-	
-	public long test() {
-		System.out.println("====> Booking.java test ");
-		return 88;
-	}
 
 	@Override
 	public String toString() {
