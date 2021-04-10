@@ -106,4 +106,18 @@ public class LocalDateArrayMany {
 		
 		return dateRange;
 	}
+
+	/** return boolean false if end date is before start date 
+	 * @param
+	 * @return boolean	 **/
+	public static boolean checkValidDates(LocalDate start, LocalDate end) {
+		if (end.isBefore(start)) {return false;}
+		
+		return true;
+	}
+	
+	public static boolean chkCrashdDates(LocalDate crash, LocalDate start, LocalDate end) {
+		if (crash.isAfter(start.minusDays(1)) && crash.isBefore(end.plusDays(1))) {return true;}
+		return false;
+	}
 }

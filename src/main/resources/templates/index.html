@@ -16,60 +16,57 @@
 	<div class="parent">
 		<h3 style="text-align: center">
 
-			<span>CarZoom Vehicle Leasing app</span>
+			<span>Vehicle Leasing app</span>
 
 		</h3>
 		<hr>
 		<!-- <div class="mx-auto" style="width: 560px;"> -->
-
-		<span><a href="/hire"><h2 style="text-align: center">Hires list</h2></a></span>
+	<div class = "container mb-3 mt-3">
+		<span><a href="/hire"><h2>Hires list</h2></a></span>
 
 		<hr>
 		<!-- <span><a href="/"><h2 style="text-align: center">Vehicle Returned</h2></a></span> -->
 		<hr>
+
 		<span>DashBoard</span>
 		
 		<div class="form-row">
-		<div class="form-group col-md-6">
-		
-			<label>Vehicle# reservation: Total no of booking Usage:</label>
-		</div>
-
-		<div id="piechart" style="width: 450px; height: 250px;"></div>
-		
-		<hr>
-		<span>Recent Activities</span>
-
-		</div>
-	</div>
-	<div th:replace="common :: footer"></div>
+			<div class="form-group col-md-6">
+			
+				<label>Vehicles hires: no. of hires per vehicle:</label>
+			
+			<div id="piechartVeh" style="width: 450px; height: 250px;"></div>
+			</div>
 	
+			<div class="form-group col-md-6">
+			
+				<label>Customer hires: no. of hires per customer:</label>
+			
+	
+			<div id="piechartCus" style="width: 450px; height: 250px;"></div>
+			</div>
+	
+			<hr>
+			<span>Recent Activities</span>
+
+		</div>
+
+			
+				<label>History charts: hire / amounth</label>
+				<div id="chart_div"></div>
+			
+	</div>
+	</div>
+	<hr>
+	<div th:replace="common :: footer-note"></div>	
+	<div th:replace="common :: footer"></div>
 
 	<script th:inline="javascript">
-	        var real_data = /*[[${chartData}]]*/'noValue';
-	 
-	        $(document).ready(function() {
-	            google.charts.load('current', {
-	                packages : [ 'corechart', 'bar' ]
-	            });
-	
-	            google.charts.setOnLoadCallback(drawPieChart);
-	        });
-	 
-	        function drawPieChart() {
-	            var data = new google.visualization.DataTable();
-	            data.addColumn('string', 'Year');
-	            data.addColumn('number', 'Views');
-	            Object.keys(real_data).forEach(function(key) {
-	                data.addRow([ key, real_data[key] ]);
-	            });
-	            var options = {
-	                title : 'Vehicle usage'
-	            };
-	            var chart = new google.visualization.PieChart(document
-	                    .getElementById('piechart'));
-	            chart.draw(data, options);
-	        }
+	        var real_dataVeh = /*[[${chartDataVeh}]]*/'noValue';
+	        var real_dataCus = /*[[${chartDataCus}]]*/'noValue';
+	        var real_dataBar = /*[[${chartDataBar}]]*/'noValue';
 	</script>
+	<script th:src="@{/assets/chart.js}"></script>
+	
 </body>
 </html>
