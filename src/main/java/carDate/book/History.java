@@ -160,4 +160,10 @@ public class History {
 		this.recorded = recorded;
 	}
 
+	@Override
+	public String toString() {
+		return "History [id=" + id + ", hireId=" + hireId + ", custId=" + custId + ", vehId=" + vehId + ", dateStart="
+				+ dateStart + ", dateEnd=" + dateEnd + ", amoint=" + amoint + ", recorded=" + recorded + "]";
+	}
+
 }

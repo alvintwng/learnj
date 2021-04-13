@@ -41,21 +41,33 @@
 			<div class="form-group col-md-6">
 			
 				<label>Customer hires: no. of hires per customer:</label>
-			
-	
+
 			<div id="piechartCus" style="width: 450px; height: 250px;"></div>
 			</div>
-	
-			<hr>
-			<span>Recent Activities</span>
 
 		</div>
+			
+		<div class="form-row">
+			<label class="form-group col-md-6">Status: Total Income</label>
 
-			
-				<label>History charts: hire / amounth</label>
-				<div id="chart_div"></div>
-			
+		<span class="nav-item dropdown form-group col-md-3" style="text-align: right">
+			<a class="nav-link active dropdown-toggle" href="/" data-toggle="dropdown">
+				YTD</a>
+			<ul class="dropdown-menu">
+		 		<li><a class="dropdown-item" href="/">YTD</a> </li>
+				<li><a class="dropdown-item" href="/chart/6">6M</a></li>
+				<li><a class="dropdown-item" href="/">1Y</a></li>
+				<li><a class="dropdown-item" href="/chart/24">2Y</a></li>
+			</ul>
+		</span>	
+		</div>		
+					
+		<div id="chart_div"></div>
+		
+		<hr>
+		<span>Recent Activities</span>
 	</div>
+	
 	</div>
 	<hr>
 	<div th:replace="common :: footer-note"></div>	
@@ -67,6 +79,6 @@
 	        var real_dataBar = /*[[${chartDataBar}]]*/'noValue';
 	</script>
 	<script th:src="@{/assets/chart.js}"></script>
-	
+
 </body>
 </html>
