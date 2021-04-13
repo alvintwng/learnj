@@ -43,9 +43,6 @@ public class bookingTest {
 
 		List<Vehicle> listVeh = vehRepo.findAll();
 
-//		for (Vehicle v : listVeh) {
-//			System.out.println("=====> datesCrash,veh: "+ v.getVehId() +":"+v.getVehLicPlate());
-//		}
 		veh = listVeh.get(3);
 		
 		List<Hire> listHires =  hireRepo.findAllByVehicle(veh);
@@ -77,10 +74,7 @@ public class bookingTest {
 			System.out.println("====> hired " + b.getDateStart()  + " to " + b.getDateEnd() 
 			+ " crashed: " + crashHireStartTrue + " "+ crashHireEndTrue + " " + crashNewInsideTrue);
 		}
-		
-		System.out.println("Is today crash within booking dates?");
 
-		
 	}
 
 	//@Disabled

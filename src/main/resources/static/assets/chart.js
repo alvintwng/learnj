@@ -1,4 +1,4 @@
-/** pie Chart
+/** charts
 * use on index.html
 **/
 
@@ -50,8 +50,8 @@
 
         function drawColumnChart() {
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Year');
-            data.addColumn('number', 'Views');
+            data.addColumn('string', 'Month');
+            data.addColumn('number', 'Amt $');
             Object.keys(real_dataBar).forEach(function(key) {
                 data.addRow([ key, real_dataBar[key] ]);
             });
