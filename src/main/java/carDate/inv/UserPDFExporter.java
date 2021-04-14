@@ -15,13 +15,15 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-public class UserPDFExporter {
-	private Invoice inv;
-	
-	public UserPDFExporter(Invoice inv) {
-		this.inv = inv;
-	}
+import carDate.inv.InvController.InvCust;
 
+public class UserPDFExporter {
+
+	private InvCust invCust;
+	
+	public UserPDFExporter(InvCust invCust) {
+		this.invCust = invCust;
+	}
 	private void writeTableHeader(PdfPTable table) {
 
 	}
@@ -31,11 +33,12 @@ public class UserPDFExporter {
         cell.setPadding(5);
         //Font font = FontFactory.getFont(FontFactory.HELVETICA);
         
-        cell.setPhrase(new Phrase("Total Time Charge at Daily Rate: " + inv.getRated()));
+        cell.setPhrase(new Phrase("Total Time Charge at Daily Rate: " + invCust.getInv().getRated()));
         cell.setBorderWidth(0);
         table.addCell(cell);
-         
-        cell.setPhrase(new Phrase("Sub Total: " + inv.getInvPaymt().getAmount()));
+
+        cell.setPhrase(new Phrase("Sub Total: " 
+				+ String.format("%.2f", invCust.getInv().getInvPaymt().getAmount() )));
         cell.setIndent(10);
         cell.setBorderWidth(0);
         table.addCell(cell);
@@ -44,7 +47,8 @@ public class UserPDFExporter {
         cell.setBorderWidth(0);
         table.addCell(cell);
          
-        cell.setPhrase(new Phrase( "Total Due: $" + inv.getInvPaymt().getAmount()));
+        cell.setPhrase(new Phrase( "Total Due: $" 
+        		+ String.format("%.2f", invCust.getInv().getInvPaymt().getAmount() )));
         table.addCell(cell);  
 	}
 	
@@ -66,31 +70,35 @@ public class UserPDFExporter {
 		p1.setSpacingBefore(25);
 		document.add(p1);
 		
-		Paragraph p2 = new Paragraph("Invoice No.: " + inv.getInvNo());
+		Paragraph p2 = new Paragraph("Invoice No.: " + invCust.getInv().getInvNo());
 		p2.setAlignment(Paragraph.ALIGN_RIGHT);
 		p2.setSpacingBefore(50);
 		document.add(p2);
 		
-		Paragraph p3 = new Paragraph("Date: " + inv.getDated());
+		Paragraph p3 = new Paragraph("Date: " + invCust.getInv().getDated());
 		document.add(p3);
-		p3 = new Paragraph("Customer's ID: " + inv.getCustId());
+		p3 = new Paragraph("Customer's ID: " + invCust.getInv().getCustId()
+				+ "\n" + invCust.getCust().getCustName()
+				+ "\n" + invCust.getCust().getAddr1()
+				+ "\n" + invCust.getCust().getAddr2()
+				+ "\n" + invCust.getCust().getCity() );
 		p3.setSpacingBefore(18);
 		document.add(p3);
 		
 		Paragraph p4 = new Paragraph("Reservation Summary", new Font(Font.COURIER, 16));
 		p4.setSpacingBefore(25);
 		document.add(p4);
-		Paragraph p5 = new Paragraph("Start and End Time: " + inv.getDesc1());
+		Paragraph p5 = new Paragraph("Start and End Time: " + invCust.getInv().getDesc1());
 		document.add(p5);
-		p5 = new Paragraph(inv.getDesc2());
+		p5 = new Paragraph(invCust.getInv().getDesc2());
 		document.add(p5);
-		p5 = new Paragraph(inv.getDesc3());
+		p5 = new Paragraph(invCust.getInv().getDesc3());
 		document.add(p5);
 
 		Paragraph p6 = new Paragraph("Invoice Details", new Font(Font.COURIER, 16));
 		p6.setSpacingBefore(18);
 		document.add(p6);
-		p6 = new Paragraph("Reservation Charges No.: " + inv.getHireId());
+		p6 = new Paragraph("Reservation Charges No.: " + invCust.getInv().getHireId());
 		document.add(p6);
 		
 		PdfPTable table = new PdfPTable(2);
@@ -103,7 +111,7 @@ public class UserPDFExporter {
 		Paragraph p7 = new Paragraph("Payment", new Font(Font.COURIER, 16));
 		p7.setSpacingBefore(25);
 		document.add(p7);
-		p7 = new Paragraph("Payment Date: " + inv.getPaidDate());
+		p7 = new Paragraph("Payment Date: " + invCust.getInv().getPaidDate());
 		document.add(p7);
 
         Font font = FontFactory.getFont(FontFactory.TIMES_ITALIC);
