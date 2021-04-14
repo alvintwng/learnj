@@ -39,7 +39,7 @@ public class UserControl {
 
 	@RequestMapping("/")
 	public String indexPage(Model model) {
-		return "redirect:/chart/12";
+		return "redirect:/chart/6";
 	}
 	
 	@RequestMapping("/chart/{range}")
@@ -54,6 +54,9 @@ public class UserControl {
 		
 		if (range == 6){
 			startChart =  LocalDateTime.now().minusMonths(6);
+		}
+		if (range == 12){
+			startChart =  LocalDateTime.now().minusYears(1);
 		}
 		if (range == 24){
 			startChart =  LocalDateTime.now().minusYears(2);

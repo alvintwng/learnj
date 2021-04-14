@@ -27,6 +27,8 @@ import com.lowagie.text.DocumentException;
 import carDate.book.DailyRate;
 import carDate.book.DailyRateRepo;
 import carDate.book.LocalDateArrayMany;
+import carDate.cust.Customer;
+import carDate.cust.CustomerDao;
 import carDate.hire.Hire;
 import carDate.hire.HireDao;
 
@@ -43,6 +45,8 @@ public class InvController {
 	private HireDao hireDao;
 	@Autowired
 	private DailyRateRepo rateRepo;
+	@Autowired
+	private CustomerDao custDao;
 	
 	@GetMapping("inv/invList")
 	public String showAllInvoices(Model model) {
@@ -56,10 +60,10 @@ public class InvController {
 	public String showInvoice(@PathVariable("id") int id, Model model) {
 		
 		Invoice inv = invoiceDao.getInvoiceById(id);
-		//Optional<InvMap> invMap = mapRepo.findById(inv.getInvMapId());
-		//Customer cust = custDao.getCustomerById(invMap.get().getCustNameId());
+		Customer cust = custDao.getCustomerById(inv.getCustId());
 		
 		model.addAttribute("inv", inv);
+		model.addAttribute("cust", cust);
 		log.info("=====> inv/invoice/" + inv.getInvId());
 		return "inv/invoice";
 	}
@@ -209,10 +213,27 @@ public class InvController {
         //List<Users> listUsers = repo.findAll();
         	
     	Invoice inv = invoiceDao.getInvoiceById(invId);
+    	InvCust invCust = new InvCust();
+    	invCust.setInvoice(inv);
         	
     	log.warn("=====> /inv/export/pdf/> pdf: " + headerValue);
          
-		UserPDFExporter exporter = new UserPDFExporter(inv);
+		UserPDFExporter exporter = new UserPDFExporter(invCust);
 		exporter.export(response);
     }
+    
+	public  class InvCust {
+		private Invoice inv;
+		public Invoice getInv() {
+			return inv;
+		}
+		public void setInvoice(Invoice inv) {
+			this.inv = inv;
+		}
+		public Customer getCust() {
+			Customer cust = new Customer();
+			cust = custDao.getCustomerById(inv.getCustId());
+			return cust;
+		}
+	}
 }
