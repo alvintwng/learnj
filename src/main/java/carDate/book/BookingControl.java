@@ -174,6 +174,19 @@ public class BookingControl {
 		model.addAttribute("histories", histories);
 		return "book/historyData";
 	}
+	
+	@GetMapping("/histEdit/{id}")
+	public String historyEdit(@PathVariable(value = "id") long id, Model model) {
+		History hist = historyRepo.findById(id).get();
+		model.addAttribute("hist", hist);
+		return "book/historyEdit";
+	}
+	@PostMapping("/histSave")
+	public String saveHist(History hist) {
+		historyRepo.save(hist);
+		log.info("=====> History Saved. id:" + hist.getId() + " " + hist.getRecorded() );
+		return "redirect:/histEdit/" + hist.getId() ;
+	}
 
 
 	public History hireToHistory(Hire hire) {

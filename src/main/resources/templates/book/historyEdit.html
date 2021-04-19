@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CarZoom - Histroy Edit</title>
+</head>
+<body>
+	<h2>Edit History</h2>
+	<form th:action="@{/histSave}" th:object="${hist}" method="post">
+
+		<div>
+			<label> id: [[${hist.id}]] </label>
+			<input type="hidden"  th:field="*{id}" th:value="${hist.id}"  /> 
+		</div>
+		<div>
+			<label> hireId: [[${hist.hireId }]] </label>
+			<input type="text" th:field="*{hireId}" />  
+		</div>
+		<div>
+			<label> custId: [[${hist.custId }]]</label>
+			<input type="text" th:field="*{custId}" />  
+		</div>
+		<div>
+			<label> vehId: [[${hist.vehId }]]</label>
+			<input type="text" th:field="*{vehId}" />  
+		</div>
+		<div>
+			<label> dateStart: [[${hist.dateStart }]]</label>
+			<input type="text" class="form-control" th:field="*{dateStart}" required/>
+		</div>
+		<div>
+			<label> dateStart: [[${hist.dateStart }]]</label>
+			<input type="text" th:field="*{dateEnd}" required/>
+		</div>		
+		<div>
+			<label> custNric: [[${hist.custNric }]] </label>
+			<input type="text" th:field="*{custNric}" />  
+		</div>
+		<div>
+			<label> custCatId: [[${hist.custCatId }]] </label>
+			<input type="text" th:field="*{custCatId}" />  
+		</div>
+		<div>
+			<label> vehClassId: [[${hist.vehClassId }]]</label>
+			<input type="text" th:field="*{vehClassId}" />  
+		</div>
+		<div>
+			<label> vehLicPlate: [[${hist.vehLicPlate}]]</label>
+			<input type="text" th:field="*{vehLicPlate}" />  
+		</div>		
+		<div>
+			<label> dayrate: [[${hist.dayrate}]]</label>
+			<input type="text" th:field="*{dayrate}" />  
+		</div>
+		<div>
+			<label> amount: [[${hist.amoint}]]</label>
+			<input type="text" th:field="*{amoint}" />  
+		</div>
+		<div>
+			<label> recorded: [[${hist.recorded}]]</label>
+			<input type="text" th:field="*{recorded}" required/>
+		</div>		
+		
+		<button type="submit">Save</button>
+	 	<a class="btn btn-primary" href="/histData" role="button">Cancel</a>				
+	</form>
+
+</body>
+</html>
