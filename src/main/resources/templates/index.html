@@ -22,7 +22,8 @@
 		<hr>
 		<!-- <div class="mx-auto" style="width: 560px;"> -->
 	<div class = "container mb-3 mt-3">
-		<span><a href="/hire"><h2>Hires list</h2></a></span>
+		<span><a href="/hire" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
+			<h2>Hires list</h2></a></span>
 
 		<hr>
 		<!-- <span><a href="/"><h2 style="text-align: center">Vehicle Returned</h2></a></span> -->
