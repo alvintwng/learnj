@@ -17,8 +17,7 @@
 		<a class="nav-link" href="/veh">Back to Vehicle page</a>
 	</nav>
 
-	<form action="#" th:action="@{/veh/save}" th:object="${vehicle}" method="POST">
-	<div class="form-row form-group col-md-6">
+	<form action="#" th:action="@{/veh/save}" th:object="${vehicle}" method="POST"-">
 			<label>Vehicle ID: </label>
 	</div>
 	
@@ -56,12 +55,8 @@
 			</select>
 		</div>
 		
-<!-- 	Probable will use java to evaluate	
-		<div class="form-group col-md-6">
-			<label>Current Hired</label>
-			<div>
-			<select th:field="*{listHires}" class="form-control">
-				<th:block th:each="hire : ${listHires}">
+<!-- 	Probable will use java to evalua
+		ach="hire : ${listHires}">
 					<option th:text="${hire.hireId}" th:value="${hire.hireId}"/>
 				</th:block>
 			</select>

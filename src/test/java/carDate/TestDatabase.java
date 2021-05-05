@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
 import carDate.emp.Role;
-import carDate.emp.RoleRepo;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -20,9 +19,6 @@ public class TestDatabase {
 	
 	@Autowired
 	private TestEntityManager entityManager;
-	
-	@Autowired
-	private RoleRepo roleRepo;
 	
 	@Disabled
 	@Test

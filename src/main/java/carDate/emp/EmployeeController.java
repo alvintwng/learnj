@@ -61,6 +61,7 @@ public class EmployeeController {
 		return "emp/employeeNew";
 	}
 
+	/* to create new role */
 	@GetMapping("/emp/roleNew")
 	public String showNewRoleForm(Model model) {
 		Role role = new Role();

@@ -32,20 +32,6 @@ public class employeeCrudTest {
 	@Autowired
 	private EmployeeRepo empRepo; 
 	
-	@Autowired
-	private TestEntityManager entityManager;
-
-//	@Test
-//	public void TestCreationOfRoles() {
-//		Role roleAdmin = new Role(); roleAdmin.setName("ADMIN");
-//		Role roleManager = new Role(); roleManager.setName("MANAGER");
-//		Role roleUser = new Role(); roleUser.setName("USER");
-//
-////		entityManager.persist(roleAdmin);
-////		entityManager.persist(roleManager);
-////		entityManager.persist(roleUser);
-//
-//	}
 	
 	@Test
 	public void empDaouserPassIsValid() {
