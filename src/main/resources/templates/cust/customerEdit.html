@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Customer - Edit</title>
+<title>Customer - New/Edit</title>
 	<!-- ==> common.html -->
 	<div th:replace="common :: header"></div>
 </head>
@@ -11,11 +11,12 @@
 
 
 	<div class="parent">
-	<h2>Edit Customer</h2>
+	<h2>New/Edit Customer</h2>
 	
 	
 	<nav class="nav nav-tabs justify-content-end">
-		<a class="nav-link" th:href="@{'/cust/prf/' + ${custId}}">Back to Profile page</a>
+		<a class="nav-link" href="/cust">Back to Customer page</a>
+		<!-- <a class="nav-link" th:href="@{'/cust/prf/' + ${custId}}">Back to Profile page</a> -->
 	</nav>
 	
 	<form action="#" th:action="@{/cust/save}" th:object="${customer}" method="POST">
@@ -23,7 +24,7 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label>Customer ID: </label>
-			<input type="text" th:field="*{custId}" readonly="readonly"/>
+			<input type="text" hidden th:field="*{custId}" readonly="readonly"/>
 				<!-- <label>Customer ID: [[ ${custId} ]]</label> -->
 		</div>
 		
@@ -38,37 +39,37 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label>User Name: </label>
-			<input class="form-control" type="text" th:field="*{custName}" required/>
+			<input class="form-control" type="text" minlength="8" maxlength="45"  th:field="*{custName}" required/>
 			<small class="form-text text-muted">size must be between 8 and 45</small>
 		</div>
 		<div class="form-group col-md-6">
 			<label>NRIC: </label>
-			<input class="form-control" type="text" th:field="*{nric}" required/>
+			<input class="form-control" type="text" pattern=".{9}" th:field="*{nric}" required/>
 			<small class="form-text text-muted">Must be unique, size must be 9-chars code</small>
 		</div>
 		<div class="form-group col-md-6">
 			<label>Email: </label>
-			<input class="form-control" type="email" th:field="*{email}" required/>
+			<input class="form-control" type="email" minlength="8" maxlength="30" th:field="*{email}" required/>
 			<small class="form-text text-muted">Must be unique Email, size between 8 and 30</small>
 		</div>
 		<div class="form-group col-md-6">
 			<label>Phone No: </label>
-			<input class="form-control" type="text" th:field="*{phoneNo}" required/>
+			<input class="form-control" type="text" minlength="8" maxlength="15" th:field="*{phoneNo}" required/>
 			<small class="form-text text-muted">size must be between 8 and 15</small>
 		</div>
 		<div class="form-group col-md-6">
 			<label>Address 1: </label>
-			<input class="form-control" type="text" th:field="*{addr1}" required/>
+			<input class="form-control" type="text" minlength="2" maxlength="30" th:field="*{addr1}" required/>
 			<small class="form-text text-muted">size must be between 2 and 30</small>
 		</div>
 		<div class="form-group col-md-6">
 			<label>Address 2: </label>
-			<input class="form-control" type="text" th:field="*{addr2}" required/>
+			<input class="form-control" type="text" minlength="2" maxlength="30" th:field="*{addr2}" required/>
 			<small class="form-text text-muted">size must be between 2 and 30</small>
 		</div>
 		<div class="form-group col-md-6">
 			<label>City: </label>
-			<input class="form-control" type="text" th:field="*{city}" required/>
+			<input class="form-control" type="text" minlength="2" maxlength="30" th:field="*{city}" required/>
 			<small class="form-text text-muted">size must be between 2 and 30</small>
 		</div>
 		<div class="form-group col-md-6">

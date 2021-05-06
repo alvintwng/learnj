@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Car Rent - Edit vehicle</title>
+<title>Car Rent - New/Edit vehicle</title>
 	<!-- ==> common.html -->
 	<div th:replace="common :: header"></div>
 </head>
@@ -11,7 +11,7 @@
 	
 	
 	<div class="parent">
-	<h2>Edit Vehicle</h2>
+	<h2>New/Edit Vehicle</h2>
 
 	<nav class="nav nav-tabs justify-content-end">
 		<a class="nav-link" href="/veh">Back to Vehicle page</a>
@@ -20,7 +20,7 @@
 	<form action="#" th:action="@{/veh/save}" th:object="${vehicle}" method="POST">
 	<div class="form-row form-group col-md-6">
 			<label>Vehicle ID: </label>
-			<input type="text" th:field="*{vehId}" readonly="readonly"/>
+			<input type="text" th:field="*{vehId}" hidden readonly="readonly"/>
 	</div>
 	<div class="form-row">
 	
@@ -44,7 +44,8 @@
 	
 		<div class="form-group col-md-6">
 			<label>Daily Rate: </label> 
-			<input class="form-control" type="text" th:field="*{dailyRate}" required/>
+			<input class="form-control" type="number" min="0" th:field="*{dailyRate}" required/>
+			<small class="form-text text-muted">size must be less than or equal to 300</small>
 		</div>
  		<div class="form-group col-md-6">
 			<label>Vehicle Status</label>
