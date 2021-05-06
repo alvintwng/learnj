@@ -43,7 +43,7 @@ public class CustomerController {
 		model.addAttribute("listCustStates", listCustStates);
 		
 		log.info("=====> customerNew ");
-		return "cust/customerNew";
+		return "cust/customerEdit";
 	}	
 	
 	@GetMapping("/cust/prf/{custId}")

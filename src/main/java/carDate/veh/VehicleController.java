@@ -27,6 +27,7 @@ public class VehicleController {
 	
 	@Autowired
 	private VehStatusRepo vehStatusRepo;
+
 	
 	@GetMapping("/veh")
 	public String viewVehPage(Model model) {
@@ -46,7 +47,7 @@ public class VehicleController {
 		model.addAttribute("listVehStatus", listVehStatus);
 		
 		log.info("=====> new vehicle");
-		return "veh/vehicleNew";
+		return "veh/vehicleEdit";
 	}
 	
 	@PostMapping(value = "/veh/save")
@@ -57,7 +58,6 @@ public class VehicleController {
 					+ bindingResult.getAllErrors());
 			return "veh/vehicleNew";
 		}
-			
 
 		vehDao.save(veh);
 		log.info("=====> Saved vehicle");
@@ -81,5 +81,5 @@ public class VehicleController {
 		log.warn("=====> delete(vehId): " + vehId);
 		return "redirect:/veh";
 	}
-	
+
 }

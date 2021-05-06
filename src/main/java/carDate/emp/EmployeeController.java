@@ -58,7 +58,7 @@ public class EmployeeController {
 		List<Role> roles = rolerepo.findAll();
 		model.addAttribute("roles", roles);
 		log.info("=====> new emp");
-		return "emp/employeeNew";
+		return "emp/employeeEdit";
 	}
 
 	/* to create new role */

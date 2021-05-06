@@ -57,7 +57,7 @@ public class HireController {
 		model.addAttribute("vehicles", vehicles);
 		
 		log.info("=====> HireNew ");
-		return "hire/hireNew";
+		return "hire/hireEdit";
 	} */
 
 	@GetMapping("/hireEdit/{hireId}")

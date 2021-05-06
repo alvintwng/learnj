@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>CarZoom - Invoice Edit</title>
+<title>CarZoom - Invoice New/Edit</title>
 	<!-- ==> common.html -->
 	<div th:replace="common :: header"></div>
 </head>
@@ -10,7 +10,7 @@
 	<div th:replace="common :: navbar"></div>
 	
 	<div class="parent">
-	<h2>CarZoom - Edit Invoice</h2>
+	<h2>CarZoom - New/Edit Invoice</h2>
 	
 	<nav class="nav nav-tabs justify-content-end">
 		<a class="nav-link" href="/hire">Back to Hire page</a>
@@ -39,7 +39,7 @@
 		</div>
 		<div class="form-group col-md-4">
 			<label>Invoice No: </label> 
-			<input type="text" class="form-control" th:field="*{invNo}" required/>
+			<input type="text" class="form-control" minlength="4" maxlength="20"  th:field="*{invNo}" required/>
 		</div>
 	</div>
 	
@@ -68,12 +68,13 @@
 	
 		<div class="form-group col-md-4">
 			<label>Daily Rate: </label>
-			<input type="text" class="form-control"  th:field="*{rated}" required/>
+			<input type="number" min="0" max="300" class="form-control"  th:field="*{rated}" required/>
+			<small class="form-text text-muted">size must be less than or equal to 300</small>
 		</div>
 		<div class="form-group col-md-4">
 			<label>Amount Due: </label>
 			<!-- <input type="text" class="form-control"  th:field="*{invPaymt.amount}" required/> -->
-			<input type="text" class="form-control" name="invPaymtAmount" th:value="${inv.invPaymt.amount}" required/>
+			<input type="number" min="0" class="form-control" name="invPaymtAmount" th:value="${inv.invPaymt.amount}" required/>
 		</div>
 	</div>
 	
