@@ -83,10 +83,18 @@ public class CustomerController {
 	}
 
  	@GetMapping("/cust/delete/{custId}")
-	public String deleteCustomer(@PathVariable(name = "custId") Long custId) {
-		customerDao.delete(custId);
+	public String deleteCustomer(Model model, @PathVariable(name = "custId") Long custId) {
+		try {
+			customerDao.delete(custId);
+			log.warn("=====> delete(custId): " + custId);
+		} catch (Exception e) {
+            log.warn("=====> delete(custId) => Something went wrong to: " + custId);
+            log.error(e.toString());
+            model.addAttribute("error", "Unable to delete!\n" + e.toString());
+            return "error";
+            //https://github.com/alvintwng/ntucLH/tree/master/m9JavaSe2
+		}
 		
-		log.warn("=====> delete(custId): " + custId);
 		return "redirect:/cust";
 	}
 

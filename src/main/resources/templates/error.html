@@ -11,14 +11,16 @@
  	<div th:replace="common :: navbar"></div>
  	
 	<div class="parent" >
-		<h2>
-			accessDeniedPage... There is an Error ....
-		</h2>
+		<h2> accessDeniedPage... There is an Error .... </h2>
 
 		Please check the spelling or the value is correct... <br>
 		or, for deleting, please check for constraint, <br> 
 		or, for new entry, please check not the same as in database.
 
+	</div>
+	<div class="form-group col-md-6">
+		<b>Error message: </b>
+		<label>$[[${error}]]</label>
 	</div>
 	<div th:replace="common :: footer"></div>
 </body>
