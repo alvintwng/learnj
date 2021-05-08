@@ -76,9 +76,17 @@ public class VehicleController {
 	}
 
 	@GetMapping("/veh/delete/{vehId}")
-	public String deleteVehicle(@PathVariable(name = "vehId") long vehId) {
-		vehDao.delete(vehId);
-		log.warn("=====> delete(vehId): " + vehId);
+	public String deleteVehicle(@PathVariable(name = "vehId") long vehId, Model model) {
+		try {
+			vehDao.delete(vehId);
+			log.warn("=====> delete(vehId): " + vehId);
+		} catch (Exception e ) {
+			log.warn("=====> delete(vehId) => Something went wrong to: " + vehId);
+            log.error(e.toString());
+            model.addAttribute("error", ("Unable to delete!\n" + e.toString()));
+            return "error";
+		}
+
 		return "redirect:/veh";
 	}
 

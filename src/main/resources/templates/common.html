@@ -71,8 +71,8 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 			 	<b><span th:text="${#authentication.getPrincipal().getUsername()}"></span></b>
 			</a>
 			<ul class="dropdown-menu">
-		 		<li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN', 'ROLE_ADMIN')">
-		 			<a class="dropdown-item" href="/toDoList">ToDoList</a> </li>
+		 		<!-- <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN', 'ROLE_ADMIN')">
+		 			<a class="dropdown-item" href="/toDoList">ToDoList</a> </li> -->
 				<li class="nav-item" sec:authorize="hasAnyAuthority('MANAGER', 'ADMIN', 'ROLE_ADMIN')">
 					<a class="dropdown-item" href="/config">config</a></li>
 				<li><a class="dropdown-item" href="/login">re-Login</a></li>
