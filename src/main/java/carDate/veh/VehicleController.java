@@ -29,7 +29,7 @@ public class VehicleController {
 	private VehStatusRepo vehStatusRepo;
 
 	
-	@GetMapping("/veh")
+	@GetMapping("/vehicles")
 	public String viewVehPage(Model model) {
 		
 		model.addAttribute("listVehicles", vehDao.getAllVehicles());
@@ -45,32 +45,31 @@ public class VehicleController {
 //		model.addAttribute("listHires", hireDao.getAllHires());
 		model.addAttribute("vehicle", veh);
 		model.addAttribute("listVehStatus", listVehStatus);
-		
+		veh.setDailyRate(10); // preset value, remove if database remove this field
 		log.info("=====> new vehicle");
 		return "veh/vehicleEdit";
 	}
 	
 	@PostMapping(value = "/veh/save")
 	public String saveVeh(@Valid @ModelAttribute("vehicle") Vehicle veh, BindingResult bindingResult) {
-		
 		if(bindingResult.hasErrors()) {
 			log.warn("=====> saveVeh, bindingResult.getAllErrors():: " 
 					+ bindingResult.getAllErrors());
-			return "veh/vehicleNew";
+			return "veh/vehicleEdit";
 		}
 
 		vehDao.save(veh);
 		log.info("=====> Saved vehicle");
-		return "redirect:/veh";
+		return "redirect:/vehicles";
 	}
 	
-	@GetMapping("/vehEdit/{vehId}")
+	@GetMapping("/veh/edit/{vehId}")
 	public String showFormForUpdate(@PathVariable(value = "vehId") long vehId, Model model) {
 		Vehicle vehicle = vehDao.getVehicleById(vehId);
 		model.addAttribute("vehicle", vehicle);
 		List<VehStatus> listVehStatus = vehStatusRepo.findAll();
 		model.addAttribute("listVehStatus", listVehStatus);
-		
+		vehicle.setDailyRate(10); // preset value, remove if database remove this field
 		log.info("=====> vehEdit, vehId: " + vehicle.getVehId());
 		return "veh/vehicleEdit";
 	}
@@ -87,7 +86,7 @@ public class VehicleController {
             return "error";
 		}
 
-		return "redirect:/veh";
+		return "redirect:/vehicles";
 	}
 
 }

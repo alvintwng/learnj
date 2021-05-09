@@ -62,14 +62,15 @@
 		
 		<h3>Hire Rate</h3>
 		<nav class="nav nav-tabs">
-			<a class="nav-link" href="newDailyRate">Create New Daily Rate</a>
+			<a class="nav-link" href="/main/newDailyRate">Create New Daily Rate</a>
 		</nav>
 		<table class="table table-striped">
 			<thead>
 				<th>ID</th>
-				<th>Vehicle Class</th>
-				<th>Customer Category</th>
+				<th>Vehicle Status</th>
+				<th>Customer State</th>
 				<th>Daily Rate</th>
+				<th>Actions</th>
 			</thead>
 			<tbody>
 				<tr th:each="dR : ${listDailyRate}">
@@ -77,6 +78,13 @@
 					<td>[[${dR.vehClassId}]]
 					<td>[[${dR.custCatId}]]
 					<td>[[${dR.dayrate}]]
+					<td>
+						<a class="btn btn-info" th:href="@{'/main/rate/' + ${dR.id}}">
+						<span>Edit</span></a>
+						<a class="btn btn-warning" th:href="@{/main/delete/{id}(id=${dR.id})}"
+						onclick="return confirm('Are you sure you want to delete this item?');">
+						<span>Delete</span></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

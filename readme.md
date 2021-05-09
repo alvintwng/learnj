@@ -41,7 +41,7 @@ Deployment at  https://carzoom.herokuapp.com/
 * Above mentioned app is using free dynos. If first load fails, please reload
 again.
 * Explore with the credential: user/ user (subject to change).
-* Developer Explanation in Youtube: https://youtu.be/ALgUMu4Auk4
+* Developer explanation, a minute Youtube : https://youtu.be/ALgUMu4Auk4
 
 ---
 
