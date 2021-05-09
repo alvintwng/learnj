@@ -12,10 +12,6 @@
 - Access to record deletion is granted only to Employees with ADMIN or MANAGER Roles.  Employee deletion is only allowed for ADMIN.  The physical deletion however will always be subject to referential integrity constraints in the database.
 
 #### Business Operations by Roles:
-ALL: for all users.
-- Log-in
-- View non-sensitive own details.
-- Change own password.
 
 ADMIN: for administrators
 - Maintain system configuration parameters, such as:
@@ -38,6 +34,14 @@ USER: for front desk who serve customers
 - Hire can be edit prior to Convert to Invoice.
 - An invoice generated on web page, can be exported to PDF format. One Invoice only associated with one Hire record.
 - From the Hire records, a fleet utilization efficiency statistics will be generated and presented graphically.
+
+---
+### Deployment
+Deployment at  https://carzoom.herokuapp.com/
+* Above mentioned app is using free dynos. If first load fails, please reload
+again.
+* Explore with the credential: user/ user (subject to change).
+* Developer explanation, a minute Youtube : https://youtu.be/ALgUMu4Auk4
 
 ---
 

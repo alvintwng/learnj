@@ -15,7 +15,7 @@
 <div class="parent">
 	<h2>Vehicle List</h2>
 	
-	<nav class="nav nav-tabs justify-content-end">
+	<nav class="nav nav-tabs justify-content-end" sec:authorize="hasAnyAuthority('MANAGER')">
  		<a class="nav-link" href="/veh/new">Create NewVehicle</a>
 	</nav>
 	
@@ -43,8 +43,8 @@
 				<td>[[ ${veh.vehStatus.name} ]]</td>
 				<td>[[ ${veh.vehStatus.isActive} ]]</td>
 			
-				<td sec:authorize="hasAnyAuthority('USER', 'ADMIN', 'MANAGER')">
-					<a class="btn btn-info btn-sm" th:href="@{'/vehEdit/' + ${veh.vehId}}">
+				<td sec:authorize="hasAnyAuthority('MANAGER')">
+					<a class="btn btn-info btn-sm" th:href="@{'/veh/edit/' + ${veh.vehId}}">
 						<span class="fa fa-edit"></span></a>
 					<a class="btn btn-warning btn-sm delBtn" th:href="@{/veh/delete/{vehId}(vehId=${veh.vehId})}">
 						<span class="fa fa-trash"></span></a>

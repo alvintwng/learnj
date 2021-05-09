@@ -117,11 +117,10 @@ public class Vehicle {
 		this.vehStatus = vehStatus;
 	}
 
+	@Override
+	public String toString() {
+		return "Vehicle [VehId=" + VehId + ", vehModel=" + vehModel + ", vehBrand=" + vehBrand + ", vehLicPlate="
+				+ vehLicPlate + ", dailyRate=" + dailyRate + ", vehStatus=" + vehStatus + "]";
+	}
+
 }
-/*
-
-INSERT INTO "SUMPROJ"."VEHICLE" (DAILY_RATE, VEH_BRAND, VEH_LIC_PLATE, VEH_MODEL, CURHIREID, VEHSTTSID)
- VALUES ('11', 'Vios', 'ABC123D', 'TOYOTA', '2', '1')
-
-*/
- 

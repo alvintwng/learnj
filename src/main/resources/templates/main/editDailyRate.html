@@ -11,17 +11,18 @@
 
 
 	<div class="parent">
-	<h2>Create New DailyRate</h2>
+	<h2>Edit/Create New DailyRate</h2>
 	
 	
 	<nav class="nav nav-tabs justify-content-end">
-		<a class="nav-link" href="/config">Back to Config page</a>
+		<a class="nav-link" href="/main/config">Back to Config page</a>
 	</nav>
 
-	<form action="#" th:action="@{saveDailyRate}" th:object="${dailyRate}" method="POST">
+	<form action="#" th:action="@{/main/saveDailyRate}" th:object="${dailyRate}" method="POST">
 		<div class="form-row">
 			<div class="form-group col-md-6">
 				<label>ID: </label>
+				<input type="text" th:field="*{id}" readonly="readonly" hidden/>
 			</div>
 			<div class="form-group col-md-6">
 				<label>Vehicle Class</label>
@@ -43,7 +44,8 @@
 			</div>
 			<div class="form-group col-md-6">
 				<label>Daily Rate</label>
-				<input class="form-control" type="text" th:field="*{dayrate}"/>
+				<input class="form-control" type="number" min="0" th:field="*{dayrate}"/>
+				<small class="form-text text-muted">size must be less than or equal to 300</small>
 			</div>
 		</div>
 		

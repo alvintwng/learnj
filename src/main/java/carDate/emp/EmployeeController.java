@@ -60,25 +60,6 @@ public class EmployeeController {
 		log.info("=====> new emp");
 		return "emp/employeeEdit";
 	}
-
-	/* to create new role */
-	@GetMapping("/emp/roleNew")
-	public String showNewRoleForm(Model model) {
-		Role role = new Role();
-		model.addAttribute("role", role);
-		log.info("=====> new Role");
-		return "emp/roleNew";
-	} 
-	
-	@PostMapping(value = "emp/roleSave")
-	public String saveRole(@Valid @ModelAttribute("role") Role role, BindingResult bindingResult) {
-		if(bindingResult.hasErrors())
-			return "emp/roleNew";
-
-		rolerepo.save(role);
-		log.warn("=====> emp/rolesave: " +role.getName());
-		return "redirect:/emp";
-	}
 	
 	@GetMapping("/emp/edit/{empId}")
 	public ModelAndView editEmployee(@PathVariable(value = "empId") long empId) {
@@ -127,8 +108,4 @@ public class EmployeeController {
 		return "redirect:/emp";
 	}
 
-	@GetMapping("/error")
-	public String Error() {
-		return "error";						
-	}
 }
