@@ -70,7 +70,7 @@
 				<th>Vehicle Status</th>
 				<th>Customer State</th>
 				<th>Daily Rate</th>
-				<th>Actions</th>
+				<th sec:authorize="hasAnyAuthority('ADMIN')">Actions</th>
 			</thead>
 			<tbody>
 				<tr th:each="dR : ${listDailyRate}">
@@ -78,7 +78,7 @@
 					<td>[[${dR.vehClassId}]]
 					<td>[[${dR.custCatId}]]
 					<td>[[${dR.dayrate}]]
-					<td>
+					<td sec:authorize="hasAnyAuthority('ADMIN')">
 						<a class="btn btn-info" th:href="@{'/main/rate/' + ${dR.id}}">
 						<span>Edit</span></a>
 						<a class="btn btn-warning" th:href="@{/main/delete/{id}(id=${dR.id})}"
