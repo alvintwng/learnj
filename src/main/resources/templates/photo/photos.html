@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CarZoom - photos</title>
+	<!-- ==> common.html -->
+	<div th:replace="common :: header"></div>
+</head>
+<body>
+	<div th:replace="common :: navbar"></div>
+
+	<div class="parent">	
+	<div align="center">
+		<H2>Vehicle Photos</H2>
+
+		<nav class="nav nav-tabs justify-content-end" sec:authorize="hasAnyAuthority('MANAGER')">
+			<a class="nav-link" th:href="@{/img/photoNew}">Create New Image</a>
+		</nav>
+
+		<table class="table table-striped" id="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+
+					<th>Image</th>
+					<th>Description</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<th:block th:each="p: ${photos}">
+					<tr>
+						<td>[[${p.photoId}]]</td>
+
+						<td><img th:src="@{${p.photosImagePath}}" /></td>
+ 						<td>
+ 							<div><b>[[${p.photo}]]</b></div>
+ 							<div th:each = "detail: ${p.details}">[[${detail}]]</div>
+						</td>
+						<td sec:authorize="hasAnyAuthority('MANAGER')">
+							<a class="btn btn-info btn-sm" th:href="@{'/img/photoEdit/' + ${p.photoId}}">
+							<span class="fa fa-edit"></span></a>
+						 <br><br>
+ 							<a class="btn btn-warning btn-sm delBtn" th:href="@{'/img/photoDelete/' + ${p.photoId}}">
+						<span class="fa fa-trash"></span></a>
+						</td>
+					</tr>
+				</th:block>
+			</tbody>
+		</table>
+	</div>
+	</div>
+
+	<div th:replace="common :: footer"></div>	
+		
+	<div class="modal fade" id="deleteModal" data-backdrop="static" data-keyboard="false" 
+			tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="deleteModalLabel">Delete Record</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+			<p class="alert alert-danger">
+			Do you want to delete <div id="main"> </div>
+			</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keep</button>
+	        <a class="btn btn-danger" href="" id="delRef">proceed </a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>
