@@ -13,7 +13,7 @@
 	<div align="center">
 		<H2>Vehicle Photos</H2>
 
-		<nav class="nav nav-tabs justify-content-end">
+		<nav class="nav nav-tabs justify-content-end" sec:authorize="hasAnyAuthority('MANAGER')">
 			<a class="nav-link" th:href="@{/img/photoNew}">Create New Image</a>
 		</nav>
 
@@ -38,7 +38,7 @@
  							<div><b>[[${p.photo}]]</b></div>
  							<div th:each = "detail: ${p.details}">[[${detail}]]</div>
 						</td>
-						<td>
+						<td sec:authorize="hasAnyAuthority('MANAGER')">
 							<a class="btn btn-info btn-sm" th:href="@{'/img/photoEdit/' + ${p.photoId}}">
 							<span class="fa fa-edit"></span></a>
 						 <br><br>

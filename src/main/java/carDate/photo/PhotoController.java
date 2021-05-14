@@ -26,7 +26,7 @@ public class PhotoController {
 	@Autowired
 	private PhotoRepository photoRepo;
 	
-	@RequestMapping("/img/photos")
+	@RequestMapping("/photos")
 	public String ShowUsersList(Model model) {
 		java.util.List<Photo> photos = photoRepo.findAll();
 		model.addAttribute("photos", photos);
@@ -65,7 +65,7 @@ public class PhotoController {
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
         log.warn("=====> img/photoSave: " + savedPhoto.getPhotosImagePath());
-        return new RedirectView("/img/photos", true);
+        return new RedirectView("/photos", true);
 	}
 	
 	@PostMapping("/img/photoDescSave")
@@ -96,7 +96,7 @@ public class PhotoController {
             model.addAttribute("error", e.toString());
         }
 
-        return new RedirectView("/img/photos", true);
+        return new RedirectView("/photos", true);
 	}
 	
 	@GetMapping("/img/photoEdit/{id}")
@@ -112,7 +112,7 @@ public class PhotoController {
 	public String deletePhoto(@PathVariable("id") int id, Model model) {
 		photoRepo.deleteById(id);;
 		log.warn("=====> img/photoDelete/{id}: " + id);
-		return "redirect:/img/photos";
+		return "redirect:/photos";
 	}
 
 	/*Carousel pending, still working on*/
