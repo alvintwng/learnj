@@ -45,8 +45,13 @@ src="https://instructure-uploads-apse1.s3.ap-southeast-1.amazonaws.com/account_8
 				<li><a class="dropdown-item" href="/cust"> Add Customer </a></li>
 			</ul> -->
 		</li>
-		<li class="nav-item" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
-		  <a class="nav-link" href="/vehicles">Vehicles</a>
+		<li class="nav-item dropdown" sec:authorize="hasAnyAuthority('USER', 'MANAGER')">
+		  <!-- <a class="nav-link" href="/vehicles">Vehicles</a> -->
+		  <a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown">Vehicles</a>
+		  <ul class="dropdown-menu">
+		  	<li><a class="dropdown-item" href="/vehicles">Vehicles List</a></li>
+		  	<li><a class="dropdown-item" href="/img/photos">Photos</a></li>
+		  </ul>
 		</li>
 		<li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
 		  <a class="nav-link" href="/emp">Employees</a>
