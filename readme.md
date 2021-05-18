@@ -1,8 +1,12 @@
-### CarZoom
+## CarZoom
+### JAVA DEVELOPER Summative Capstone Project
+
+[<img src= "img/210518AMinsYoutube.png">](https://youtu.be/ALgUMu4Auk4)
+
 #### This application system:
 - based on Oracle database version 12c  to store all business data,
 - using Java version 11, Spring Framework.
-- accessible with internet browsers, HerokuApp.
+- accessible with Internet browsers, HerokuApp.
 - utilizing Javascript, Thymeleaf, and Bootstrap for client side presentation, styling, and interaction,
 - The system will be accessed only by Employees of the car rental company.
 - Each Employee signs in with an assigned UserName and password.  Each Employee can inquire own personal details as well as change own password.
@@ -41,7 +45,7 @@ Deployment at  https://carzoom.herokuapp.com/
 * Above mentioned app is using free dynos. If first load fails, please reload
 again.
 * Explore with the credential: user/ user (subject to change).
-* Developer explanation, a minute Youtube : https://youtu.be/ALgUMu4Auk4
+* Developer explanation, Youtube : https://youtu.be/ALgUMu4Auk4 .
 
 ---
 
