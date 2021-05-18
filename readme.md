@@ -1,7 +1,7 @@
 ## CarZoom
 ### JAVA DEVELOPER Summative Capstone Project
 
-[<img src= "img/210518AMinsYoutube.png">](https://youtu.be/ALgUMu4Auk4)
+[<img src= "img/210518AMinsYoutube.png">](https://youtu.be/U4V75batZk8)
 
 #### This application system:
 - based on Oracle database version 12c  to store all business data,
@@ -45,7 +45,7 @@ Deployment at  https://carzoom.herokuapp.com/
 * Above mentioned app is using free dynos. If first load fails, please reload
 again.
 * Explore with the credential: user/ user (subject to change).
-* Developer explanation, Youtube : https://youtu.be/ALgUMu4Auk4 .
+* Developer explanation, Youtube : https://youtu.be/U4V75batZk8 .
 
 ---
 
