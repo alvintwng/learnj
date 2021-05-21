@@ -10,5 +10,5 @@ Insert into DAILYRATE (CUSTCATID,DAYRATE,VEHCLASSID) values (1,80,1);
 Insert into VEHICLE (DAILY_RATE,VEH_BRAND,VEH_LIC_PLATE,VEH_MODEL,VEHSTTSID) values (66,'Jaguar','XE1A','XE',1);
 Insert into CUSTOMER (ADDR1,ADDR2,CITY,CUSTNAME,DATEUPD,DOB,EMAIL,ISACTIVE,NRIC,PHONENO,CUSTSTATEID) values ('123 Rambutan Road','No road','Singapore','Charlie Cha',to_date('01-JAN-21','DD-MON-RR'),to_date('25-DEC-80','DD-MON-RR'),'charlie@gmail.co',1,'S7654321A','98765432',1);
 
-/* need to set once: */
+/* need to set once at application.properties: */
 /* spring.datasource.initialization-mode=always */
