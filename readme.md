@@ -79,3 +79,8 @@ Hire List
 ![image](img/210505hireList.png)
 
 ---
+### Git
+Git for tracking changes in any set of files.
+![image](img/210525git.png)
+
+---
