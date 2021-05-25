@@ -1,7 +1,7 @@
 ## CarZoom
 ### JAVA DEVELOPER Summative Capstone Project
 
-![image](img/210518AMinsYoutube.png)](https://youtu.be/U4V75batZk8)
+[![image](img/210518AMinsYoutube.png)](https://youtu.be/U4V75batZk8)
 
 #### This application system:
 - based on Oracle database version 12c  to store all business data,
@@ -50,27 +50,37 @@ again.
 ---
 
 ### ER Diagram
-This diagram helped to understand the structure of tables needed to persist the project data, and organize the bussiness model.
+This diagram helped to understand the structure of tables needed to persist the project data, and organize the bussiness model.   
 ![image](img/210504ERDiagram.png)
 
-### Sequence Diagram
-This kind of diagram was especially useful to understand the front controller functionality and the user journey.
+---
+### Sequence Diagram - EmpController
+This kind of diagram was especially useful to understand the front controller functionality and the user journey.  
 ![image](https://github.com/alvintwng/ntucLH/blob/master/mJSummativeCapStoneProj/210228A-SumProj/SequenceDiagram1.jpg)
 
 ---
 ### Flow Chart
 This flow chart show drop down menu from different users, Admin or User.
-Admin, User Page 	![image](img/210504CarZoomFlow2.png)
+Admin, User Page   
+![image](img/210504CarZoomFlow2.png)
 
-The flow chart show the flow from the new booking.
-Booking 				![image](img/210504CarZoomFlow3.png)
+The flow chart show the flow from Hire List, the new booking.   
+ 				![image](img/210504CarZoomFlow3.png)
 
 ---
 ### Screen Shots
-Home Page 			![image](img/210505homePage.png)
+Home Page   
+![image](img/210505homePage.png)
 
-Select Date 			![image](img/210505selectDate.png)
+Select Date   
+![image](img/210505selectDate.png)
 
-Hire List 			![image](img/210505hireList.png)
+Hire List   
+![image](img/210505hireList.png)
+
+---
+### Git
+Git for tracking changes in any set of files.
+![image](img/210525git.png)
 
 ---
