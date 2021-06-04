@@ -5,7 +5,7 @@
 
 #### This application system:
 - based on Oracle database version 12c  to store all business data,
-- using Java version 11, Spring Framework.
+- using Java version 11, Spring Boot Framework.
 - accessible with Internet browsers, HerokuApp.
 - utilizing Javascript, Thymeleaf, and Bootstrap for client side presentation, styling, and interaction,
 - The system will be accessed only by Employees of the car rental company.
